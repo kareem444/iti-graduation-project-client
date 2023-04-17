@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import MainRouter from './router/main_router';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux'
+import store from './redux/store';
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+import 'flag-icon-css/css/flag-icon.min.css'
+import i18nextHandler from './utils/core/i18next.handler';
+import SplashScreenComponent from './components/splash_screen_component/splash_screen.component';
+
+i18nextHandler()
+
+const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Suspense fallback={<SplashScreenComponent />}>
+    <React.StrictMode>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <MainRouter />
+          </BrowserRouter>
+          <ReactQueryDevtools />
+        </QueryClientProvider>
+      </Provider>
+    </React.StrictMode>
+  </Suspense>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
