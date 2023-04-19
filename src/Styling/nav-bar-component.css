@@ -1,0 +1,66 @@
+@import url("./all.css");
+
+.primaryColor {
+  color: var(--primaryColor);
+}
+.responsiveIcon {
+  color: var(--primaryColor) !important;
+  border-color: var(--primaryColor) !important;
+
+}
+
+.primarybg {
+  background-color: var(--primaryColor);
+}
+.secondbg {
+    background-color: var(--nav-bg);
+}
+
+.lightBrownColor {
+  color: var(--light-brown);
+}
+
+.secondaryColor {
+  color: var(--secondaryColor);
+}
+
+.textColor {
+  color: var(--textColor);
+}
+
+.iconColor {
+  color: var(--iconColor);
+}
+
+.iconBorder {
+  color: var(--iconColor);
+}
+
+.interFont {
+  font-family: var(--inter-font);
+}
+
+.gentiumFont {
+  font-family: var(--gentium-font);
+}
+
+.active,.active:visited {
+  color: var(--primaryColor);
+  text-decoration: underline;
+}
+
+.nav-link,.nav-link:hover {
+  font-family: var(--gentium-font);
+}
+.nav-link:hover {
+  color: var(--primaryColor);
+}
+
+.bi-search-heart::before {
+  font-size: 25px;
+}
+
+.bi-search-heart::before:hover {
+  background-color: var(--primaryColor);
+  color: aliceblue;
+}

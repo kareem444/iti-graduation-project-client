@@ -10,7 +10,8 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import 'flag-icon-css/css/flag-icon.min.css'
 import i18nextHandler from './utils/core/i18next.handler';
 import SplashScreenComponent from './components/splash_screen_component/splash_screen.component';
-
+import  '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
+import "@fortawesome/fontawesome-svg-core"
 i18nextHandler()
 
 const queryClient = new QueryClient()

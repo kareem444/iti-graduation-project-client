@@ -17,6 +17,22 @@ function MainRouter() {
           path={RoutsPath.NoPageRoute.path}
           element={RoutsPath.NoPageRoute.component}
         />
+        <Route
+          path={RoutsPath.signINRoute.path}
+          element={RoutsPath.signINRoute.component}
+        />
+        <Route
+          path={RoutsPath.signUpRoute.path}
+          element={RoutsPath.signUpRoute.component}
+        />
+        <Route
+          path={RoutsPath.contactUsRoute.path}
+          element={RoutsPath.contactUsRoute.component}
+        />
+        <Route
+          path={RoutsPath.productsRoute.path}
+          element={RoutsPath.productsRoute.component}
+        />
       </Route>
     </Routes>
   )
