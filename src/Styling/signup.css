@@ -1,0 +1,18 @@
+@import url("./all.css");
+
+.form-check-input:checked{
+    cursor: pointer !important;
+    background-color: var(--primaryColor) !important;
+    border-color: var(--primaryColor) !important;
+    outline-color: var(--primaryColor) !important;
+}
+
+.form-check-input{
+    cursor: pointer !important;
+}
+
+.bg-img {
+    background-image: url("../../public/assets/wedimg-1.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }

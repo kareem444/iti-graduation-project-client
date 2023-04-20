@@ -16,7 +16,6 @@ const LayoutPage = () => {
     return (
         <>
             <NavBarComponent />
-            <ExampleComponent />
             {/* The ExampleComponent component is for testing only you have to comment it in publish */}
             <Outlet />
         </>

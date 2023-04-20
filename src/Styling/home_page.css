@@ -1,0 +1,58 @@
+@import url("./all.css");
+
+.bgSecondary {
+  background-color: var(--secondaryColor);
+}
+
+.bgPrimary {
+  background-color: var(--primaryColor);
+}
+
+.bg-light-brown {
+  background-color: var(--light-brown);
+}
+
+.bg-img {
+  background-image: url("../../public/assets/img.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.vh-85 {
+  height: 85vh;
+}
+.playfair-font {
+  font-family: var(--playfair-font);
+}
+.kalamFont {
+  font-family: var(--kalam-font);
+}
+
+.bigFont {
+  font-size: 4.27em;
+}
+
+.titleSize {
+  font-size: 2.5em;
+}
+
+.textColor {
+  color: var(--textColor);
+  font-weight: 500;
+}
+
+.bi::before,
+.fa-crown,.fa-camera,.fa-newspaper,.fa-chair,.fa-champagne-glasses,.MuiSvgIcon-root {
+  color: var(--primaryColor);
+  font-size: 50px;
+}
+.bi-person-fill::before,
+.bi-lock-fill::before,
+.bi-envelope::before,
+.bi-person-circle::before{
+  font-size: 25px !important;
+}
+.fa-camera,.bi-geo-alt-fill::before,.fa-chair,.fa-newspaper,.fa-champagne-glasses,.MuiSvgIcon-root{
+  font-size: 30px !important;
+
+}

@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&family=Playfair+Display&display=swap");
+
+:root {
+  --primaryColor: #bbae9a;
+  --light-brown: #f7e7ce;
+  --secondaryColor: #fffff0;
+  --nav-bg: #f7e9d6;
+  --textColor: #555555;
+  --iconColor: #7a9ca5;
+  --icon-border: #5c8692;
+  --playfair-font: "Playfair Display", serif;
+  --kalam-font: "Kalam", cursive;
+}
