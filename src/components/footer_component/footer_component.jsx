@@ -1,12 +1,13 @@
 import { NavLink } from "react-router-dom";
 import "../../Styling/footer_section.css";
+
 const Footersection = () => {
   return (
     <>
-      <footer className="container-fluid text-center text-md-start mt-5">
+      <footer className="container-fluid  mt-5">
         <hr className="w-100" />
-        <div className="row mt-5">
-          <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+        <div className="row mt-5 justify-content-around text-center ">
+          <div className=" col-3    mb-4">
             <h6 className="text-uppercase fw-bold mb-4">
               Explore
             </h6>
@@ -43,16 +44,16 @@ const Footersection = () => {
               </NavLink>
             </p>
           </div>
-          <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <div className=" col-3   mb-4">
             <h6 className="text-uppercase fw-bold mb-4">
-              Packages
+              Packages Locations
             </h6>
             <p>
               <a
                 href="#!"
                 className=" text-decoration-none text-muted"
               >
-                Autmn Packages{" "}
+                Cairo {window.innerWidth >= 768 && "City"}
               </a>
             </p>
             <p>
@@ -60,7 +61,7 @@ const Footersection = () => {
                 href="#!"
                 className=" text-decoration-none text-muted"
               >
-                Spring Packages{" "}
+                Giza {window.innerWidth >= 768 && "City"}
               </a>
             </p>
             <p>
@@ -68,20 +69,11 @@ const Footersection = () => {
                 href="#!"
                 className=" text-decoration-none text-muted"
               >
-                Winter Packages
-              </a>
-            </p>
-            <p>
-              <a
-                href="#!"
-                className="text-decoration-none text-muted "
-              >
-                {" "}
-                Summer Packages
+                Alex {window.innerWidth >= 768 && "City"}
               </a>
             </p>
           </div>{" "}
-          <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <div className=" col-3   mb-4">
             <h6 className="text-uppercase fw-bold mb-4">
               Langs{" "}
             </h6>

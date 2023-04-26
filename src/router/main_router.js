@@ -1,5 +1,5 @@
-import { Route, Routes } from 'react-router-dom'
-import RoutsPath from './page_routes'
+import { Route, Routes } from "react-router-dom";
+import RoutsPath from "./page_routes";
 
 function MainRouter() {
   return (
@@ -34,6 +34,10 @@ function MainRouter() {
           element={RoutsPath.productsRoute.component}
         />
         <Route
+          path={RoutsPath.checkoutRoute.path}
+          element={RoutsPath.checkoutRoute.component}
+        />
+        <Route
           path={RoutsPath.profileRoute.path}
           element={RoutsPath.profileRoute.component}
         />
@@ -51,7 +55,7 @@ function MainRouter() {
         />
       </Route>
     </Routes>
-  )
+  );
 }
 
-export default MainRouter
+export default MainRouter;

@@ -17,9 +17,10 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
-
-.vh-85 {
-  height: 85vh;
+@media all and (min-width: 768px) {
+  .vh-md-85 {
+    height: 85vh;
+  }
 }
 .playfair-font {
   font-family: var(--playfair-font);
@@ -42,17 +43,26 @@
 }
 
 .bi::before,
-.fa-crown,.fa-camera,.fa-newspaper,.fa-chair,.fa-champagne-glasses,.MuiSvgIcon-root {
+.fa-crown,
+.fa-camera,
+.fa-newspaper,
+.fa-chair,
+.fa-champagne-glasses,
+.MuiSvgIcon-root {
   color: var(--primaryColor);
   font-size: 50px;
 }
 .bi-person-fill::before,
 .bi-lock-fill::before,
 .bi-envelope::before,
-.bi-person-circle::before{
+.bi-person-circle::before {
   font-size: 25px !important;
 }
-.fa-camera,.bi-geo-alt-fill::before,.fa-chair,.fa-newspaper,.fa-champagne-glasses,.MuiSvgIcon-root{
+.fa-camera,
+.bi-geo-alt-fill::before,
+.fa-chair,
+.fa-newspaper,
+.fa-champagne-glasses,
+.MuiSvgIcon-root {
   font-size: 30px !important;
-
 }
