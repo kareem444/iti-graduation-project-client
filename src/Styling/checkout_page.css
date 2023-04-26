@@ -1,0 +1,42 @@
+.bgSecondary {
+  background-color: var(--secondaryColor);
+}
+
+/* primaryColor */
+.bi-arrow-left-short::before {
+  font-size: 40px !important;
+}
+
+input {
+  border: 2px solid var(--secondaryColor) !important;
+  background-color: var(--nav-bg) !important;
+  font-weight: normal !important;
+}
+
+button.checkoutBtn {
+  background-color: var(--primaryColor) !important;
+  margin-left: auto;
+}
+
+input:focus::placeholder,
+label {
+  color: #000000 !important;
+}
+
+input::placeholder {
+  display: none !important;
+}
+
+.bg-lightBrown {
+  background: var(--nav-bg) !important;
+}
+
+.kalam-font {
+  font-family: var(--playfair-font) !important;
+}
+
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}

@@ -1,0 +1,11 @@
+@import url("./all.css");
+
+footer {
+  font-family: var(--kalam-font);
+  background: var(--primaryColor);
+  color: white;
+}
+
+footer .text-muted {
+  color: white !important;
+}
