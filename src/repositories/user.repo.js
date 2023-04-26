@@ -19,53 +19,8 @@ export const RepGetOneUser = userId => {
 }
 
 export const RepoCreateUser = () => {
-    const queryClient = useQueryClient()
     return useMutation((data) =>
-        AxiosApiHelper.post(ENDPOINT_CONTACTS, data), {
-        // onSuccess: () => {
-        //#region This will cause the get all users function to refetch and get new to data of the users
-
-        //     // queryClient.invalidateQueries(KEY_REPO_GET_ALL_USERS)
-
-        //     //#endregion
-
-        //     //#region This will update the old users cached data without causing any refresh
-
-        //     // queryClient.setQueryData(KEY_REPO_GET_ALL_USERS, (oldDate) => {
-        //     //     return {
-        //     //         ...oldDate,
-        //     //         data: [...oldDate.data, data]
-        //     //     }
-        //     // })
-
-        //#endregion
-        // },
-
-        //#region implement optimistic update
-        // onMutate: (newUser) => {
-        //     // Cancel any outgoing retches (so they don't overwrite our optimistic update)
-        //     queryClient.cancelQueries(KEY_REPO_GET_ALL_USERS)
-        //     // Update the cached data with the new data
-        //     const previousUsers = queryClient.getQueryData(KEY_REPO_GET_ALL_USERS)
-        //     queryClient.setQueryData(KEY_REPO_GET_ALL_USERS, (oldDate) => {
-        //         return {
-        //             ...oldDate,
-        //             data: [...oldDate.data, newUser]
-        //         }
-        //     })
-        //     // Return the previous value
-        //     return { previousUsers }
-        // },
-        // // If the mutation fails, use the value returned from onMutate to roll back
-        // onError: (err, newUser, context) => {
-        //     queryClient.setQueryData(KEY_REPO_GET_ALL_USERS, context.previousUsers)
-        // },
-        // // Always refetch after error or success:
-        // onSettled: () => {
-        //     queryClient.invalidateQueries(KEY_REPO_GET_ALL_USERS)
-        // },
-        //#endregion
-    }
+        AxiosApiHelper.post(ENDPOINT_CONTACTS, data)
     )
 }
 
@@ -81,3 +36,53 @@ export const RepoDeleteUser = () => {
     )
 }
 
+// export const RepoCreateUser = () => {
+//     const queryClient = useQueryClient()
+//     return useMutation((data) =>
+//         AxiosApiHelper.post(ENDPOINT_CONTACTS, data), {
+//         onSuccess: () => {
+//             //#region This will cause the get all users function to refetch and get new to data of the users
+
+//             queryClient.invalidateQueries(KEY_REPO_GET_ALL_USERS)
+
+//             //#endregion
+
+//             //#region This will update the old users cached data without causing any refresh
+
+//             queryClient.setQueryData(KEY_REPO_GET_ALL_USERS, (oldDate) => {
+//                 return {
+//                     ...oldDate,
+//                     data: [...oldDate.data, data]
+//                 }
+//             })
+
+//             //#endregion
+//         },
+
+//         //#region implement optimistic update
+//         onMutate: (newUser) => {
+//             // Cancel any outgoing retches (so they don't overwrite our optimistic update)
+//             queryClient.cancelQueries(KEY_REPO_GET_ALL_USERS)
+//             // Update the cached data with the new data
+//             const previousUsers = queryClient.getQueryData(KEY_REPO_GET_ALL_USERS)
+//             queryClient.setQueryData(KEY_REPO_GET_ALL_USERS, (oldDate) => {
+//                 return {
+//                     ...oldDate,
+//                     data: [...oldDate.data, newUser]
+//                 }
+//             })
+//             // Return the previous value
+//             return { previousUsers }
+//         },
+//         // If the mutation fails, use the value returned from onMutate to roll back
+//         onError: (err, newUser, context) => {
+//             queryClient.setQueryData(KEY_REPO_GET_ALL_USERS, context.previousUsers)
+//         },
+//         // Always refetch after error or success:
+//         onSettled: () => {
+//             queryClient.invalidateQueries(KEY_REPO_GET_ALL_USERS)
+//         },
+//         //#endregion
+//     }
+//     )
+// }
