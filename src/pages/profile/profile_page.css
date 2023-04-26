@@ -1,0 +1,17 @@
+.profile-head {
+    transform: translateY(5rem);
+}
+
+.cover {
+    background-image: url(https://d1csarkz8obe9u.cloudfront.net/posterpreviews/modern-wedding-planner-business-banner-design-template-ffcc3ca03f52caaf1cc8c7df8736e5f4_screen.jpg?ts=1610126764);
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: inset 1px 3px 20px  rgba(121, 121, 121, 0.24);
+}
+
+body {
+    /* background: #654ea3; */
+    /* background: linear-gradient(to right, #e96443, #904e95); */
+    min-height: 100vh;
+    overflow-x:hidden;
+}

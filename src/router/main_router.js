@@ -33,6 +33,22 @@ function MainRouter() {
           path={RoutsPath.productsRoute.path}
           element={RoutsPath.productsRoute.component}
         />
+        <Route
+          path={RoutsPath.profileRoute.path}
+          element={RoutsPath.profileRoute.component}
+        />
+        <Route
+          path={RoutsPath.editProfileRoute.path}
+          element={RoutsPath.editProfileRoute.component}
+        />
+        <Route
+          path={RoutsPath.enterEmailRoute.path}
+          element={RoutsPath.enterEmailRoute.component}
+        />
+        <Route
+          path={RoutsPath.changePasswordRoute.path}
+          element={RoutsPath.changePasswordRoute.component}
+        />
       </Route>
     </Routes>
   )

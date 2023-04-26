@@ -1,5 +1,9 @@
 @import url("./all.css");
 
+.nav-container{
+  height: 8vh;
+}
+
 .primaryColor {
   color: var(--primaryColor);
 }
