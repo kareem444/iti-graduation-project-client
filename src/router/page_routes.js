@@ -11,6 +11,15 @@ import ChangePasswordPage from "../pages/change_password/change_password.page";
 import EditProfilePage from "../pages/edit_profile/edit_profile.page";
 import EnterEmailPage from "../pages/enter_email/enter_email.page";
 import ProfilePage from "../pages/profile/profile_page";
+import SellerOrders from "../pages/sellerdashboard/scenes/orderslist";
+import SellerOrderDetails from "../pages/sellerdashboard/scenes/orderdetails";
+import SellerAddproduct from "../pages/sellerdashboard/scenes/addproduct";
+import SellerEditproduct from "../pages/sellerdashboard/scenes/editproduct";
+import SellerProductDetails from "../pages/sellerdashboard/scenes/productDetails";
+import Calendar from "../pages/sellerdashboard/scenes/calendar/calendar";
+import SellerDashboard from './../pages/sellerdashboard/scenes/dashboard/index';
+import SellerDashboardLayout from './../pages/sellerdashboard/App';
+import SellerProducts from './../pages/sellerdashboard/scenes/productslist/index';
 
 export default class PageRoutes {
   static layoutRoute = {
@@ -64,6 +73,44 @@ static enterEmailRoute = {
 static editProfileRoute = {
     path: "/edit-profile",
     component: <EditProfilePage />,
+}
+//seller dashboard 
+static sellerDashboard= {
+    path: "sellerdashboard",
+    component: <SellerDashboard />,
+}
+static sellerDashboardLayout= {
+    path: "/sellerdashboardlayout",
+    component: <SellerDashboardLayout />,
+}
+
+static sellerProducts= {
+    path: "sellerproducts",
+    component: <SellerProducts />,
+}
+static sellerAddProduct= {
+    path: "selleraddproduct",
+    component: <SellerAddproduct/>,
+}
+static sellerEditProducts= {
+    path: "sellereditproducts",
+    component: <SellerEditproduct />,
+}
+static sellerProductDetails= {
+    path: "sellerproductDetails",
+    component: <SellerProductDetails />,
+}
+static sellerOrders= {
+  path: "sellerorders",
+  component: <SellerOrders />,
+}
+static sellerOrderDetails= {
+  path: "sellerorderdetails",
+  component: <SellerOrderDetails />,
+}
+static sellerCalender= {
+  path: "sellercalendar",
+  component: <Calendar />,
 }
   static NoPageRoute = {
     path: "*",

@@ -54,7 +54,42 @@ function MainRouter() {
           element={RoutsPath.changePasswordRoute.component}
         />
       </Route>
+      <Route
+        path={RoutsPath.sellerDashboardLayout.path}
+        element={RoutsPath.sellerDashboardLayout.component}
+      >
+        <Route index element={RoutsPath.sellerDashboard.component} />
+        <Route
+          path={RoutsPath.sellerProducts.path}
+          element={RoutsPath.sellerProducts.component}
+        />
+        <Route
+          path={RoutsPath.sellerAddProduct.path}
+          element={RoutsPath.sellerAddProduct.component}
+        />
+        <Route
+          path={RoutsPath.sellerEditProducts.path}
+          element={RoutsPath.sellerEditProducts.component}
+        />
+        <Route
+          path={RoutsPath.sellerProductDetails.path}
+          element={RoutsPath.sellerProductDetails.component}
+        />
+        <Route
+          path={RoutsPath.sellerOrders.path}
+          element={RoutsPath.sellerOrders.component}
+        />
+        <Route
+          path={RoutsPath.sellerOrderDetails.path}
+          element={RoutsPath.sellerOrderDetails.component}
+        />
+        <Route
+          path={RoutsPath.sellerCalender.path}
+          element={RoutsPath.sellerCalender.component}
+        />
+      </Route>
     </Routes>
+    
   );
 }
 

@@ -59,6 +59,14 @@ const NavBarComponent = () => {
                   Contact Us
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink
+                  to={"/sellerdashboardlayout"}
+                  className="textColor nav-link"
+                >
+                  Dashboard
+                </NavLink>
+              </li>
             </ul>
             <form className="d-flex" role="search">
               <input
