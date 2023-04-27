@@ -1,3 +1,32 @@
+// import React from 'react'
+// import './profile_page.css'
+
+// const ProfilePage = () => {
+//     return (
+//         <div className='container py-4 mx-auto'>
+//             <div className='row'>
+//                 <div className='col-4'>
+//                     <img
+//                         height={"300px"}
+//                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK9gqFKRn28xKHD1CAbEevdzsLmsv5yQkGnQ&usqp=CAU"
+//                         class="rounded float-left" />
+//                 </div>
+//                 <div className='col-8'>
+//                     <h1 className='mt-3'>
+//                         <strong>Kareem Ayman</strong>
+//                     </h1>
+//                     <h6>
+//                         kareem9632221@fmdao.com
+//                     </h6>
+
+//                 </div>
+//             </div>
+//         </div>
+//     )
+// }
+
+// export default ProfilePage
+
 import React from 'react'
 import './profile_page.css'
 

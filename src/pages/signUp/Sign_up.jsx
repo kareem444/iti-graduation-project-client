@@ -11,14 +11,13 @@ import PageRoutes from '../../router/page_routes';
 import useAuth from '../../custom_hooks/use_auth';
 
 const Signup = () => {
-    const { mutate, isError, error, isLoading, isSuccess, data } = RepoAuthRegister()
+    const { mutate, isError, error, isLoading, data: mutationData } = RepoAuthRegister()
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleRegistration = (data) => mutate(data);
     const handleError = (errors) => { console.log(`errors`, errors); };
-
 
     const { isAuth, setAuth } = useAuth();
 
@@ -29,10 +28,11 @@ const Signup = () => {
     }, [isError])
 
     useEffect(() => {
-        if (isSuccess) {
-            setAuth(data)
+        if (mutationData != null) {
+            setAuth(mutationData)
         }
-    }, [isSuccess, data])
+        console.log(`data`, mutationData);
+    }, [mutationData])
 
     useEffect(() => {
         if (isAuth) {
@@ -124,7 +124,7 @@ const Signup = () => {
                                                     <label>Account type<span className="text-danger">*</span></label>
                                                     <div className="input-group">
                                                         <div className="input-group-text"><i className="bi bi-person-circle"></i></div>
-                                                        <select defaultValue={'seller'} {...register('usertype', registerOptions.userType)} className="form-select" aria-label="Default select example">
+                                                        <select defaultValue={'seller'} {...register('role', registerOptions.userType)} className="form-select" aria-label="Default select example">
                                                             <option value="seller">Seller</option>
                                                             <option value="client">Client</option>
                                                         </select>

@@ -11,7 +11,7 @@ const useAuth = () => {
     const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
     const navigate = useNavigate();
 
-    const setAuthDate = (user) => {
+    const setUserData = (user) => {
         setAuthData({
             id: user["_id"],
             name: user.name,
@@ -24,8 +24,8 @@ const useAuth = () => {
     const setAuth = (data) => {
         if (data) {
             setCookie("access_token", data.access_token, { path: "/" });
-            setAuthDate(data.user);
             navigate(PageRoutes.homeRoute.path, { replace: true });
+            setUserData(data.user);
         } else {
             removeCookie("access_token");
             setAuthData(null);
@@ -51,18 +51,20 @@ const useAuth = () => {
 
     useEffect(() => {
         if (isSuccess && data != null) {
-            setAuthDate(data);
+            setUserData(data);
         }
     }, [isSuccess, data]);
 
     const isAdmin = authData?.role === "ADMIN";
     const isSeller = authData?.role === "SELLER";
+    const userId = authData?.id;
 
     return {
         isAuth,
         setAuth,
         logout,
         token,
+        userId,
         authData:
             authData == null
                 ? null

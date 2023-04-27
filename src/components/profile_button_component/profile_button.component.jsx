@@ -2,9 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PageRoutes from "../../router/page_routes";
 import useAuth from "../../custom_hooks/use_auth";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const ProfileButtonComponent = () => {
-    const { logout, authData } = useAuth();
+    const { logout, authData: data } = useAuth();
+
+    const [authData, setAuthData] = useState(null)
+
+    useEffect(() => {
+        if (data != null && authData == null) {
+            setAuthData(data)
+        }
+    }, [data, authData])
+
     return (
         <nav className="nav-item dropdown">
             <a
