@@ -1,10 +1,13 @@
 import axios from 'axios';
 import { API_BASE_URL } from '../utils/constants/string.constants';
+import cookies from 'js-cookie'
 
 const axiosInstance = axios.create({
     baseURL: API_BASE_URL,
     headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + cookies.get('access_token')
     },
 });
 

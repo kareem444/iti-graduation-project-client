@@ -7,3 +7,5 @@ export const ENDPOINT_PRODUCTS = "products"
 
 export const ENDPOINT_AUTH_LOGIN = ENDPOINT_AUTH + "/" + "login"
 export const ENDPOINT_AUTH_REGISTER = ENDPOINT_AUTH + "/" + "register"
+
+export const ENDPOINT_USER_PROFILE = ENDPOINT_USERS + "/" + "profile"

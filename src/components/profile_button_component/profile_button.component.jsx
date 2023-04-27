@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import PageRoutes from '../../router/page_routes';
-import useAuth from '../../custom_hooks/use_auth';
+import React from "react";
+import { Link } from "react-router-dom";
+import PageRoutes from "../../router/page_routes";
+import useAuth from "../../custom_hooks/use_auth";
 
 const ProfileButtonComponent = () => {
-    const { logout } = useAuth()
+    const { logout, authData } = useAuth();
     return (
         <nav className="nav-item dropdown">
             <a
@@ -13,8 +13,16 @@ const ProfileButtonComponent = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
             >
-                <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" className="rounded-circle" />
-                <span className='ms-2'>Mark Williams</span>
+                <img
+                    src={
+                        authData?.avatar ??
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdDXECBv76wa78obNrJNqayP3o7cy4RaZNg_l_YuhSzP6qoWuHr6BTtn8JgNuHFVmSaf4&usqp=CAU"
+                    }
+                    width="40"
+                    height="40"
+                    className="rounded-circle"
+                />
+                <span className="ms-2">{authData?.name}</span>
             </a>
             <ul className="dropdown-menu">
                 <li>
@@ -38,7 +46,6 @@ const ProfileButtonComponent = () => {
             </ul>
         </nav>
     );
-}
+};
 
 export default ProfileButtonComponent;
-

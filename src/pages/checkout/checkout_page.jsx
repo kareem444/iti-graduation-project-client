@@ -16,9 +16,7 @@ const CheckoutPage = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
   };
-  console.log(errors);
   return (
     <>
       <section

@@ -1,8 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { ENDPOINT_CONTACTS, ENDPOINT_USERS } from '../utils/constants/endpoints.constants'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { ENDPOINT_CONTACTS, ENDPOINT_USERS, ENDPOINT_USER_PROFILE } from '../utils/constants/endpoints.constants'
 import {
     KEY_REPO_GET_ALL_USERS,
-    KEY_REPO_GET_One_USER
+    KEY_REPO_GET_One_USER,
+    KEY_REPO_USER_PROFILE
 } from '../utils/constants/queries_keys.constants'
 import AxiosApiHelper from '../helper/axios_api.helper'
 
@@ -15,6 +16,15 @@ export const RepoGetAllUsers = () => {
 export const RepGetOneUser = userId => {
     return useQuery([KEY_REPO_GET_One_USER, userId], () =>
         AxiosApiHelper.get(ENDPOINT_USERS + '/' + userId)
+    )
+}
+
+export const RepUserProfile = () => {
+    return useQuery([KEY_REPO_USER_PROFILE], () =>
+        AxiosApiHelper.get(ENDPOINT_USER_PROFILE),
+        {
+            enabled: false
+        }
     )
 }
 

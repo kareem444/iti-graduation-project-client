@@ -1,6 +1,6 @@
-let CounterState = {
+let GlobalState = {
     showErrorAlert: false,
     error: null
 }
 
-export default CounterState
+export default GlobalState
