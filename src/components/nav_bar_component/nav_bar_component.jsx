@@ -2,8 +2,11 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "../../Styling/nav-bar-component.css";
 import ProfileButtonComponent from "../profile_button_component/profile_button.component";
+import useAuth from "../../custom_hooks/use_auth";
 
 const NavBarComponent = () => {
+  const { isAuth } = useAuth()
+
   return (
     <>
       <nav className="navbar navbar-expand-lg secondbg navbar-light  bg-body-tertiary">
@@ -22,40 +25,25 @@ const NavBarComponent = () => {
           >
             <span className="navbar-toggler-icon responsiveIcon "></span>
           </button>
-          <div
-            className="collapse navbar-collapse"
-            id="navbarSupportedContent"
-          >
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink
-                  to={"/"}
-                  className="textColor nav-link "
-                >
+                <NavLink to={"/"} className="textColor nav-link ">
                   Home
                 </NavLink>
               </li>
               <li className="nav-item ">
-                <NavLink
-                  to={"/products"}
-                  className="textColor nav-link "
-                >
+                <NavLink to={"/products"} className="textColor nav-link ">
                   Products
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink
-                  to={"/About"}
-                  className="textColor nav-link "
-                >
+                <NavLink to={"/About"} className="textColor nav-link ">
                   About
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink
-                  to={"/contactus"}
-                  className="textColor nav-link "
-                >
+                <NavLink to={"/contactus"} className="textColor nav-link ">
                   Contact Us
                 </NavLink>
               </li>
@@ -75,28 +63,23 @@ const NavBarComponent = () => {
                 placeholder="Search"
                 aria-label="Search"
               ></input>
-              <button
-                className="btn primaryColor "
-                type="submit"
-              >
+              <button className="btn primaryColor " type="submit">
                 <i className="bi bi-search-heart"></i>{" "}
               </button>
             </form>
 
-            <ProfileButtonComponent  />
-
-            <div className="mt-3 mt-md-0">
-              <Link to={"/signin"} className="ms-md-3 me-1">
-                <button className="btn primarybg text-light">
-                  Sign In
-                </button>
-              </Link>
-              <Link to={"/signup"} className="ms-1">
-                <button className="btn  primarybg text-light">
-                  Sign Up
-                </button>
-              </Link>
-            </div>
+            {isAuth == true ? (
+              <ProfileButtonComponent />
+            ) : (
+              <div className="mt-3 mt-md-0">
+                <Link to={"/signin"} className="ms-md-3 me-1">
+                  <button className="btn primarybg text-light">Sign In</button>
+                </Link>
+                <Link to={"/signup"} className="ms-1">
+                  <button className="btn  primarybg text-light">Sign Up</button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </nav>

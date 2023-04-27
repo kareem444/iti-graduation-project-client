@@ -5,7 +5,7 @@ import LayoutPage from "../pages/layout/layout_page";
 import NoPage from "../pages/no_page/no_page";
 import Products from "../pages/products/products_page";
 import Sign_in from "../pages/signIn/sign_in";
-import Sign_up from "../pages/signUp/Sign_up";
+import Signup from "../pages/signUp/Sign_up";
 import CheckoutPage from "../pages/checkout/checkout_page";
 import ChangePasswordPage from "../pages/change_password/change_password.page";
 import EditProfilePage from "../pages/edit_profile/edit_profile.page";
@@ -28,6 +28,7 @@ export default class PageRoutes {
   };
 
   static homeRoute = {
+    path: "/",
     component: <HomePage />,
   };
 
@@ -41,7 +42,7 @@ export default class PageRoutes {
   };
   static signUpRoute = {
     path: "/signup",
-    component: <Sign_up />,
+    component: <Signup />,
   };
   static contactUsRoute = {
     path: "/contactus",

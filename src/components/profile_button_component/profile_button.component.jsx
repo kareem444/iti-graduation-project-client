@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PageRoutes from '../../router/page_routes';
+import useAuth from '../../custom_hooks/use_auth';
 
 const ProfileButtonComponent = () => {
+    const { logout } = useAuth()
     return (
         <nav className="nav-item dropdown">
             <a
@@ -29,7 +31,7 @@ const ProfileButtonComponent = () => {
                     <hr className="dropdown-divider"></hr>
                 </li>
                 <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="btn dropdown-item" onClick={() => logout()}>
                         Log Out
                     </a>
                 </li>
