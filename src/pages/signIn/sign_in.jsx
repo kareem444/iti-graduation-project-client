@@ -36,7 +36,7 @@ const Sign_in = () => {
 
     useEffect(() => {
         if (isAuth) {
-            navigate(PageRoutes.homeRoute.path, { replace: true })
+            navigate(PageRoutes.homeRoute.path)
         }
     }, [isAuth])
 

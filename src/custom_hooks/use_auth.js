@@ -1,51 +1,49 @@
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
-import PageRoutes from "../router/page_routes";
 import { RepUserProfile as RepoUserProfile } from "../repositories/user.repo";
-import { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAuth, setAuth } from "../redux/user/user.reducer";
 
 const useAuth = () => {
-    const [authData, setAuthData] = useState(null);
+    const authData = useSelector(state => state.user.user)
+    const dispatch = useDispatch()
 
     const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
-    const navigate = useNavigate();
+    const { data, refetch, isSuccess } = RepoUserProfile();
 
-    const setUserData = (user) => {
-        setAuthData({
-            id: user["_id"],
-            name: user.name,
-            email: user.email,
-            role: user.role,
-            avatar: user.avatar,
-        });
+    const setUserData = async (data) => {
+        dispatch(setAuth({
+            id: data["_id"],
+            name: data.name,
+            email: data.email,
+            role: data.role,
+            avatar: data.avatar,
+        }))
     };
 
-    const setAuth = (data) => {
-        if (data) {
-            setCookie("access_token", data.access_token, { path: "/" });
-            navigate(PageRoutes.homeRoute.path, { replace: true });
+    const handleSetAuthData = async (data) => {
+        if (data != null) {
+            setCookie("access_token", data.access_token, { path: "/", httpOnly: false });
             setUserData(data.user);
         } else {
             removeCookie("access_token");
-            setAuthData(null);
+            dispatch(setAuth(null))
         }
     };
 
     const logout = () => {
-        setAuth(null);
+        handleSetAuthData(null);
     };
 
     const isAuth = cookies.access_token != null;
     const token = cookies.access_token;
 
-    const { data, refetch, isSuccess } = RepoUserProfile();
 
     const fetchAuth = async () => {
         if (isAuth) {
             await refetch();
         } else {
-            setAuthData(null);
+            dispatch(deleteAuth())
         }
     };
 
@@ -61,7 +59,7 @@ const useAuth = () => {
 
     return {
         isAuth,
-        setAuth,
+        setAuth: handleSetAuthData,
         logout,
         token,
         userId,
