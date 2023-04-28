@@ -5,7 +5,7 @@ import ProfileButtonComponent from "../profile_button_component/profile_button.c
 import useAuth from "../../custom_hooks/use_auth";
 
 const NavBarComponent = () => {
-  const { isAuth } = useAuth()
+  const { isAuth , authData , logout} = useAuth()
 
   return (
     <>
@@ -69,7 +69,7 @@ const NavBarComponent = () => {
             </form>
 
             {isAuth == true ? (
-              <ProfileButtonComponent />
+              <ProfileButtonComponent authData={authData} logout={logout}/>
             ) : (
               <div className="mt-3 mt-md-0">
                 <Link to={"/signin"} className="ms-md-3 me-1">

@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PageRoutes from "../../router/page_routes";
-import useAuth from "../../custom_hooks/use_auth";
 
-const ProfileButtonComponent = () => {
-    const { logout, authData } = useAuth();
+const ProfileButtonComponent = ({ logout, authData }) => {
 
     return (
         <nav className="nav-item dropdown">

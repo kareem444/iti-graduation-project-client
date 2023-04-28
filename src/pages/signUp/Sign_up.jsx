@@ -3,36 +3,20 @@ import { useForm } from "react-hook-form";
 import '../../Styling/signup.css'
 import { RepoAuthRegister } from '../../repositories/auth.repo';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { showErrorAlert } from '../../redux/global/global.reducer';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useNavigate } from 'react-router-dom';
 import PageRoutes from '../../router/page_routes';
 import useAuth from '../../custom_hooks/use_auth';
 
 const Signup = () => {
-    const { mutate, isError, error, isLoading, data: mutationData } = RepoAuthRegister()
-    const dispatch = useDispatch();
+    const { mutate, isLoading } = RepoAuthRegister()
     const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handleRegistration = (data) => mutate(data);
     const handleError = (errors) => { console.log(`errors`, errors); };
 
-    const { isAuth, setAuth } = useAuth();
-
-    useEffect(() => {
-        if (isError) {
-            dispatch(showErrorAlert(error))
-        }
-    }, [isError])
-
-    useEffect(() => {
-        if (mutationData != null) {
-            setAuth(mutationData)
-        }
-        console.log(`data`, mutationData);
-    }, [mutationData])
+    const { isAuth } = useAuth();
 
     useEffect(() => {
         if (isAuth) {

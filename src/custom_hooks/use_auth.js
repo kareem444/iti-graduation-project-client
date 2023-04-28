@@ -9,7 +9,16 @@ const useAuth = () => {
     const dispatch = useDispatch()
 
     const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
-    const { data, refetch, isSuccess } = RepoUserProfile();
+    const { data: profileData, refetch, isSuccess } = RepoUserProfile();
+
+    const isAuth = cookies.access_token != null;
+    const token = cookies.access_token;
+
+    useEffect(() => {
+        if (isAuth && authData == null) {
+            refetch();
+        }
+    }, [])
 
     const setUserData = async (data) => {
         dispatch(setAuth({
@@ -19,10 +28,11 @@ const useAuth = () => {
             role: data.role,
             avatar: data.avatar,
         }))
+        console.log('data', data);
     };
 
     const handleSetAuthData = async (data) => {
-        if (data != null) {
+        if (data != null && !isAuth) {
             setCookie("access_token", data.access_token, { path: "/", httpOnly: false });
             setUserData(data.user);
         } else {
@@ -35,10 +45,6 @@ const useAuth = () => {
         handleSetAuthData(null);
     };
 
-    const isAuth = cookies.access_token != null;
-    const token = cookies.access_token;
-
-
     const fetchAuth = async () => {
         if (isAuth) {
             await refetch();
@@ -48,10 +54,10 @@ const useAuth = () => {
     };
 
     useEffect(() => {
-        if (isSuccess && data != null) {
-            setUserData(data);
+        if (isSuccess && profileData != null) {
+            setUserData(profileData);
         }
-    }, [isSuccess, data]);
+    }, [isSuccess, profileData]);
 
     const isAdmin = authData?.role === "ADMIN";
     const isSeller = authData?.role === "SELLER";

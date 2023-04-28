@@ -5,22 +5,15 @@ import useGetCurrentLanguage from '../../custom_hooks/use_get_current_language';
 import { useTranslation } from 'react-i18next';
 import ErrorAlertComponent from '../../components/error_alert/error_alert_component';
 import ProgressLineComponent from '../../components/progress_line_component/progress_line.component';
-import useAuth from '../../custom_hooks/use_auth';
 
 const LayoutPage = () => {
     const { dir } = useGetCurrentLanguage()
     const { t } = useTranslation()
 
-    const { fetchAuth } = useAuth()
-
     useEffect(() => {
         document.body.dir = dir
         document.title = t("app_title")
     }, [t, dir])
-
-    useEffect(() => {
-        fetchAuth()
-    }, [])
 
     return (
         <>

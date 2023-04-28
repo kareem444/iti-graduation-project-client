@@ -3,36 +3,22 @@ import { useForm } from "react-hook-form";
 import '../../Styling/signin.css'
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RepoAuthLogin } from '../../repositories/auth.repo';
-import { showErrorAlert } from '../../redux/global/global.reducer';
 import PageRoutes from '../../router/page_routes';
 import useAuth from '../../custom_hooks/use_auth';
 
 const Sign_in = () => {
-    const { mutate, isError, error, isLoading, isSuccess, data } = RepoAuthLogin()
-    const dispatch = useDispatch();
+    const { mutate, isLoading } = RepoAuthLogin()
     const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const handleRegistration = (data) => mutate(data);
+    const handleRegistration = async (data) => {
+        mutate(data)
+    };
     const handleError = (errors) => { console.log(`errors`, errors); };
 
-    const { isAuth, setAuth } = useAuth();
-
-
-    useEffect(() => {
-        if (isError) {
-            dispatch(showErrorAlert(error))
-        }
-    }, [isError])
-
-    useEffect(() => {
-        if (isSuccess) {
-            setAuth(data)
-        }
-    }, [isSuccess, data])
+    const { isAuth } = useAuth();
 
     useEffect(() => {
         if (isAuth) {
