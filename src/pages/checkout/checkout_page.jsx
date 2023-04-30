@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import {
+  RepoCreatePayment,
+  RepoGetAllPayments,
+} from "../../repositories/payment.repo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import "../../Styling/checkout_page.css";
+import { RepoGetOrders } from "../../repositories/order.repo";
 
 const CheckoutPage = () => {
   const [checkOut, setCheckOut] = useState(false);
@@ -15,8 +20,28 @@ const CheckoutPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  let sum = 0;
+  const {
+    data: orders,
+    isLoading,
+    isError,
+    Error,
+  } = RepoGetOrders();
+  const { data: payments, Loading } = RepoGetAllPayments();
+
+  console.log(payments);
+  const { mutate } = RepoCreatePayment();
+  const onSubmit = () => {
+    orders.map((order) => {
+      if (order.status === "ACCEPTED") {
+        const orderId = order["_id"];
+        const payment = orderId;
+        console.log("this is a payment", payment);
+        mutate(payment);
+      }
+    });
   };
+  console.log(payments);
   return (
     <>
       <section
@@ -47,222 +72,89 @@ const CheckoutPage = () => {
                             Shopping cart
                           </p>
                           <p className="mb-0">
-                            You have 4 items in your cart
+                            You have {orders?.length} items
+                            in your cart
                           </p>
                         </div>
                       </div>
-
-                      <div className="card mb-3">
-                        <div className="card-body">
-                          <div className="d-flex justify-content-between">
-                            <div className="d-flex flex-row align-items-center">
-                              <div>
-                                <img
-                                  src="assets/img.jpg"
-                                  className="img-fluid rounded-3"
-                                  alt="Shopping item"
-                                  style={{ width: "65px" }}
-                                />
+                      {orders?.map((order) => {
+                        return (
+                          <div className="card mb-3">
+                            <div className="card-body">
+                              <div className="d-flex justify-content-between">
+                                <div className="d-flex flex-row align-items-center">
+                                  <div>
+                                    <img
+                                      src={
+                                        order?.product
+                                          ?.thumbImage
+                                      }
+                                      className="img-fluid rounded-3"
+                                      alt="Shopping item"
+                                      style={{
+                                        width: "65px",
+                                      }}
+                                    />
+                                  </div>
+                                  <div className="ms-3">
+                                    <h5>
+                                      {order?.product.name}
+                                    </h5>
+                                    <div className="small mb-0">
+                                      <ul className="list-group">
+                                        {order?.product.items.map(
+                                          (item) => {
+                                            return (
+                                              <li className="list-group-item disabled">
+                                                {item.name}{" "}
+                                                {
+                                                  item.quantity
+                                                }{" "}
+                                                items $
+                                                {item.price *
+                                                  item.quantity}
+                                              </li>
+                                            );
+                                          }
+                                        )}{" "}
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="d-flex flex-row align-items-center">
+                                  <div
+                                    style={{
+                                      width: "100px",
+                                    }}
+                                  >
+                                    <h5 className="mb-0 text-danger text-start">
+                                      {order?.status}{" "}
+                                    </h5>
+                                  </div>
+                                  {/* <div
+                                    style={{
+                                      width: "50px",
+                                    }}
+                                  >
+                                    <h5 className="fw-normal mb-0">
+                                      2
+                                    </h5>
+                                  </div> */}
+                                  <div
+                                    style={{
+                                      width: "80px",
+                                    }}
+                                  >
+                                    <h5 className="mb-0">
+                                      ${order?.price}{" "}
+                                    </h5>
+                                  </div>
+                                </div>
                               </div>
-                              <div className="ms-3">
-                                <h5>Iphone 11 pro</h5>
-                                <p className="small mb-0">
-                                  256GB, Navy Blue
-                                </p>
-                              </div>
-                            </div>
-                            <div className="d-flex flex-row align-items-center">
-                              <div
-                                style={{ width: "100px" }}
-                              >
-                                <h5 className="mb-0 text-danger text-start">
-                                  Rejected{" "}
-                                </h5>
-                              </div>
-                              <div
-                                style={{ width: "50px" }}
-                              >
-                                <h5 className="fw-normal mb-0">
-                                  2
-                                </h5>
-                              </div>
-                              <div
-                                style={{ width: "80px" }}
-                              >
-                                <h5 className="mb-0">
-                                  $900
-                                </h5>
-                              </div>
-
-                              <a
-                                href="#!"
-                                style={{ color: "#cecece" }}
-                              >
-                                <FontAwesomeIcon
-                                  icon={faTrashCan}
-                                />{" "}
-                              </a>
                             </div>
                           </div>
-                        </div>
-                      </div>
-
-                      <div className="card mb-3">
-                        <div className="card-body">
-                          <div className="d-flex justify-content-between">
-                            <div className="d-flex flex-row align-items-center">
-                              <div>
-                                <img
-                                  src="assets/img.jpg"
-                                  className="img-fluid rounded-3"
-                                  alt="Shopping item"
-                                  style={{ width: "65px" }}
-                                />
-                              </div>
-                              <div className="ms-3">
-                                <h5>
-                                  Samsung galaxy Note 10{" "}
-                                </h5>
-                                <p className="small mb-0">
-                                  256GB, Navy Blue
-                                </p>
-                              </div>
-                            </div>
-                            <div className="d-flex flex-row align-items-center">
-                              <div
-                                style={{ width: "100px" }}
-                              >
-                                <h5 className="mb-0 text-warning text-start">
-                                  Pending{" "}
-                                </h5>
-                              </div>
-                              <div
-                                style={{ width: "50px" }}
-                              >
-                                <h5 className="fw-normal mb-0">
-                                  2
-                                </h5>
-                              </div>
-                              <div
-                                style={{ width: "80px" }}
-                              >
-                                <h5 className="mb-0">
-                                  $900
-                                </h5>
-                              </div>
-                              <a
-                                href="#!"
-                                style={{ color: "#cecece" }}
-                              >
-                                <FontAwesomeIcon
-                                  icon={faTrashCan}
-                                />{" "}
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="card mb-3">
-                        <div className="card-body">
-                          <div className="d-flex justify-content-between">
-                            <div className="d-flex flex-row align-items-center">
-                              <div>
-                                <img
-                                  src="assets/img.jpg"
-                                  className="img-fluid rounded-3"
-                                  alt="Shopping item"
-                                  style={{ width: "65px" }}
-                                />
-                              </div>
-                              <div className="ms-3">
-                                <h5>Canon EOS M50</h5>
-                                <p className="small mb-0">
-                                  Onyx Black
-                                </p>
-                              </div>
-                            </div>
-                            <div className="d-flex flex-row align-items-center">
-                              <div
-                                style={{ width: "100px" }}
-                              >
-                                <h5 className="mb-0 text-success text-start">
-                                  Accepted{" "}
-                                </h5>
-                              </div>
-                              <div
-                                style={{ width: "50px" }}
-                              >
-                                <h5 className="fw-normal mb-0">
-                                  1
-                                </h5>
-                              </div>
-                              <div
-                                style={{ width: "80px" }}
-                              >
-                                <h5 className="mb-0">
-                                  $1199
-                                </h5>
-                              </div>
-                              <a
-                                href="#!"
-                                style={{ color: "#cecece" }}
-                              >
-                                <FontAwesomeIcon
-                                  icon={faTrashCan}
-                                />{" "}
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="card mb-3 mb-lg-0">
-                        <div className="card-body">
-                          <div className="d-flex justify-content-between">
-                            <div className="d-flex flex-row align-items-center">
-                              <div>
-                                <img
-                                  src="assets/img.jpg"
-                                  className="img-fluid rounded-3"
-                                  alt="Shopping item"
-                                  style={{ width: "65px" }}
-                                />
-                              </div>
-                              <div className="ms-3">
-                                <h5>MacBook Pro</h5>
-                                <p className="small mb-0">
-                                  1TB, Graphite
-                                </p>
-                              </div>
-                            </div>
-                            <div className="d-flex flex-row align-items-center">
-                              <div
-                                style={{ width: "50px" }}
-                              >
-                                <h5 className="fw-normal mb-0">
-                                  1
-                                </h5>
-                              </div>
-                              <div
-                                style={{ width: "80px" }}
-                              >
-                                <h5 className="mb-0">
-                                  $1799
-                                </h5>
-                              </div>
-                              <a
-                                href="#!"
-                                style={{ color: "#cecece" }}
-                              >
-                                <FontAwesomeIcon
-                                  icon={faTrashCan}
-                                />{" "}
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                        );
+                      })}
                     </div>
                     <div className="col-lg-5">
                       <div className="card  text-dark rounded-3 playfair-font ">
@@ -458,7 +350,19 @@ const CheckoutPage = () => {
                                     Total(Incl. taxes)
                                   </p>
                                   <p className="mb-2">
-                                    $ 4818.00
+                                    $
+                                    {orders?.map(
+                                      (order) => {
+                                        if (
+                                          order?.status ==
+                                          "ACCEPTED"
+                                        ) {
+                                          sum +=
+                                            +order?.price;
+                                        }
+                                      }
+                                    )}
+                                    {sum}
                                   </p>
                                 </div>
                                 <div className="d-flex justify-content-end">
