@@ -1,11 +1,16 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { ENDPOINT_CONTACTS, ENDPOINT_USERS, ENDPOINT_USER_PROFILE } from '../utils/constants/endpoints.constants'
+import {
+    ENDPOINT_CONTACTS,
+    ENDPOINT_USERS,
+    ENDPOINT_USER_PROFILE
+} from '../utils/constants/endpoints.constants'
 import {
     KEY_REPO_GET_ALL_USERS,
     KEY_REPO_GET_One_USER,
     KEY_REPO_USER_PROFILE
 } from '../utils/constants/queries_keys.constants'
 import AxiosApiHelper from '../helper/axios_api.helper'
+import useAuth from '../custom_hooks/use_auth'
 
 export const RepoGetAllUsers = () => {
     return useQuery(KEY_REPO_GET_ALL_USERS, () =>
@@ -13,37 +18,61 @@ export const RepoGetAllUsers = () => {
     )
 }
 
-export const RepGetOneUser = userId => {
+export const RepoGetOneUser = userId => {
     return useQuery([KEY_REPO_GET_One_USER, userId], () =>
         AxiosApiHelper.get(ENDPOINT_USERS + '/' + userId)
     )
 }
 
-export const RepUserProfile = () => {
-    return useQuery([KEY_REPO_USER_PROFILE], () =>
-        AxiosApiHelper.get(ENDPOINT_USER_PROFILE),
+export const RepoUserProfile = () => {
+    return useQuery(
+        [KEY_REPO_USER_PROFILE],
+        () => AxiosApiHelper.get(ENDPOINT_USER_PROFILE),
         {
             enabled: false
         }
     )
 }
 
-export const RepoCreateUser = () => {
-    return useMutation((data) =>
-        AxiosApiHelper.post(ENDPOINT_CONTACTS, data)
-    )
-}
+export const RepoUpdateMyProfile = () => {
+    const { authData, setAuth } = useAuth()
 
-export const RepoUpdateUser = () => {
-    return useMutation((id, data) =>
-        AxiosApiHelper.patch(ENDPOINT_CONTACTS + "/" + id, data)
+    return useMutation(
+        data => {
+            const formData = new FormData()
+            if (data.name) {
+                formData.append('name', data.name)
+            }
+            if (data.email) {
+                formData.append('email', data.email)
+            }
+            if (data.bio) {
+                formData.append('bio', data.bio)
+            }
+            if (data.file) {
+                formData.append('file', data.file)
+            }
+
+            return AxiosApiHelper.patch(ENDPOINT_USERS, formData, {
+                'Content-Type': 'multipart/form-data'
+            })
+        },
+        {
+            onSuccess: (response, data) => {
+                if (data.file != null) {
+                    data["avatar"] = URL.createObjectURL(data.file)
+                }
+                setAuth({
+                    ...authData,
+                    ...data
+                })
+            }
+        }
     )
 }
 
 export const RepoDeleteUser = () => {
-    return useMutation((id) =>
-        AxiosApiHelper.delete(ENDPOINT_CONTACTS + "/" + id)
-    )
+    return useMutation(id => AxiosApiHelper.delete(ENDPOINT_CONTACTS + '/' + id))
 }
 
 // export const RepoCreateUser = () => {

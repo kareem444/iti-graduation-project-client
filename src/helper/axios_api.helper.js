@@ -12,9 +12,9 @@ const axiosInstance = axios.create({
 });
 
 export default class AxiosApiHelper {
-    static async get(url, params = {}) {
+    static async get(url, params = {}, headers = {}) {
         try {
-            const response = await axiosInstance.get(url, { params });
+            const response = await axiosInstance.get(url, { params }, { headers });
             return response.data;
         } catch (error) {
             console.error(`GET ${url} error:`, error);
@@ -22,9 +22,9 @@ export default class AxiosApiHelper {
         }
     };
 
-    static async post(url, data = {}) {
+    static async post(url, data = {}, headers = {}) {
         try {
-            const response = await axiosInstance.post(url, data);
+            const response = await axiosInstance.post(url, data, { headers });
             return response.data;
         } catch (error) {
             console.error(`POST ${url} error:`, error);
@@ -32,9 +32,9 @@ export default class AxiosApiHelper {
         }
     };
 
-    static async patch(url, data = {}) {
+    static async patch(url, data = {}, headers = {}) {
         try {
-            const response = await axiosInstance.patch(url, data);
+            const response = await axiosInstance.patch(url, data, { headers });
             return response.data;
         } catch (error) {
             console.error(`PATCH ${url} error:`, error);
@@ -42,9 +42,9 @@ export default class AxiosApiHelper {
         }
     };
 
-    static async delete(url, data = {}) {
+    static async delete(url, data = {}, headers = {}) {
         try {
-            const response = await axiosInstance.delete(url, { data });
+            const response = await axiosInstance.delete(url, { data }, { headers });
             return response.data;
         } catch (error) {
             console.error(`DELETE ${url} error:`, error);

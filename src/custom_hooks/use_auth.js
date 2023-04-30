@@ -1,5 +1,5 @@
 import { useCookies } from "react-cookie";
-import { RepUserProfile as RepoUserProfile } from "../repositories/user.repo";
+import { RepoUserProfile as RepoUserProfile } from "../repositories/user.repo";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAuth, setAuth } from "../redux/user/user.reducer";
@@ -11,7 +11,6 @@ const useAuth = () => {
 
     // const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
     const { data: profileData, refetch, isSuccess } = RepoUserProfile();
-
 
     const isAuth = Cookies.get("access_token") != null;
     const token = Cookies.get("access_token");
@@ -32,8 +31,8 @@ const useAuth = () => {
             email: data.email,
             role: data.role,
             avatar: data.avatar,
+            bio: data.bio,
         }))
-        console.log('data', data);
     };
 
     const handleSetAuthData = async (data) => {
@@ -41,7 +40,10 @@ const useAuth = () => {
             // setCookie("access_token", data.access_token, { path: "/", httpOnly: false });
             Cookies.set("access_token", data.access_token)
             setUserData(data.user);
-        } else {
+        } else if (data != null) {
+            setUserData(data);
+        }
+        else {
             // removeCookie("access_token");
             Cookies.remove("access_token")
             dispatch(setAuth(null))
@@ -84,6 +86,7 @@ const useAuth = () => {
                     name: authData.name,
                     email: authData.email,
                     role: authData.role,
+                    bio: authData.bio,
                     avatar: authData.avatar,
                 },
         isAdmin,
