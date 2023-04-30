@@ -53,6 +53,10 @@ function MainRouter() {
           path={RoutsPath.changePasswordRoute.path}
           element={RoutsPath.changePasswordRoute.component}
         />
+        <Route
+          path={RoutsPath.productDetails.path}
+          element={RoutsPath.productDetails.component}
+        />
       </Route>
       <Route
         path={RoutsPath.sellerDashboardLayout.path}
@@ -89,7 +93,7 @@ function MainRouter() {
         />
       </Route>
     </Routes>
-    
+
   );
 }
 

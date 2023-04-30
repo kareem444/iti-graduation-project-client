@@ -20,6 +20,7 @@ import Calendar from "../pages/sellerdashboard/scenes/calendar/calendar";
 import SellerDashboard from './../pages/sellerdashboard/scenes/dashboard/index';
 import SellerDashboardLayout from './../pages/sellerdashboard/App';
 import SellerProducts from './../pages/sellerdashboard/scenes/productslist/index';
+import ProductDetails from "../pages/products/productDetails";
 
 export default class PageRoutes {
   static layoutRoute = {
@@ -59,60 +60,64 @@ export default class PageRoutes {
   static profileRoute = {
     path: "/profile",
     component: <ProfilePage />,
-}
+  }
 
-static changePasswordRoute = {
+  static changePasswordRoute = {
     path: "/change-password",
     component: <ChangePasswordPage />,
-}
+  }
 
-static enterEmailRoute = {
+  static enterEmailRoute = {
     path: "/enter-email",
     component: <EnterEmailPage />,
-}
+  }
 
-static editProfileRoute = {
+  static editProfileRoute = {
     path: "/edit-profile",
     component: <EditProfilePage />,
-}
-//seller dashboard 
-static sellerDashboard= {
+  }
+  //seller dashboard 
+  static sellerDashboard = {
     path: "sellerdashboard",
     component: <SellerDashboard />,
-}
-static sellerDashboardLayout= {
+  }
+  static sellerDashboardLayout = {
     path: "/sellerdashboardlayout",
     component: <SellerDashboardLayout />,
-}
+  }
 
-static sellerProducts= {
+  static sellerProducts = {
     path: "sellerproducts",
     component: <SellerProducts />,
-}
-static sellerAddProduct= {
+  }
+  static sellerAddProduct = {
     path: "selleraddproduct",
-    component: <SellerAddproduct/>,
-}
-static sellerEditProducts= {
+    component: <SellerAddproduct />,
+  }
+  static sellerEditProducts = {
     path: "sellereditproducts",
     component: <SellerEditproduct />,
-}
-static sellerProductDetails= {
+  }
+  static sellerProductDetails = {
     path: "sellerproductDetails",
     component: <SellerProductDetails />,
-}
-static sellerOrders= {
-  path: "sellerorders",
-  component: <SellerOrders />,
-}
-static sellerOrderDetails= {
-  path: "sellerorderdetails",
-  component: <SellerOrderDetails />,
-}
-static sellerCalender= {
-  path: "sellercalendar",
-  component: <Calendar />,
-}
+  }
+  static sellerOrders = {
+    path: "sellerorders",
+    component: <SellerOrders />,
+  }
+  static sellerOrderDetails = {
+    path: "sellerorderdetails",
+    component: <SellerOrderDetails />,
+  }
+  static sellerCalender = {
+    path: "sellercalendar",
+    component: <Calendar />,
+  }
+  static productDetails = {
+    path: "productdetails/:id",
+    component: <ProductDetails />,
+  };
   static NoPageRoute = {
     path: "*",
     component: <NoPage />,
