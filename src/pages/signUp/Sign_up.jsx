@@ -109,8 +109,8 @@ const Signup = () => {
                                                     <div className="input-group">
                                                         <div className="input-group-text"><i className="bi bi-person-circle"></i></div>
                                                         <select defaultValue={'seller'} {...register('role', registerOptions.userType)} className="form-select" aria-label="Default select example">
-                                                            <option value="seller">Seller</option>
-                                                            <option value="client">Client</option>
+                                                            <option value="SELLER">Seller</option>
+                                                            <option value="CLIENT">Client</option>
                                                         </select>
                                                     </div>
                                                 </div>

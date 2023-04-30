@@ -14,9 +14,10 @@ export const RepoAuthRegister = () => {
 
     return useMutation(
         async d => {
+            d.role = d.role.toUpperCase()
             let data = d
 
-            if (d.role == 'client') {
+            if (d.role == 'CLIENT') {
                 data = {
                     email: d.email,
                     password: d.password,

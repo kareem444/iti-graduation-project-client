@@ -3,16 +3,21 @@ import { RepUserProfile as RepoUserProfile } from "../repositories/user.repo";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAuth, setAuth } from "../redux/user/user.reducer";
+import Cookies from "js-cookie";
 
 const useAuth = () => {
     const authData = useSelector(state => state.user.user)
     const dispatch = useDispatch()
 
-    const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
+    // const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
     const { data: profileData, refetch, isSuccess } = RepoUserProfile();
 
-    const isAuth = cookies.access_token != null;
-    const token = cookies.access_token;
+
+    const isAuth = Cookies.get("access_token") != null;
+    const token = Cookies.get("access_token");
+
+    // const isAuth = cookies.access_token != null;
+    // const token = cookies.access_token;
 
     useEffect(() => {
         if (isAuth && authData == null) {
@@ -33,10 +38,12 @@ const useAuth = () => {
 
     const handleSetAuthData = async (data) => {
         if (data != null && !isAuth) {
-            setCookie("access_token", data.access_token, { path: "/", httpOnly: false });
+            // setCookie("access_token", data.access_token, { path: "/", httpOnly: false });
+            Cookies.set("access_token", data.access_token)
             setUserData(data.user);
         } else {
-            removeCookie("access_token");
+            // removeCookie("access_token");
+            Cookies.remove("access_token")
             dispatch(setAuth(null))
         }
     };
