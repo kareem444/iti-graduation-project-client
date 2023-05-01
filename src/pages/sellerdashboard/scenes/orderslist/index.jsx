@@ -1,54 +1,91 @@
-import { Box } from "@mui/material";
+import { Box ,Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
+import { Link } from "react-router-dom";
+import { RepoGetAllMyOrders } from "../../../../repositories/order.repo";
 
 const SellerOrders = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const { data: orders, isLoading, isError, error } = RepoGetAllMyOrders();
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "_id",
+      headerName: "ID",
+      flex: 0.5,
+      renderCell: (index) =>{ return (
+        <Box
+          display="flex"
+        >
+          <Typography color={colors.grey[100]} sx={{ ml: "0px" }}component={Link} to={`../sellerorderdetails/${orders[index.api.getRowIndex(index.row["_id"])]["_id"]}`}  >
+          {index.api.getRowIndex(index.row["_id"]) + 1}
+          </Typography>
+        </Box>
+        )
+    }},
+    {
+      field: "product",
+      headerName: "Product Title",
       flex: 1,
       cellClassName: "name-column--cell",
-    },
+      renderCell: ({ row: { product}}) => {
+        // let index=0;
+        // console.log("df",index)
+        return (
+          <Box
+            display="flex"
+          >
+            <Typography color={colors.grey[100]} sx={{ ml: "0px" }}>
+              {product['name']}
+            </Typography>
+          </Box>
+          )
+
+    }
+  },
     {
-      field: "age",
-      headerName: "Age",
+      field: "price",
+      headerName: "Price",
       type: "number",
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "phone",
-      headerName: "Phone Number",
+      field: "createdAt",
+      headerName: "Date",
       flex: 1,
     },
     {
-      field: "email",
-      headerName: "Email",
+      field: "status",
+      headerName: "Status",
       flex: 1,
-    },
-    {
-      field: "address",
-      headerName: "Address",
-      flex: 1,
-    },
-    {
-      field: "city",
-      headerName: "City",
-      flex: 1,
-    },
-    {
-      field: "zipCode",
-      headerName: "Zip Code",
-      flex: 1,
+      renderCell: ({ row: { status } }) => {
+        return (
+          <Box
+            width="60%"
+            m="0 auto"
+            p="5px"
+            display="flex"
+            justifyContent="center"
+            backgroundColor={
+              status === "PENDING"
+                ? colors.blueAccent[600]
+                : status === "ACCEPTED"
+                ? colors.greenAccent[700]
+                : colors.greenAccent[700]
+            }
+            borderRadius="4px"
+          >
+            <Typography color={colors.grey[100]} sx={{ ml: "0px" }}>
+              {status}
+            </Typography>
+          </Box>
+        );
+      },
     },
   ];
 
@@ -58,9 +95,10 @@ const SellerOrders = () => {
         title="ORDERS"
         subtitle="List of Orders for Future Reference"
       />
+      {orders&&
       <Box
         m="5px 0 0 0"
-        height="75vh"
+        height="60vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -91,11 +129,13 @@ const SellerOrders = () => {
         }}
       >
         <DataGrid
-          rows={mockDataContacts}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+          rows={orders}
+          getRowId={(row) => row["_id"]}
         />
       </Box>
+      }
     </Box>
   );
 };

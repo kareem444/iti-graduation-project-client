@@ -1,35 +1,63 @@
-import { Box,Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
-
-import PersonIcon from '@mui/icons-material/Person';
+import { Link } from 'react-router-dom';
+import PersonIcon from "@mui/icons-material/Person";
 import TrafficIcon from "@mui/icons-material/Traffic";
 import Header from "../../components/Header";
 import StatBox from "../../components/StatBox";
 import { DataGrid } from "@mui/x-data-grid";
-import { mockDataInvoices } from "../../data/mockData";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import InventoryIcon from '@mui/icons-material/Inventory';
-
+import InventoryIcon from "@mui/icons-material/Inventory";
+import { RepoGetAllMyOrders } from './../../../../repositories/order.repo';
 const SellerDashboard = () => {
+  const { data: orders, isLoading, isError, error } = RepoGetAllMyOrders();
+  console.log(orders);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
-    { field: "id", headerName: "ID" },
     {
-      field: "name",
-      headerName: "Product",
+      field: "_id",
+      headerName: "ID",
+      flex: 0.5,
+      renderCell: (index) =>{ return (
+        <Box
+          display="flex"
+        >
+          <Typography color={colors.grey[100]} sx={{ ml: "0px" }}component={Link} to={`sellerorderdetails/${orders[index.api.getRowIndex(index.row["_id"])]["_id"]}`}  >
+          {index.api.getRowIndex(index.row["_id"]) + 1}
+          </Typography>
+        </Box>
+        )
+    }},
+    {
+      field: "product",
+      headerName: "Product Title",
       flex: 1,
       cellClassName: "name-column--cell",
-    },
+      renderCell: ({ row: { product}}) => {
+        // let index=0;
+        // console.log("df",index)
+        return (
+          <Box
+            display="flex"
+          >
+            <Typography color={colors.grey[100]} sx={{ ml: "0px" }}>
+              {product['name']}
+            </Typography>
+          </Box>
+          )
+
+    }
+  },
     {
-      field: "cost",
+      field: "price",
       headerName: "Price",
       type: "number",
       headerAlign: "left",
       align: "left",
     },
     {
-      field: "date",
+      field: "createdAt",
       headerName: "Date",
       flex: 1,
     },
@@ -46,15 +74,15 @@ const SellerDashboard = () => {
             display="flex"
             justifyContent="center"
             backgroundColor={
-              status === "Pending"
+              status === "PENDING"
                 ? colors.blueAccent[600]
-                : status === "Accepted"
+                : status === "ACCEPTED"
                 ? colors.greenAccent[700]
                 : colors.greenAccent[700]
             }
             borderRadius="4px"
           >
-            <Typography color={colors.grey[100]}  sx={{ ml: "0px" }}>
+            <Typography color={colors.grey[100]} sx={{ ml: "0px" }}>
               {status}
             </Typography>
           </Box>
@@ -70,6 +98,7 @@ const SellerDashboard = () => {
       </Box>
 
       {/* GRID & CHARTS */}
+      {orders&&
       <Box
         display="grid"
         gridTemplateColumns="repeat(12, 1fr)"
@@ -155,10 +184,7 @@ const SellerDashboard = () => {
         </Box>
 
         {/* ROW 2 */}
-        <Box
-          gridColumn="span 12"
-          backgroundColor={colors.primary[400]}
-        >
+        <Box gridColumn="span 12" backgroundColor={colors.primary[400]}>
           <Box
             display="flex"
             justifyContent="space-between"
@@ -172,37 +198,47 @@ const SellerDashboard = () => {
               Recent Orders
             </Typography>
           </Box>
-          <Box m="0"
-        height="40vh"
-        sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-          },
-          "& .name-column--cell": {
-            color: colors.greenAccent[300],
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
-            borderBottom: "none",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.primary[400],
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
-          },
-          "& .MuiCheckbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
-          },
-        }} >
-            <DataGrid checkboxSelection rows={mockDataInvoices} columns={columns} />
+          <Box
+            m="0"
+            height="40vh"
+            sx={{
+              "& .MuiDataGrid-root": {
+                border: "none",
+              },
+              "& .MuiDataGrid-cell": {
+                borderBottom: "none",
+              },
+              "& .name-column--cell": {
+                color: colors.greenAccent[300],
+              },
+              "& .MuiDataGrid-columnHeaders": {
+                backgroundColor: colors.blueAccent[700],
+                borderBottom: "none",
+              },
+              "& .MuiDataGrid-virtualScroller": {
+                backgroundColor: colors.primary[400],
+              },
+              "& .MuiDataGrid-footerContainer": {
+                borderTop: "none",
+                backgroundColor: colors.blueAccent[700],
+              },
+              "& .MuiCheckbox-root": {
+                color: `${colors.greenAccent[200]} !important`,
+              }
+
+
+            }}
+          >
+            <DataGrid
+              checkboxSelection
+              rows={orders}
+              columns={columns}
+              getRowId={(row) => row["_id"]}
+            />
           </Box>
         </Box>
       </Box>
+}
     </Box>
   );
 };

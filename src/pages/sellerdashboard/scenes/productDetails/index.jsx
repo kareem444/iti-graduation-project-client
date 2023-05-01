@@ -2,50 +2,69 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { DataGrid } from "@mui/x-data-grid";
-import { mockDataInvoices } from "../../data/mockData";
+import { RepGetOneProduct } from "../../../../repositories/product.repo";
+import { Link, useParams } from "react-router-dom";
+import { RepoDeleteProduct } from "../../../../repositories/product.repo";
 const SellerProductDetails = () => {
+  let { id } = useParams();
+  const { data: product, isLoading, isError, error } = RepGetOneProduct(id);
+  const { mutate, isError: IsMutateError, error: mutateError, isLoading: isMutateLoading } = RepoDeleteProduct()
+  function handleDeleteProduct(){
+    mutate(id);
+  }
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
-    { field: "id", headerName: "ID" },
+    {
+      field: "_id",
+      headerName: "ID",
+      flex: 0.5,
+      renderCell: (index) =>{ return (
+        <Box
+          display="flex"
+        >
+          <Typography color={colors.grey[100]} sx={{ ml: "0px" }}  >
+          {index.api.getRowIndex(index.row["_id"]) + 1}
+          </Typography>
+        </Box>
+        )
+    }},
     {
       field: "name",
-      headerName: "Product Name",
+      headerName: "Name",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "cost",
-      headerName: "Price",
-      type: "number",
+      field: "description",
+      headerName: "Description",
       headerAlign: "left",
       align: "left",
       flex: 1,
     },
     {
-      field: "date",
+      field: "quantity",
       headerName: "Quantity",
       flex: 1,
     },
     {
-      field: "phone",
+      field: "minQuantity",
       headerName: "Min Quantity",
       flex: 1,
     },
     {
-      field: "email",
+      field: "maxQuantity",
       headerName: "Max Quantity",
       flex: 1,
-    }
-
-  ];
+    },
+  ]; 
   return (
     <Box m="0 20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="Products Details" subtitle="View Product details" />
       </Box>
-    
+
       {/* GRID & CHARTS */}
       <Box
         display="grid"
@@ -72,7 +91,7 @@ const SellerProductDetails = () => {
             colors={colors.grey[100]}
             p="15px"
             gridColumn="span 12"
-            sx={{ flexDirection: 'column' }}
+            sx={{ flexDirection: "column" }}
           >
             <Box display="flex" justifyContent="space-between">
               <Typography
@@ -80,14 +99,14 @@ const SellerProductDetails = () => {
                 variant="h5"
                 fontWeight="600"
               >
-                Title
+                Title: {product && product["title"]}
               </Typography>
               <Typography
                 color={colors.grey[100]}
                 variant="h5"
                 fontWeight="600"
               >
-                Location: Giza
+                Location: {product && product["location"]}
               </Typography>
             </Box>
 
@@ -97,7 +116,7 @@ const SellerProductDetails = () => {
                 variant="h5"
                 fontWeight="600"
               >
-                Description
+                Description: {product && product["description"]}
               </Typography>
             </Box>
           </Box>
@@ -130,46 +149,52 @@ const SellerProductDetails = () => {
               },
             }}
           >
-            <DataGrid
-              checkboxSelection
-              rows={mockDataInvoices}
-              columns={columns}
-            />
+            {product && (
+              <DataGrid
+                rows={product["items"]}
+                columns={columns}
+                getRowId={(row) => row["_id"]}
+              />
+            )}
           </Box>
-
-            <Box m="8px 0 0 0" display="flex" justifyContent="flex-end">
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "red",
-                  color: colors.grey[100],
-                  fontSize: "14px",
-                  fontWeight: "bold",
-                  padding: "10px 20px",
-                  ":hover": {
-                    bgcolor: "#ff1744",
-                  },
-                  margin: "0 8px",
-                }}
-              >
-                Delete
-              </Button>
-              <Button
-                sx={{
-                  backgroundColor: colors.greenAccent[700],
-                  color: colors.grey[100],
-                  fontSize: "14px",
-                  fontWeight: "bold",
-                  padding: "10px 20px",
-                  ":hover": {
-                    bgcolor: colors.greenAccent[900],
-                  },
-                  margin: "0 8px",
-                }}
-              >
-                Update
-              </Button>
-            </Box>
+              {product&& 
+          <Box m="8px 0 0 0" display="flex" justifyContent="flex-end">
+            <Button
+            onClick={handleDeleteProduct}
+              variant="contained"
+              sx={{
+                backgroundColor: "red",
+                color: colors.grey[100],
+                fontSize: "14px",
+                fontWeight: "bold",
+                padding: "10px 20px",
+                ":hover": {
+                  bgcolor: "#ff1744",
+                },
+                margin: "0 8px",
+              }}
+            >
+              Delete
+            </Button>
+            <Button
+              component={Link}
+              to={`../sellereditproduct/${product["_id"]}`}
+              sx={{
+                backgroundColor: colors.greenAccent[700],
+                color: colors.grey[100],
+                fontSize: "14px",
+                fontWeight: "bold",
+                padding: "10px 20px",
+                ":hover": {
+                  bgcolor: colors.greenAccent[900],
+                },
+                margin: "0 8px",
+              }}
+            >
+              Update
+            </Button>
+          </Box>
+}
         </Box>
       </Box>
     </Box>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import useAuth from './../../../../custom_hooks/use_auth';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -35,7 +36,10 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
-
+  const {authData,fetchAuth}=useAuth();
+    useEffect(() => {
+      fetchAuth()
+  }, [authData]);
   return (
     <Box
       sx={{
@@ -54,6 +58,7 @@ const Sidebar = () => {
         "& .pro-menu-item.active": {
           color: "#6870fa !important",
         },
+
       }}
     >
       <ProSidebar collapsed={isCollapsed}>
@@ -102,11 +107,11 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  {authData&&authData['name']}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
-                </Typography>
+                  {authData&&authData['email']}
+                                </Typography>
               </Box>
             </Box>
           )}
@@ -138,20 +143,6 @@ const Sidebar = () => {
               title="Add Product"
               to="selleraddproduct"
               icon={<AddShoppingCartIcon/>}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Product Details"
-              to="sellerproductdetails"
-              icon={<ReceiptOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Order Details"
-              to="sellerorderdetails"
-              icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

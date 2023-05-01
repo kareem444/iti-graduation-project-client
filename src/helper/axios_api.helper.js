@@ -11,6 +11,14 @@ const axiosInstance = axios.create({
     },
 });
 
+const axiosInstanceProduct = axios.create({
+    baseURL: API_BASE_URL,
+    headers: {
+        'Content-Type':'multipart/form-data;',
+        'Authorization': 'Bearer ' + cookies.get('access_token')
+    },
+});
+
 export default class AxiosApiHelper {
     static async get(url, params = {}, headers = {}) {
         try {
@@ -48,6 +56,16 @@ export default class AxiosApiHelper {
             return response.data;
         } catch (error) {
             console.error(`DELETE ${url} error:`, error);
+            throw error;
+        }
+    };
+
+    static async postNewProduct(url, data = {}) {
+        try {
+            const response = await axiosInstanceProduct.post(url, data);
+            return response.data;
+        } catch (error) {
+            console.error(`POST ${url} error:`, error);
             throw error;
         }
     };

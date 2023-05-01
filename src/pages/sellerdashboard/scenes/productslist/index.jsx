@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Box, Button} from "@mui/material";
+import { Box, Button,Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataContacts } from "../../data/mockData";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -14,67 +13,82 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { RepoGetAllMyProducts } from "../../../../repositories/product.repo";
+import { RepoDeleteProduct } from "../../../../repositories/product.repo";
 
 const SellerProducts = () => {
+  const [productId, setProductId] = useState("");
   const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
+  const { data: products, isLoading, isError, error } = RepoGetAllMyProducts();
+  console.log(products);
+  const handleClickOpen = (id) => {
+    setProductId(id)
     setOpen(true);
   };
-
+  const { mutate, isError: IsMutateError, error: mutateError, isLoading: isMutateLoading } = RepoDeleteProduct()
   const handleClose = (e) => {
     console.log(e.target.name);
+    if(e.target.name=="agree"){
+      mutate(productId)
+    }
     setOpen(false);
   };
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "_id",
+      headerName: "ID",
+      flex: 0.5,
+      renderCell: (index) =>{ return (
+        <Box
+          display="flex"
+        >
+          <Typography color={colors.grey[100]} sx={{ ml: "0px" }}component={Link} to={`../sellerproductdetails/${products[index.api.getRowIndex(index.row["_id"])]["_id"]}`}  >
+          {index.api.getRowIndex(index.row["_id"]) + 1}
+          </Typography>
+        </Box>
+        )
+    }},,
+    {
+      field: "title",
+      headerName: "Title",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "age",
-      headerName: "Age",
-      type: "number",
+      field: "description",
+      headerName: "Description",
       headerAlign: "left",
       align: "left",
+      flex: 1
     },
     {
-      field: "phone",
-      headerName: "Phone Number",
+      field: "location",
+      headerName: "Location",
       flex: 1,
     },
     {
-      field: "email",
-      headerName: "Email",
+      field: "items",
+      headerName: "Items",
       flex: 1,
-    },
-    {
-      field: "address",
-      headerName: "Address",
-      flex: 1,
-    },
-    {
-      field: "city",
-      headerName: "City",
-      flex: 1,
-    },
-    {
-      field: "zipCode",
-      headerName: "Zip Code",
-      flex: 1,
+      renderCell: (index) => {
+        return (
+          <Box
+            display="flex"
+            justifyContent="flex-start"
+          >
+            {products && <>{products[index.api.getRowIndex(index.row["_id"])]["items"].length}</>}
+          </Box>
+        );
+      },
     },
     {
       field: "",
       headerName: "Edit",
       flex: 1,
-      renderCell: () => {
+      renderCell: (index) => {
+        
         return (
           <Box
             width="60%"
@@ -83,10 +97,10 @@ const SellerProducts = () => {
             justifyContent="flex-start"
             borderRadius="4px"
           >
-            <Box m="0 10px 0 0" onClick={handleClickOpen}>
+            <Box m="0 10px 0 0" onClick={()=>handleClickOpen(products[index.api.getRowIndex(index.row["_id"])]['_id'])}>
               <DeleteForeverIcon sx={{ cursor: "pointer" }} />
             </Box>
-            <Box m="0 0 0 10px" component={Link} to="sellereditproduct">
+            <Box m="0 0 0 10px" component={Link} to={`../sellereditproduct/${products[index.api.getRowIndex(index.row["_id"])]['_id']}`}>
               <EditIcon
                 sx={{
                   cursor: "pointer",
@@ -99,7 +113,6 @@ const SellerProducts = () => {
       },
     },
   ];
-
   return (
     <>
       <Dialog
@@ -122,13 +135,18 @@ const SellerProducts = () => {
         </DialogContent>
         <DialogActions>
           <Button
-            name="disagree"               sx={{
-                backgroundColor:"red",
-                color: colors.grey[100],
-                fontSize: "14px",
-                fontWeight: "bold",
-                padding: "10px 20px",
-              }} onClick={handleClose}>Disagree</Button>
+            name="disagree"
+            sx={{
+              backgroundColor: "red",
+              color: colors.grey[100],
+              fontSize: "14px",
+              fontWeight: "bold",
+              padding: "10px 20px",
+            }}
+            onClick={handleClose}
+          >
+            Disagree
+          </Button>
           <Button
             sx={{
               backgroundColor: colors.greenAccent[700],
@@ -158,7 +176,7 @@ const SellerProducts = () => {
                 padding: "10px 20px",
               }}
               component={Link}
-              to="selleraddproduct"
+              to="../selleraddproduct"
             >
               <AddShoppingCartIcon sx={{ mr: "10px" }} />
               Add Product
@@ -167,7 +185,7 @@ const SellerProducts = () => {
         </Box>
         <Box
           m="0px 0 0 0"
-          height="75vh"
+          height="50vh"
           sx={{
             "& .MuiDataGrid-root": {
               border: "none",
@@ -197,11 +215,14 @@ const SellerProducts = () => {
             },
           }}
         >
-          <DataGrid
-            rows={mockDataContacts}
-            columns={columns}
-            components={{ Toolbar: GridToolbar }}
-          />
+          {products && (
+            <DataGrid
+              rows={products}
+              columns={columns}
+              components={{ Toolbar: GridToolbar }}
+              getRowId={(row) => row["_id"]}
+            />
+          )}
         </Box>
       </Box>
     </>

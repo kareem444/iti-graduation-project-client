@@ -95,7 +95,7 @@ export default class PageRoutes {
     component: <SellerAddproduct />,
   }
   static sellerEditProducts = {
-    path: "sellereditproducts",
+    path: "sellereditproduct/:id",
     component: <SellerEditproduct />,
   }
   static sellerProductDetails = {
@@ -107,7 +107,7 @@ export default class PageRoutes {
     component: <SellerOrders />,
   }
   static sellerOrderDetails = {
-    path: "sellerorderdetails",
+    path: "sellerorderdetails/:id",
     component: <SellerOrderDetails />,
   }
   static sellerCalender = {
