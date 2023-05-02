@@ -1,5 +1,5 @@
 import { FilterOutlined, ShoppingOutlined } from '@ant-design/icons';
-import logo from '../images/logo-full.png';
+import logo from '../images/logoWithNewColor.png';
 import React, { useEffect, useRef } from 'react';
 import {
   Link, NavLink, useLocation
