@@ -57,6 +57,18 @@ function MainRouter() {
           path={RoutsPath.productDetails.path}
           element={RoutsPath.productDetails.component}
         />
+        <Route
+          path={RoutsPath.checkOutFirstStep.path}
+          element={RoutsPath.checkOutFirstStep.component}
+        />
+        <Route
+          path={RoutsPath.checkOutSecondStep.path}
+          element={RoutsPath.checkOutSecondStep.component}
+        />
+        <Route
+          path={RoutsPath.checkOutThirdStep.path}
+          element={RoutsPath.checkOutThirdStep.component}
+        />
       </Route>
       <Route
         path={RoutsPath.sellerDashboardLayout.path}

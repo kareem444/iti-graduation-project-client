@@ -9,7 +9,7 @@ const ProductDetails = () => {
   const orderId = params.id;
 
   const { data: product } = RepGetOneProduct(orderId);
-
+  
   return (
     <>
       <div className="card mx-auto my-5 col-lg-9 ">
