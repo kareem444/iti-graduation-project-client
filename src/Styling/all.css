@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;500&family=Playfair+Display&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+
 :root {
   --primaryColor: #bbae9a;
   --light-brown: #f7e7ce;
@@ -10,4 +16,10 @@
   --icon-border: #5c8692;
   --playfair-font: "Playfair Display", serif;
   --kalam-font: "Kalam", cursive;
+  --kdam-font: 'Kdam Thmor Pro', sans-serif;
+  --Roboto-font: 'Roboto Condensed', sans-serif;
+  --ownBlue: #6c7ae0;
+  --ownblack: #222;
+  --ownGray: #888;
+  --ownRed: #f74877;
 }
