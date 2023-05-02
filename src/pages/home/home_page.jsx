@@ -12,31 +12,31 @@ import "../../Styling/home_page.css";
 const HomePage = () => {
   return (
     <>
-      <div className="container-fluid">
-        <div className="row bg-light-brown vh-md-85 ">
-          <div className="col-12 text-center text-md-start order-2 py-5 py-md-0 order-md-1 col-md-6 h-100 bgSecondary d-flex flex-column justify-content-center px-5 ">
-            <h1 className=" fst-italic kalamFont bigFont">
+      <div className="container-fluid ">
+        <div className="row bgSecondary d-flex mt-2">
+          <div className="col-12 text-center text-md-start order-2 py-md-0 order-md-1 col-md-6 h-20 bgSecondary d-flex flex-column justify-content-center px-5 mt-5">
+            <h1 className="  RobotoFont ">
               Your love story deserves a special wedding,
               and we're here to deliver
             </h1>
-            <p className="lead my-3 playfair-font col-11 textColor">
+            <p className=" my-3 RobotoFont col-11 textColor">
               We believe every couple deserves a unique and
               unforgettable wedding, and we're here to make
               that happen.
             </p>
-            <p className=" mb-0 ">
+            <p className=" mb-0 mt-md-5">
               <a
                 href="#"
-                className="text-dark fw-bold bgPrimary px-3 btn py-2 text-white "
+                className="text-dark fw-bold bgPrimary px-3 btn py-2 rounded text-white "
               >
                 EXPLORE PLAN
               </a>
             </p>
           </div>
-          <div className="col-md-6 h-100 p-0 order-1 order-md-2 col-12 ">
+          <div className="col-md-6 h-20 p-0 order-1 order-md-2 col-12 d-flex justify-content-center ">
             <img
               src="assets/img.jpg"
-              className="w-100 h-100"
+              className="w-70 h-50"
               alt=""
             />
           </div>
