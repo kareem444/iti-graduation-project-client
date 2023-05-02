@@ -2,26 +2,24 @@ import React from 'react';
 import background from '../../imported/images/bg-01.jpg'
 import aboutImage1 from '../../imported/images/about-01.jpg'
 import aboutImage2 from '../../imported/images/about-02.jpg'
-import '../../imported/css/util.css'
-import '../../imported/css/main.css'
 import './about.css'
 
-const AboutPage = () => {
+const AboutPage = () => {    
     return (
             <div className='Container'>
                 <section
-                    className="bg-img1 txt-center p-lr-15 p-tb-92"
-                    style={{ backgroundImage: 'url(' + background + ')' }}
+                    className="bg-img1 text-center align-middle p-lr-15 p-tb-92 mt-5 "
+                    style={{ backgroundImage: 'url(' + background + ')',height:"40vh" }}
                 >
-                    <h2 className="ltext-105 cl0 txt-center">About</h2>
+                    <h2 className="ltext-105 cl0 text-center mt-5 pt-5">About</h2>
                 </section>
                 <section className="bg0 p-t-75 p-b-120">
                     <div className="container">
                         <div className="row p-b-148">
-                            <div className="col-md-7 col-lg-8">
+                            <div className="col-md-6 col-lg-7 ">
                                 <div className="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
-                                    <h3 className="mtext-111 cl2 p-b-16">Our Story</h3>
-                                    <p className="stext-113 cl6 p-b-26">
+                                    <h3 className="mtext-111 cl2 p-b-16 ">Our Story</h3>
+                                    <p className="stext-113 cl6 p-b-26 ">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
                                         consequat consequat enim, non auctor massa ultrices non. Morbi sed
                                         odio massa. Quisque at vehicula tellus, sed tincidunt augue. Orci
@@ -51,7 +49,7 @@ const AboutPage = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className="col-11 col-md-5 col-lg-4 m-lr-auto">
+                            <div className="col-11 col-md-5 col-lg-4  m-lr-auto">
                                 <div className="how-bor1 ">
                                     <div className="hov-img0">
                                         <img src={aboutImage1} alt="IMG" />
@@ -60,7 +58,7 @@ const AboutPage = () => {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="order-md-2 col-md-7 col-lg-8 p-b-30">
+                            <div className="order-md-2 col-md-6 col-lg-7 me-5 p-b-30">
                                 <div className="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
                                     <h3 className="mtext-111 cl2 p-b-16">Our Mission</h3>
                                     <p className="stext-113 cl6 p-b-26">
@@ -88,7 +86,7 @@ const AboutPage = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
+                            <div className="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto ms-5 p-b-30">
                                 <div className="how-bor2">
                                     <div className="hov-img0">
                                         <img src={aboutImage2} alt="IMG" />
