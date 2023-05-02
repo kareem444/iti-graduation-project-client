@@ -45,33 +45,33 @@ const HomePage = () => {
       <div className="row  pt-5 ">
         <div className="container ">
           <div className="row my-3">
-            <h2 className="text-center titleSize kalamFont  pb-4">
+            <h2 className="text-center titleSize RobotoFont  pb-4">
               Our Services
             </h2>
             <div className="col-md-4 px-1 text-center ">
               <i className="bi bi-geo-alt-fill"></i>
-              <h2 className="kalamFont mt-3">Location</h2>
-              <p className="kalamFont">
+              <h2 className="RobotoFont mt-3">Location</h2>
+              <p className="RobotoFont">
                 This is a short description elaborating the
                 service you have mentioned above.
               </p>
             </div>
             <div className="col-md-4 px-1 text-center">
               <FontAwesomeIcon icon={faCamera} />
-              <h2 className="kalamFont mt-3">
+              <h2 className="RobotoFont mt-3">
                 Photographer
               </h2>
-              <p className="kalamFont">
+              <p className="RobotoFont">
                 This is a short description elaborating the
                 service you have mentioned above.
               </p>
             </div>
             <div className="col-md-4 px-1 text-center">
               <FontAwesomeIcon icon={faChair} />
-              <h2 className="kalamFont mt-3">
+              <h2 className="RobotoFont mt-3">
                 Hall Chairs
               </h2>
-              <p className="kalamFont">
+              <p className="RobotoFont">
                 This is a short description elaborating the
                 service you have mentioned above.
               </p>
@@ -80,30 +80,30 @@ const HomePage = () => {
           <div className="row mt-5">
             <div className="col-md-4 px-1 text-center">
               <FontAwesomeIcon icon={faNewspaper} />
-              <h2 className="kalamFont mt-3">
+              <h2 className="RobotoFont mt-3">
                 Documentation
               </h2>
-              <p className="kalamFont">
+              <p className="RobotoFont">
                 This is a short description elaborating the
                 service you have mentioned above.
               </p>
             </div>
             <div className="col-md-4 px-1 text-center">
               <CelebrationIcon />
-              <h2 className="kalamFont mt-3">
+              <h2 className="RobotoFont mt-3">
                 Celebration
               </h2>
-              <p className="kalamFont">
+              <p className="RobotoFont">
                 This is a short description elaborating the
                 service you have mentioned above.
               </p>
             </div>
             <div className="col-md-4 px-1 text-center">
               <FontAwesomeIcon icon={faChampagneGlasses} />
-              <h2 className="kalamFont mt-3">
+              <h2 className="RobotoFont mt-3">
                 Food & Drinks
               </h2>
-              <p className="kalamFont">
+              <p className="RobotoFont">
                 This is a short description elaborating the
                 service you have mentioned above.
               </p>
