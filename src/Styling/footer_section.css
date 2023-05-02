@@ -1,8 +1,8 @@
 @import url("./all.css");
 
 footer {
-  font-family: var(--kalam-font);
-  background: var(--primaryColor);
+  font-family: var(--Roboto-font);
+  background: var(--ownGray);
   color: white;
 }
 

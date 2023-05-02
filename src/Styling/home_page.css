@@ -15,18 +15,26 @@
 .bg-img {
   background-image: url("../../public/assets/img.jpg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: contain;
+
 }
+
 @media all and (min-width: 768px) {
   .vh-md-85 {
     height: 85vh;
   }
 }
+
 .playfair-font {
   font-family: var(--playfair-font);
 }
+
 .kalamFont {
   font-family: var(--kalam-font);
+}
+
+.RobotoFont {
+  font-family: var(--Roboto-font);
 }
 
 .bigFont {
@@ -52,12 +60,14 @@
   color: var(--primaryColor);
   font-size: 50px;
 }
+
 .bi-person-fill::before,
 .bi-lock-fill::before,
 .bi-envelope::before,
 .bi-person-circle::before {
   font-size: 25px !important;
 }
+
 .fa-camera,
 .bi-geo-alt-fill::before,
 .fa-chair,
