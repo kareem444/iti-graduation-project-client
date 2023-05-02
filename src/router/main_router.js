@@ -41,10 +41,10 @@ function MainRouter() {
           path={RoutsPath.profileRoute.path}
           element={RoutsPath.profileRoute.component}
         />
-        <Route
+        {/* <Route
           path={RoutsPath.editProfileRoute.path}
           element={RoutsPath.editProfileRoute.component}
-        />
+        /> */}
         <Route
           path={RoutsPath.enterEmailRoute.path}
           element={RoutsPath.enterEmailRoute.component}
@@ -68,6 +68,14 @@ function MainRouter() {
         <Route
           path={RoutsPath.checkOutThirdStep.path}
           element={RoutsPath.checkOutThirdStep.component}
+        />
+        <Route
+          path={RoutsPath.accountRoute.path}
+          element={RoutsPath.accountRoute.component}
+        />
+        <Route
+          path={RoutsPath.myOrdersRoute.path}
+          element={RoutsPath.myOrdersRoute.component}
         />
       </Route>
       <Route

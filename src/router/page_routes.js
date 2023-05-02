@@ -24,6 +24,9 @@ import ProductDetails from "../pages/products/productDetails";
 import OrderSummary from "../imported/pages/new_checkout/step_1/check_out_first_step_page";
 import Payment from "../imported/pages/new_checkout/step3/check_out_third_step";
 import ShippingDetails from "../imported/pages/new_checkout/step_2/check_out_second_step";
+import NewProfilePage from "../imported/pages/new_profile/new_profile.page";
+import MainAccountComponent from "../imported/pages/new_profile/components/account/main_account_component";
+import MainMyOrdersComponent from "../imported/pages/new_profile/components/my_orders/main_my_orders_component";
 
 export default class PageRoutes {
   static layoutRoute = {
@@ -60,10 +63,10 @@ export default class PageRoutes {
     path: "/checkout",
     component: <CheckoutPage />,
   };
-  static profileRoute = {
-    path: "/profile",
-    component: <ProfilePage />,
-  }
+  // static profileRoute = {
+  //   path: "/profile",
+  //   component: <ProfilePage />,
+  // }
 
   static changePasswordRoute = {
     path: "/change-password",
@@ -75,9 +78,24 @@ export default class PageRoutes {
     component: <EnterEmailPage />,
   }
 
-  static editProfileRoute = {
-    path: "/edit-profile",
-    component: <EditProfilePage />,
+  // static editProfileRoute = {
+  //   path: "/edit-profile",
+  //   component: <EditProfilePage />,
+  // }
+
+  static profileRoute = {
+    path: "/profile",
+    component: <NewProfilePage />,
+  }
+
+  static accountRoute = {
+    path: "/profile",
+    component: <NewProfilePage />,
+  }
+
+  static myOrdersRoute = {
+    path: this.accountRoute.path + "/my-orders",
+    component: <NewProfilePage />,
   }
 
   static checkOutFirstStep = {
