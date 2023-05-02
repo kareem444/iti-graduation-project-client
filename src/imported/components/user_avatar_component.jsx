@@ -72,7 +72,7 @@ const UserAvatarComponent = () => {
       <DownOutlined style={{ fontSize: '1.2rem', marginLeft: '1rem' }} />
       <div className="user-nav-sub">
         <Link
-          to={PageRoutes.homeRoute.path}
+          to={PageRoutes.accountRoute.path}
           className="user-nav-sub-link"
         >
           View Account
