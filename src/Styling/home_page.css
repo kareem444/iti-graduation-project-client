@@ -126,12 +126,11 @@
 
 .btn {
   font-family: var(--Roboto-font);
-  font-size: 20pt;
+  font-size: 2rem;
   background-color: none;
   outline: 3px solid var(--secondaryColor) !important;
   color: var(--secondaryColor);
-  padding: 12px 50px;
-
+  min-width: 25%;
 }
 
 /* p services css*/
