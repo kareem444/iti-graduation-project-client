@@ -3,6 +3,7 @@ import { RepGetOneProduct } from "../../repositories/product.repo";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { RepoCreateOrder } from "../../repositories/order.repo";
+import ProductReviewsComponent from "./components/product_reviews.component";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -63,6 +64,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
+        <ProductReviewsComponent />
     </>
   );
 };
