@@ -8,10 +8,10 @@ const AboutPage = () => {
     return (
             <div className='Container'>
                 <section
-                    className="bg-img1 text-center align-middle p-lr-15 p-tb-92 mt-5 "
+                    className="bg-img1 txt-center p-lr-15 p-tb-92 contact__bk d-flex justify-content-center align-items-center"
                     style={{ backgroundImage: 'url(' + background + ')',height:"40vh" }}
                 >
-                    <h2 className="ltext-105 cl0 txt-center txt__mar">About</h2>
+                    <h2 className="ltext-105 cl0 txt-center mt-lg-5">About</h2>
                 </section>
                 <section className="bg0 p-t-75 p-b-120 px-5">
                     <div className="container">

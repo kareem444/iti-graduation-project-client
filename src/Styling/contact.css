@@ -369,12 +369,6 @@
   width: 60px;
 }
 
-.container {max-width: 1380px;}
-  
-@media (max-width: 1600px) {
-  .container {max-width: 1200px;}
-}
-
 .cl0 {color: #fff;}
 .cl1 {color: #717fe0;}
 .cl2 {color: #333;}
