@@ -27,16 +27,19 @@ const CustomMobileInput = (props) => {
       {touched && error ? (
         <span className="label-input label-error">{error?.value || error?.dialCode}</span>
       ) : (
-        <label className="label-input" htmlFor={field.name}>{label}</label>
+        <label className="label-input fs-4 p-0 mb-2" htmlFor={field.name}>{label}</label>
       )}
       <PhoneInput
         name={field.name}
         country="us"
-        inputClass="input-form d-block"
+        inputClass=""
         style={{
-          border: touched && error ? '1px solid red' : '1px solid #cacaca'
+          borderRadius: "8px",
+          padding:"10px"
         }}
         inputExtraProps={{ required: true }}
+        buttonStyle={{ borderRadius:"8px 0 0 8px" , padding:"10px"}}
+        
         onChange={handleChange}
         placeholder={placeholder}
         value={defaultValue.value}
@@ -46,7 +49,7 @@ const CustomMobileInput = (props) => {
 };
 
 CustomMobileInput.defaultProps = {
-  label: 'Mobile Number',
+  label: 'Mobile',
   placeholder: '09254461351'
 };
 

@@ -1,11 +1,10 @@
-import { CloseOutlined } from '@ant-design/icons';
-import PropType from 'prop-types';
-import React from 'react';
+import { CloseOutlined } from "@ant-design/icons";
+import React from "react";
 // import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { displayMoney } from '../../helpers/utils';
-import ImageLoader from '../common/ImageLoader';
-import BasketItemControl from './BasketItemControl';
+import { Link } from "react-router-dom";
+import { displayMoney } from "../../helpers/utils";
+import ImageLoader from "../common/ImageLoader";
+import BasketItemControl from "./BasketItemControl";
 // import { removeFromBasket } from 'redux/actions/basketActions';
 
 const BasketItem = ({ product }) => {
@@ -13,9 +12,7 @@ const BasketItem = ({ product }) => {
   // const onRemoveFromBasket = () => dispatch(removeFromBasket(product.id));
 
   return (
-    <div className="basket-item">
-      <BasketItemControl product={product} />
-      <div className="basket-item-wrapper">
+    <div className="basket-item my-4 rounded-3" >
         <div className="basket-item-img-wrapper">
           <ImageLoader
             alt={product.name}
@@ -24,53 +21,23 @@ const BasketItem = ({ product }) => {
           />
         </div>
         <div className="basket-item-details">
-          <Link to={`/product/${product.id}`} onClick={() => document.body.classList.remove('is-basket-open')}>
-            <h4 className="underline basket-item-name">
-              {product.name}
-            </h4>
+          <Link
+            to={`/product/${product.id}`}
+            onClick={() => document.body.classList.remove("is-basket-open")}
+          >
+            <h4 className="basket-item-name fs-4 fw-bold" style={{ color: "#222" }}>{product.name}</h4>
           </Link>
-          <div className="basket-item-specs">
-            <div>
-              <span className="spec-title">Quantity</span>
-              <h5 className="my-0">{product.quantity}</h5>
-            </div>
+          <div className="basket-item-price">
+            <h4 className="my-0 fs-4" style={{ color: "#888" }}>$50</h4>
           </div>
         </div>
-        <div className="basket-item-price">
-          <h4 className="my-0">{displayMoney(product.price * product.quantity)}</h4>
-        </div>
-        <button
-          className="basket-item-remove button button-border button-border-gray button-small"
-          // onClick={onRemoveFromBasket}
-          type="button"
-        >
-          <CloseOutlined />
-        </button>
-      </div>
+        <img
+          src="https://img.icons8.com/ios-glyphs/30/null/delete-sign.png"
+          height={20}
+          style={{ cursor: "pointer" , marginLeft:"auto" , marginRight:"20px" }}
+        />
     </div>
   );
-};
-
-BasketItem.propTypes = {
-  product: PropType.shape({
-    id: PropType.string,
-    name: PropType.string,
-    brand: PropType.string,
-    price: PropType.number,
-    quantity: PropType.number,
-    maxQuantity: PropType.number,
-    description: PropType.string,
-    keywords: PropType.arrayOf(PropType.string),
-    selectedSize: PropType.string,
-    selectedColor: PropType.string,
-    imageCollection: PropType.arrayOf(PropType.string),
-    sizes: PropType.arrayOf(PropType.number),
-    image: PropType.string,
-    imageUrl: PropType.string,
-    isFeatured: PropType.bool,
-    isRecommended: PropType.bool,
-    availableColors: PropType.arrayOf(PropType.string)
-  }).isRequired
 };
 
 export default BasketItem;

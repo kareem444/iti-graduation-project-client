@@ -78,19 +78,4 @@ const Payment = ({ shipping, payment, subtotal }) => {
   );
 };
 
-Payment.propTypes = {
-  shipping: PropType.shape({
-    isDone: PropType.bool,
-    isInternational: PropType.bool
-  }).isRequired,
-  payment: PropType.shape({
-    name: PropType.string,
-    cardnumber: PropType.string,
-    expiry: PropType.string,
-    ccv: PropType.string,
-    type: PropType.string
-  }).isRequired,
-  subtotal: PropType.number.isRequired
-};
-
 export default Payment;

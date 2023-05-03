@@ -94,7 +94,7 @@ export default class PageRoutes {
   }
 
   static myOrdersRoute = {
-    path: this.accountRoute.path + "/my-orders",
+    path: "/my-orders",
     component: <NewProfilePage />,
   }
 

@@ -1,5 +1,4 @@
 import { ArrowRightOutlined, ShopOutlined } from '@ant-design/icons';
-import { displayMoney } from '../../../helpers/utils';
 import { useDocumentTitle, useScrollTop } from '../../../hooks';
 import PropType from 'prop-types';
 import React from 'react';
@@ -14,7 +13,7 @@ const OrderSummary = () => {
     useScrollTop();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const onClickPrevious = () => navigate('/');
+    const onClickPrevious = () => navigate(PageRoutes.productsRoute.path);
     const onClickNext = () => navigate(PageRoutes.checkOutSecondStep.path);
 
     const basket = [
@@ -38,10 +37,9 @@ const OrderSummary = () => {
             <div className="checkout">
                 <StepTracker current={1} />
                 <div className="checkout-step-1">
-                    <h3 className="text-center">Order Summary</h3>
-                    <span className="d-block text-center">Review items in your basket.</span>
-                    <br />
-                    <div className="checkout-items">
+                    <h3 className="text-center mt-5 mb-2 fs-1" style={{ color: "#222" }}>Order Summary</h3>
+                    <span className="d-block text-center fs-4" style={{ color: "#888" }}>Review items in your basket.</span>
+                    <div className="checkout-items ab-b-l my-5">
                         {basket.map((product) => (
                             <BasketItem
                                 basket={basket}
@@ -53,39 +51,28 @@ const OrderSummary = () => {
                     </div>
                     <br />
                     <div className="basket-total text-right">
-                        <p className="basket-total-title">Subtotal:</p>
-                        <h2 className="basket-total-amount">{displayMoney(subtotal)}</h2>
+                        <span className="basket-total-title fs-2 me-3" style={{ color: "#888" }}>Total:</span>
+                        <span className="basket-total-amount fs-2 me-3" style={{ color: "#222" }}>$50</span>
                     </div>
                     <br />
                     <div className="checkout-shipping-action">
-                        <button
-                            className="button button-muted"
+                        <div
                             onClick={onClickPrevious}
-                            type="button"
-                        >
-                            <ShopOutlined />
-                            &nbsp;
-                            Continue Shopping
-                        </button>
-                        <button
-                            className="button"
+                            className='d-flex gap-2 check-out-buttons-controllers align-items-center'>
+                            <img src="https://img.icons8.com/ios/50/null/shop--v1.png" height={20} />
+                            <span className='fs-3 fw-bold'>Continue Shopping</span>
+                        </div>
+                        <div
                             onClick={onClickNext}
-                            type="submit"
-                        >
-                            Next Step
-                            &nbsp;
-                            <ArrowRightOutlined />
-                        </button>
+                            className='d-flex gap-2 check-out-buttons-controllers align-items-center'>
+                            <span className='fs-3 fw-bold'>Next Step</span>
+                            <img src="https://img.icons8.com/ios-glyphs/30/null/more-than.png" height={15} />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     );
-};
-
-OrderSummary.propTypes = {
-    basket: PropType.arrayOf(PropType.object).isRequired,
-    subtotal: PropType.number.isRequired
 };
 
 export default OrderSummary;

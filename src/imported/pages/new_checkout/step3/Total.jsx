@@ -23,33 +23,24 @@ const Total = ({ isInternational, subtotal }) => {
 
   return (
     <>
-      <div className="basket-total text-right">
-        <p className="basket-total-title">Total:</p>
-        <h2 className="basket-total-amount">
-          {displayMoney(subtotal + (isInternational ? 2500 : 0))}
-        </h2>
+      <div className="basket-total text-right mt-5">
+        <span className="basket-total-title fs-2 me-3" style={{ color: "#888" }}>Total:</span>
+        <span className="basket-total-amount fs-2 me-3" style={{ color: "#222" }}>$50</span>
       </div>
       <br />
       <div className="checkout-shipping-action">
-        <button
-          className="button button-muted"
+        <div
           onClick={() => onClickBack(values)}
-          type="button"
-        >
-          <ArrowLeftOutlined />
-          &nbsp;
-          Go Back
-        </button>
-        <button
-          className="button"
-          disabled={false}
+          className='d-flex gap-2 check-out-buttons-controllers align-items-center'>
+          <img src="https://img.icons8.com/metro/26/null/back.png" height={15} />
+          <span className='fs-3 fw-bold'>Go Back</span>
+        </div>
+        <div
           onClick={submitForm}
-          type="button"
-        >
-          <CheckOutlined />
-          &nbsp;
-          Confirm
-        </button>
+          className='d-flex gap-2 check-out-buttons-controllers align-items-center'>
+          <span className='fs-3 fw-bold'>Next Step</span>
+          <img src="https://img.icons8.com/metro/26/null/forward.png" height={15} />
+        </div>
       </div>
     </>
   );
