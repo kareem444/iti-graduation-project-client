@@ -14,7 +14,7 @@ const BasketItem = ({ product }) => {
 
   return (
     <div className="basket-item">
-      <BasketItemControl product={product} />
+      {/* <BasketItemControl product={product} /> */}
       <div className="basket-item-wrapper">
         <div className="basket-item-img-wrapper">
           <ImageLoader
@@ -25,27 +25,36 @@ const BasketItem = ({ product }) => {
         </div>
         <div className="basket-item-details">
           <Link to={`/product/${product.id}`} onClick={() => document.body.classList.remove('is-basket-open')}>
-            <h4 className="underline basket-item-name">
+            <h4 className=" basket-item-name">
               {product.name}
             </h4>
           </Link>
-          <div className="basket-item-specs">
+          {/* <div className="basket-item-specs">
             <div>
               <span className="spec-title">Quantity</span>
               <h5 className="my-0">{product.quantity}</h5>
             </div>
-          </div>
+          </div> */}
         </div>
-        <div className="basket-item-price">
-          <h4 className="my-0">{displayMoney(product.price * product.quantity)}</h4>
-        </div>
-        <button
-          className="basket-item-remove button button-border button-border-gray button-small"
+        <div className='quantity-control'>
+              <BasketItemControl product={product} />
+               <button
+          // className="basket-item-remove  button-border button-border-gray button-small"
+          className='basket-item-remove'
           // onClick={onRemoveFromBasket}
           type="button"
         >
-          <CloseOutlined />
+          {/* <CloseOutlined /> */}
+          <i class="bi bi-trash3"></i> 
+        <span>remove</span>  
         </button>
+</div>
+        <div className="basket-item-price">
+          {/* <h4 className="my-0">{displayMoney(product.price * product.quantity)}</h4> */}
+                    <h4 className="my-0">$ 200</h4>
+
+        </div>
+       
       </div>
     </div>
   );

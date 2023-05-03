@@ -20,8 +20,8 @@ const BasketItemControl = ({ product }) => {
   };
 
   return (
-    <div className="basket-item-control">
-      <button
+    <div className="basket-item-control ">
+      {/* <button
         className="button button-border button-border-gray button-small basket-control basket-control-add"
         disabled={product.maxQuantity === product.quantity}
         onClick={onAddQty}
@@ -36,7 +36,20 @@ const BasketItemControl = ({ product }) => {
         type="button"
       >
         <MinusOutlined style={{ fontSize: '9px' }} />
-      </button>
+      </button> */}
+      {/* <input type="number" min="1" /> */}
+      <div class="input-group"> 
+       <input type="button" defaultValue="+" class="button-min" data-field="quantity" disabled={product.quantity === 1}
+        onClick={onMinusQty}
+/>
+  <input type="number" step="1"   min="0" name="quantity" class="quantity-field" defaultValue={0}/>
+  <input type="button" defaultValue="-" class="button-plus" data-field="quantity" disabled={product.maxQuantity === product.quantity}
+
+        onClick={onAddQty}
+/>
+
+</div>
+
     </div>
   );
 };

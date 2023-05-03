@@ -1,9 +1,12 @@
 /* eslint-disable max-len */
 // import { BasketItem, BasketToggle } from 'components/basket';
 // import { Boundary, Modal } from 'components/common';
+import "../../../Styling/basket.css"
 import { calculateTotal, displayMoney } from '../../helpers/utils';
 // import { useDidMount, useModal } from 'hooks';
 import React, { useEffect } from 'react';
+import { CloseOutlined } from '@ant-design/icons';
+
 // import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useL, useLocation } from 'react-router-dom';
 import Boundary from '../common/Boundary';
@@ -102,6 +105,9 @@ const Basket = () => {
       </Modal>
       <div className="basket">
         <div className="basket-list">
+          <div className="container">
+
+          </div>
           <div className="basket-header">
             <h3 className="basket-header-title">
               My Basket &nbsp;
@@ -114,22 +120,23 @@ const Basket = () => {
             <BasketToggle>
               {({ onClickToggle }) => (
                 <span
-                  className="basket-toggle button button-border button-border-gray button-small"
+                  // className="basket-toggle button button-border  button-border-gray button-small"
+                  className="text-danger"
                   onClick={onClickToggle}
                   role="presentation"
                 >
-                  Close
+<CloseOutlined/>
                 </span>
               )}
             </BasketToggle>
-            <button
+            {/* <button
               className="basket-clear button button-border button-border-gray button-small"
               disabled={basket.length === 0}
               onClick={onClearBasket}
               type="button"
             >
               <span>Clear Basket</span>
-            </button>
+            </button> */}
           </div>
           {basket.length <= 0 && (
             <div className="basket-empty">
@@ -137,17 +144,20 @@ const Basket = () => {
             </div>
           )}
           {basket.map((product, i) => (
+            <>
+
             <BasketItem
               key={`${product.id}_${i}`}
               product={product}
-            />
+            /></>
           ))}
         </div>
         <div className="basket-checkout">
           <div className="basket-total">
-            <p className="basket-total-title">Subtotal Amout:</p>
+            <h4 className="basket-total-title">Subtotal Amout:</h4>
             <h2 className="basket-total-amount">
-              {displayMoney(calculateTotal(basket.map((product) => product.price * product.quantity)))}
+              {/* {displayMoney(calculateTotal(basket.map((product) => product.price * product.quantity)))} */}
+              $ 400
             </h2>
           </div>
           <button
