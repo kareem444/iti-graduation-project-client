@@ -12,7 +12,7 @@ const BasketItem = ({ product }) => {
   // const onRemoveFromBasket = () => dispatch(removeFromBasket(product.id));
 
   return (
-    <div className="basket-item my-4 rounded-3" >
+    <div className="d-flex align-items-center border my-4 rounded-3" >
         <div className="basket-item-img-wrapper">
           <ImageLoader
             alt={product.name}
