@@ -2,10 +2,369 @@
 @import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400&family=Playfair+Display&display=swap");
 
 .interFont {
-    font-family: var(--inter-font) !important;
-  }
-  
-  .gentiumFont {
-    font-family: var(--gentium-font) !important;
-  }
-  
+  font-family: var(--inter-font) !important;
+}
+
+.gentiumFont {
+  font-family: var(--gentium-font) !important;
+}
+
+
+.contact__bk {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.bg-img1 {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.p-lr-15-xl {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.p-r-15,
+.p-lr-15,
+.p-all-15 {
+  padding-right: 15px;
+}
+
+
+.p-l-15,
+.p-lr-15,
+.p-all-15 {
+  padding-left: 15px;
+}
+
+.p-t-92,
+.p-tb-92,
+.p-all-92 {
+  padding-top: 92px;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.ltext-105 {
+  font-family: var(--Roboto-font);
+  font-size: 50px;
+  line-height: 1.1;
+}
+
+.cl0 {
+  color: #fff;
+}
+
+.txt__mar {
+  margin-top: 180px;
+  font-size: 48pt;
+
+}
+
+.bg0 {
+  background-color: #fff;
+}
+
+.p-t-104,
+.p-tb-104,
+.p-all-104 {
+  padding-top: 104px;
+}
+
+.p-b-116,
+.p-tb-116,
+.p-all-116 {
+  padding-bottom: 116px;
+}
+
+.flex-w {
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.flex-w,
+.flex-l,
+.flex-r,
+.flex-c,
+.flex-sa,
+.flex-sb,
+.flex-t,
+.flex-b,
+.flex-m,
+.flex-str,
+.flex-c-m,
+.flex-c-t,
+.flex-c-b,
+.flex-c-str,
+.flex-l-m,
+.flex-r-m,
+.flex-sa-m,
+.flex-sb-m,
+.flex-col-l,
+.flex-col-r,
+.flex-col-c,
+.flex-col-str,
+.flex-col-t,
+.flex-col-b,
+.flex-col-m,
+.flex-col-sb,
+.flex-col-sa,
+.flex-col-c-m,
+.flex-col-l-m,
+.flex-col-r-m,
+.flex-col-str-m,
+.flex-col-c-t,
+.flex-col-c-b,
+.flex-col-c-sb,
+.flex-col-c-sa,
+.flex-col-l-sb,
+.flex-col-r-sb,
+.flex-row,
+.flex-row-rev,
+.flex-col,
+.flex-col-rev,
+.dis-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex-t {
+  -ms-align-items: flex-start;
+  align-items: flex-start;
+}
+
+.size-210 {
+  width: 50%;
+}
+
+.bor10 {
+  border: 1px solid #e6e6e6;
+}
+
+.bor1 {
+  border-radius: 23px;
+}
+
+.p-r-70,
+.p-lr-70,
+.p-all-70 {
+  padding-right: 70px;
+}
+
+.p-l-70,
+.p-lr-70,
+.p-all-70 {
+  padding-left: 70px;
+}
+
+.p-t-55,
+.p-tb-55,
+.p-all-55 {
+  padding-top: 55px;
+}
+
+.p-b-55,
+.p-tb-55,
+.p-all-55 {
+  padding-bottom: 55px;
+}
+
+.p-lr-15-lg {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.w-full-md {
+  width: 100%;
+}
+
+.mtext-105 {
+  font-family: var(--Roboto-font);
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+.cl2 {
+  color: #333;
+}
+
+.p-b-30,
+.p-tb-30,
+.p-all-30 {
+  padding-bottom: 30px;
+}
+
+.bor8 {
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+}
+
+.m-b-20,
+.m-tb-20,
+.m-all-20 {
+  margin-bottom: 20px;
+}
+
+.how-pos4-parent {
+  position: relative;
+}
+
+.stext-111 {
+  font-family: Poppins-Regular;
+  font-size: 13px;
+  line-height: 1.6923;
+}
+
+.plh3::-webkit-input-placeholder {
+  color: #555;
+}
+
+.plh3:-moz-placeholder {
+  color: #555;
+}
+
+.plh3::-moz-placeholder {
+  color: #555;
+}
+
+.plh3:-ms-input-placeholder {
+  color: #555;
+}
+
+.size-116 {
+  width: 100%;
+  height: 50px;
+}
+
+.p-l-62,
+.p-lr-62,
+.p-all-62 {
+  padding-left: 62px;
+}
+
+.p-r-30,
+.p-lr-30,
+.p-all-30 {
+  padding-right: 30px;
+}
+
+.how-pos4 {
+  position: absolute;
+  top: calc(50% - 9px);
+  left: 28px;
+}
+
+.pointer-none {
+  pointer-events: none;
+}
+
+.size-120 {
+  width: 100%;
+  min-height: 199px;
+}
+
+.p-r-28,
+.p-lr-28,
+.p-all-28 {
+  padding-right: 28px;
+}
+
+.p-l-28,
+.p-lr-28,
+.p-all-28 {
+  padding-left: 28px;
+}
+
+.p-t-25,
+.p-tb-25,
+.p-all-25 {
+  padding-top: 25px;
+}
+
+.p-b-25,
+.p-tb-25,
+.p-all-25 {
+  padding-bottom: 25px;
+}
+
+.stext-101 {
+  font-family: Poppins-Medium;
+  font-size: 15px;
+  line-height: 1.466667;
+  text-transform: uppercase;
+}
+
+.size-121 {
+  width: 100%;
+  height: 46px;
+}
+
+.bg3 {
+  background-color: #222;
+}
+
+.hov-btn3:hover {
+  border-color: #717fe0;
+  background-color: #717fe0;
+  color: #fff;
+}
+
+.hov-btn3:hover i {
+  color: #fff;
+}
+
+.trans-04 {
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.p-l-93,
+.p-lr-93,
+.p-all-93 {
+  padding-left: 93px;
+}
+
+.p-r-93,
+.p-lr-93,
+.p-all-93 {
+  padding-right: 93px;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.p-b-42,
+.p-tb-42,
+.p-all-42 {
+  padding-bottom: 42px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.cl5 {
+  color: #222;
+}
+
+.size-211 {
+  width: 60px;
+}
