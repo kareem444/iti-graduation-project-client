@@ -129,14 +129,14 @@ background-color: #555;
   right: -21px;
 }
   /*---------------------------------------------*/
-  @media (max-width: 1600px) {
+  /* @media (max-width: 1600px) {
     .container {max-width: 1200px;}
-}
-.container {max-width: 1380px;}
+} */
+/* .container {max-width: 1380px;} */
 
-@media (max-width: 1600px) {
+/* @media (max-width: 1600px) {
   .container {max-width: 1200px;}
-}
+} */
 
 
 

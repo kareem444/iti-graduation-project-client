@@ -9,14 +9,14 @@ html {
   font-size: 62.5%;
 }
 
-body {
-  min-height: 100vh;
-  font-family: 'Tajawal', Helvetica, Arial, sans-serif;
-  font-size: $baseFontSize;
-  background: $background-color;
-  font-weight: bold;
-  overflow-x: hidden;
-}
+// body {
+//   min-height: 100vh;
+//   font-family: 'Tajawal', Helvetica, Arial, sans-serif;
+//   font-size: $baseFontSize;
+//   background: $background-color;
+//   font-weight: bold;
+//   overflow-x: hidden;
+// }
 
 button:hover {
   cursor: pointer;

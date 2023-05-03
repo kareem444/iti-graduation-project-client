@@ -40,7 +40,7 @@ const NavBarComponent = () => {
       className='navigation navbar navbar-expand-lg navbar-light bg-light'
       ref={navbar}
     >
-      <div className='container navigation-menu-main'>
+      <div className='container navigation-menu-main' style={{ maxWidth: "100%" }}>
         <a className='navbar-brand' href='#'>
           <Link to='/'>
             <img
@@ -143,7 +143,7 @@ const NavBarComponent = () => {
                     type='button'
                   >
                     <BadgeComponent count={2}>
-                      <img src={cartIcon} height={20}/>
+                      <img src={cartIcon} height={20} />
                     </BadgeComponent>
                   </button>
                 )}

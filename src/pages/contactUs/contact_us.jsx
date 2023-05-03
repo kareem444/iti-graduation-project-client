@@ -64,9 +64,9 @@ const Contact_us = () => {
 	};
 	return (
 		<>
-			<section className="bg-img1 txt-center p-lr-15 p-tb-92 contact__bk"
-				style={{ backgroundImage: 'url(' + background + ')', height: "45vh" }}>
-				<h2 className="ltext-105 cl0 txt-center txt__mar">
+			<section className="bg-img1 txt-center p-lr-15 p-tb-92 contact__bk d-flex justify-content-center align-items-center"
+				style={{ backgroundImage: 'url(' + background + ')', height: "40vh" }}>
+				<h2 className="ltext-105 cl0 txt-center mt-lg-5">
 					Contact
 				</h2>
 			</section>
