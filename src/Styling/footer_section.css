@@ -10,15 +10,55 @@ footer .text-muted {
   color: white !important;
 }
 
-NavLink{
-font-weight:    lighter !important;
-color: #CED4DA !important
+NavLink {
+  font-weight: lighter !important;
+  color: #CED4DA !important
 }
+
 button {
   background-color: #6570C9;
 }
 
-button:hover{
+button:hover {
   background: #F75781 !important;
-  color:white !important
+  color: white !important
+}
+
+.ft__headSize {
+  font-family: var(--Roboto-font);
+  font-size: 12pt;
+}
+
+.ft__titleSize {
+  font-family: var(--Roboto-font);
+  font-size: 16pt;
+}
+
+.hd__get{
+  font-family: var(--Roboto-font);
+  font-size: 18pt;
+  color: white !important;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+.bd__get{
+  font-family: var(--Roboto-font);
+  font-size: 12pt;
+  color: rgb(164, 164, 164) !important;
+  margin-bottom: 1.5rem;
+}
+
+.bd__get__btn{
+  font-family: var(--Roboto-font);
+  font-size: 12pt;
+  color: rgb(255, 255, 255) !important;
+  margin-bottom: 1.5rem;
+}
+.btn__OwnColor{
+  background-color: #6570C9;
+}
+
+.btn__OwnColor:hover{
+  background-color: #6571c9c3;
 }

@@ -30,9 +30,9 @@ const Footersection = () => {
             <p>
               <NavLink
                 to={"/products"}
-                className=" text-decoration-none text-muted"
+                className=" text-decoration-none text-muted "
               >
-                Products
+                <p className="ft__headSize">Products</p>
               </NavLink>
             </p>
             <p>
