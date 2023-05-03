@@ -152,7 +152,7 @@ const NavBarComponent = () => {
             <li className='d-none d-lg-block pt-3'>
               <UserAvatarComponent />
             </li>
-            <li className=' m-1 nav-item d-sm-none d-none d-lg-block'>
+            <li className=' mt-2 nav-item d-sm-none d-none d-lg-block'>
               <Link
                 className='d-none d-lg-block'
                 onClick={onClickLink}
@@ -161,7 +161,7 @@ const NavBarComponent = () => {
                 Sign Up
               </Link>
             </li>
-            <li className=' m-1 nav-item d-sm-none d-none d-lg-block'>
+            <li className=' mt-2 nav-item d-sm-none d-none d-lg-block'>
               <Link
                 className='nav-item margin-left-s d-none d-lg-block'
                 onClick={onClickLink}
