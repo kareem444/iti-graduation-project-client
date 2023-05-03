@@ -15,3 +15,7 @@
     background-size: 100% 100%;
   }
   
+  .bk__img__SingIn {
+    background-image: url('./../imported/images/bk__SingIn.jpg');
+    background-size: cover;
+}

@@ -49,7 +49,7 @@ const Sign_in = () => {
     return (
         <>
 
-            <div className="login-page bg-light">
+            {/* <div className="login-page bg-light">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-10 offset-lg-1 mt-4">
@@ -82,16 +82,9 @@ const Sign_in = () => {
                                                     </small>
                                                 </div>
 
-                                                <div className="col-sm-6">
-                                                    {/* <div className="form-check">
-                                                        <input className="form-check-input" type="checkbox" id="inlineFormCheck"></input>
-                                                        <label className="form-check-label" htmlFor="inlineFormCheck">Remember me</label>
-                                                    </div> */}
-                                                </div>
+                                               
 
-                                                {/* <div className="col-sm-6">
-                                                    <a href="#" className="float-end text-primary">Forgot Password?</a>
-                                                </div> */}
+                                                
 
                                                 <div className="col-12">
                                                     <LoadingButton
@@ -115,7 +108,57 @@ const Sign_in = () => {
                         </div>
                     </div>
                 </div>
+            </div> */}
+
+            {/* mahmoud page */}
+
+            <section class="vh-100 bg-image bk__img__SingIn">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card card__style">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+              <form>
+
+                
+
+                <div class="form-outline mb-4">
+                  <input type="email" id="form3Example3cg" class="form-control form-control-lg cus__Input" placeholder="Your Email" name="email"/>
+                  
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4cg" class="form-control form-control-lg cus__Input" placeholder="Your Password" name="password"/>
+                  
+                </div>
+
+                
+
+                 
+               
+
+                
+
+                <div class="d-flex justify-content-center">
+                  <button type="button"
+                    class="btn btn__OwnHouver btn-block btn-lg gradient-custom-4 text-white">Sing in</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0 robotoFont__Body">Don't Have a account? <a href="#!"
+                    class="fw-bold text-body"><u>Sing Up Here</u></a></p>
+
+              </form>
+
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
         </>
     )

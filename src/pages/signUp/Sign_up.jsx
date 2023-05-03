@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import PageRoutes from "../../router/page_routes";
 import useAuth from "../../custom_hooks/use_auth";
 
+
 const Signup = () => {
   const { mutate, isLoading } = RepoAuthRegister();
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ const Signup = () => {
   };
   return (
     <>
-      <div className="register-page bg-light">
+      {/* <div className="register-page bg-light">
         <div className="container">
           <div className="row">
             <div className="col-lg-10 offset-lg-1 mt-3">
@@ -181,12 +182,7 @@ const Signup = () => {
                                                     </div>
                                                 </div>
 
-                        <div className="col-sm-6 mt-4">
-                          {/* <div className="form-check">
-                                                        <input className="form-check-input" type="checkbox" id="inlineFormCheck"></input>
-                                                        <label className="form-check-label" htmlFor="inlineFormCheck">Remember me</label>
-                                                    </div> */}
-                        </div>
+                        
 
                         <div className="col-12 mt-0 text-center">
                           <LoadingButton
@@ -212,7 +208,78 @@ const Signup = () => {
             </div>
           </div>
         </div>
+      </div> */}
+      {/* al sing up al gadeda */}
+
+      <section class="vh-100 bg-image bk__img">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card card__style">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center robotoFont mb-5">Create an account</h2>
+
+              <form>
+
+                <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg cus__Input" placeholder="Your Name" name="userName"/>
+                  
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="email" id="form3Example3cg" class="form-control form-control-lg cus__Input" placeholder="Your Email" name="email"/>
+                  
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4cg" class="form-control form-control-lg cus__Input" placeholder="Your Password" name="password"/>
+                  
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg cus__Input" placeholder="Repeat Your Password" name="rePassword"/>
+                  
+                </div>
+
+                  <h3 className="mt-4 robotoFont__Body">User Type:</h3>
+                <div class="d-flex justify-content-between mt-4 mb-4">
+                  
+                    <div className="sign-up-user-type-btn">
+                      <input type="radio" id="saller" value="saller" name="accType"/>
+                      <label htmlFor="saller">
+                      <span>SELLER</span>
+                      </label>
+                      
+                    </div>
+                    <div className="sign-up-user-type-btn">
+                    <input type="radio" id="client" value="cleint" name="accType" />
+                      <label htmlFor="client">
+                      <span>Cleint</span>
+                      </label>
+                    </div>
+                   
+                </div>
+
+                
+
+                <div class="d-flex justify-content-center">
+                  <button type="button"
+                    class="btn btn__OwnHouver btn-block btn-lg gradient-custom-4 text-white">Register</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0 robotoFont__Body">Have already an account? <a href="#!"
+                    class="fw-bold text-body"><u>Login here</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
     </>
   );
 };

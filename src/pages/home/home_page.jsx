@@ -42,7 +42,7 @@ const HomePage = () => {
             </div>
             <div className='carousel-inner'>
               <div className='carousel-item active h-100'>
-                <img src={image1} className='d-block w-100 h-100' alt='...' />
+                <img src={image2} className='d-block w-100 h-100' alt='...' />
                 <div className='carousel-caption d-none d-md-block'>
                   <h5 className='fs-1'>First slide label</h5>
                   <p className='fs-2'>
@@ -58,7 +58,7 @@ const HomePage = () => {
                 </div>
               </div>
               <div className='carousel-item h-100'>
-                <img src={image2} className='d-block w-100 h-100' alt='...' />
+                <img src={image1} className='d-block w-100 h-100' alt='...' />
                 <div className='carousel-caption d-none d-md-block'>
                   <h5 className='fs-1'>Second slide label</h5>
                   <p className='fs-2'>

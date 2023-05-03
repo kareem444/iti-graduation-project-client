@@ -1,13 +1,51 @@
 @import url("./all.css");
 
-.form-check-input:checked{
+.form-check-input:checked {
     cursor: pointer !important;
     background-color: var(--primaryColor) !important;
     border-color: var(--primaryColor) !important;
     outline-color: var(--primaryColor) !important;
 }
 
-.form-check-input{
+.robotoFont{
+    font-family: var(--Roboto-font);
+    font-weight: 500;
+    font-size: 24pt;
+}
+
+.robotoFont__Body{
+    font-family: var(--Roboto-font);
+    font-size: 14pt;
+}
+
+
+.cus__Input{
+    display: block;
+    width: 400px;
+    padding: 0 20px;
+}
+
+.cus__Input::placeholder{
+   font-size: 12pt;
+   padding: 20px 0px;
+}
+
+.cus__Input[type='text']{
+    font-size: 12pt;
+    padding: 5px 10px;
+ }
+
+ .cus__Input[type='email']{
+    font-size: 12pt;
+    padding: 5px 10px;
+ }
+
+ input[type='text']:focus,input[type='email']:focus,input[type='password']:focus {
+    border: 3px solid #6c7ae0;
+  }
+  
+
+.form-check-input {
     cursor: pointer !important;
 }
 
@@ -15,4 +53,111 @@
     background-image: url("../../public/assets/wedimg-1.jpeg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-  }
+}
+
+.bk__img {
+    background-image: url('./../imported/images/bk__SingUp.jpg');
+    background-size: cover;
+}
+
+.card__style {
+    border-radius: 15px !important;
+}
+
+.gradient-custom-3 {
+    /* fallback for old browsers */
+    background: #f7487738;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #f7487758, #6c79e074);
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #f7487777, #6c79e074);
+}
+
+.sign-up-user-type-btn {
+    width: 20%;
+    padding: 5px 5px;
+    border: 1px solid #222;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.sign-up-user-type-btn span {
+    font-size: 1.8rem;
+}
+
+.sign-up-user-type-btn input{
+    margin-right: 15px !important;
+   
+}
+
+.sign-up-user-type-btn input[type="radio"]:after{
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: 7px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+
+.sign-up-user-type-btn input[type="radio"]:checked:after {
+    width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: 7px;
+        left: -1px;
+        position: relative;
+        background-color: var(--ownBlue);
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+   
+}
+
+.gradient-custom-4 {
+    /* fallback for old browsers */
+    background: #6c7ae0;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    /* background: -webkit-linear-gradient(to right, #f7487777, #6c79e074); */
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* background: linear-gradient(to right, #f7487777, #6c79e074); */
+}
+
+.btn__click {
+    background: #f74876;
+    background-image: -webkit-linear-gradient(top, #f74876, #6c7ae0);
+    background-image: -moz-linear-gradient(top, #f74876, #6c7ae0);
+    background-image: -ms-linear-gradient(top, #f74876, #6c7ae0);
+    background-image: -o-linear-gradient(top, #f74876, #6c7ae0);
+    background-image: linear-gradient(to bottom, #f74876, #6c7ae0);
+    -webkit-border-radius: 30;
+    -moz-border-radius: 30;
+    border-radius: 30px;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
+    font-family: var(--Roboto-font);
+    color: #ffffff;
+    font-size: 18pt;
+    padding: 5px 50px;
+    text-decoration: none;
+}
+
+.btn__click:hover {
+    background: #42b7ff;
+    text-decoration: none;
+}
+
+.btn__OwnHouver:hover{
+    background-color: #6c79e0c9;
+}
