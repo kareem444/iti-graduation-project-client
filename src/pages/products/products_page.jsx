@@ -29,7 +29,7 @@ const Products = () => {
         </button>
       </div>
       <div className=" m-tb-10 d-flex col-12 col-md-4 ">
-        <input type="text" className='border w-100' placeholder='Search'/>
+        <input type="text" className='border w-100 product_page_input_search' placeholder='Search'/>
       <button type="button" class="btn btn-primary py-2 product_page_button_search px-4 ">
       <i class="bi bi-search"></i>
             </button>
