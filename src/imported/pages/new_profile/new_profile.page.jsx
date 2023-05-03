@@ -27,7 +27,7 @@ const NewProfilePage = () => {
             }}
         >
             <div class="row justify-content-around">
-                <div className="col-md-12 pt-5">
+                <div className="col-md-12 pt-3">
                     <div className="d-flex flex-column justify-content-center mb-5">
                         <AvatarComponent />
                         <h3 className="my-4" style={{ color: "#222" }}>Kareem Ayman</h3>
