@@ -1,0 +1,122 @@
+.basket-header {
+padding: 2px 1rem;
+}
+
+svg {
+    color: #c199a6  !important;
+     /* background:   !important; */
+
+}
+
+/* svg:hover {
+} */
+
+/* closeOutlined {
+  background: #455A64 !important;
+      box-shadow: 0 0 20px -5px rgba(white,.5) !important;
+} */
+
+.anticon-close{
+    padding: 10px;
+    border-radius: 50%;
+
+}
+
+.anticon-close:hover{
+    padding: 10px;
+    border-radius: 50%;
+     /* background: #e2bcc8  !important; */
+     background: rgb(186, 143, 157) !important;
+color:white;
+      box-shadow: 0 0 5px 2px #222 !important;
+          transition:  all 200ms;
+
+}
+
+.anticon-close:hover svg {
+    color: aliceblue !important;
+}
+
+
+.anticon-plus svg, .anticon-minus svg{
+    color: black !important;
+}
+
+.basket-item-control {
+
+height: auto !important;
+    width: auto  !important;
+}
+
+.basket-item-control input[type=number] {
+    width: 50px  !important;
+    padding: 0!important;
+    text-align: center;
+
+}
+
+.basket-item-control .input-group{
+flex-direction: row !important;
+justify-content: center;
+align-items: center;
+margin: 0 !important;}
+
+.basket-item-wrapper {
+    display: flex!important;
+    justify-content: space-between !important;
+}
+
+
+.basket-item-img-wrapper {margin: 0!important;}
+.basket-item-details{
+    flex-grow: inherit;
+    text-align: center;
+}
+
+
+.basket-item-remove {
+    border: none !important;
+    color:#222;
+    background: transparent !important;
+}
+.basket-item-remove:hover {background-color: transparent !important;}
+
+
+.quantity-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bi-trash3::before {
+    font-size: 15px;
+    margin-right: 5px;
+    color: #c199a6;
+}
+
+.basket-item {
+    border: none !important;
+    margin: 20px 0 !important;
+}
+
+.basket-checkout-button{
+    color: white;
+    background-color: #c199a6 !important;
+    border: none;
+}
+.basket-checkout-button:hover{color: white;
+background-color: #c199a6 !important;
+      box-shadow: 0 0 5px 2px #22222252 !important
+; }
+
+
+.basket-total-title {
+    font-weight: bold !important;
+    font-size: 1.5rem;
+}
+
+
+.basket-total-amount{
+    font-size: 1.5rem;
+}

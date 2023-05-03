@@ -7,7 +7,6 @@ import React, { useEffect, useRef } from 'react';
 const CreditPayment = () => {
   const { values, setValues } = useFormikContext();
   const collapseContainerRef = useRef(null);
-  const cardInputRef = useRef(null);
   const containerRef = useRef(null);
   const checkboxContainerRef = useRef(null);
 
@@ -18,10 +17,8 @@ const CreditPayment = () => {
 
     if (cb && cn && cl) {
       if (values.type === 'credit') {
-        cardInputRef.current.focus();
         cn.style.height = `${cb.offsetHeight + cl.offsetHeight}px`;
       } else {
-        cardInputRef.current.blur();
         cn.style.height = `${cb.offsetHeight}px`;
       }
     }
@@ -47,9 +44,9 @@ const CreditPayment = () => {
 
   return (
     <>
-      <h3 className="text-center">Payment</h3>
+      <h3 className="text-center my-3 mt-5 fs-1" style={{ color: "#222" }}>Payment</h3>
       <br />
-      <span className="d-block padding-s">Payment Option</span>
+      <span className="d-block padding-s fs-5" style={{ color: "#888" }}>Payment Option</span>
       <div
         ref={containerRef}
         className={`checkout-fieldset-collapse ${values.type === 'credit' ? 'is-selected-payment' : ''}`}
@@ -98,11 +95,9 @@ const CreditPayment = () => {
                 <Field
                   name="name"
                   type="text"
-                  label="* Name on Card"
-                  placeholder="Jane Doe"
+                  label="Name on Card"
+                  placeholder="Enter your card name"
                   component={CustomInput}
-                  style={{ textTransform: 'capitalize' }}
-                  inputRef={cardInputRef}
                 />
               </div>
               <div className="checkout-field">
@@ -111,7 +106,7 @@ const CreditPayment = () => {
                   type="text"
                   maxLength={19}
                   onKeyDown={handleOnlyNumberInput}
-                  label="* Card Number"
+                  label="Card Number"
                   placeholder="Enter your card number"
                   component={CustomInput}
                 />
@@ -122,7 +117,7 @@ const CreditPayment = () => {
                 <Field
                   name="expiry"
                   type="date"
-                  label="* Expiry Date"
+                  label="Expiry Date"
                   placeholder="Enter your expiry date"
                   component={CustomInput}
                 />
@@ -133,7 +128,7 @@ const CreditPayment = () => {
                   type="text"
                   maxLength={4}
                   onKeyDown={handleOnlyNumberInput}
-                  label="* CCV"
+                  label="CCV"
                   placeholder="****"
                   component={CustomInput}
                 />

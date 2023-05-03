@@ -6,16 +6,17 @@ import React from 'react';
 const CustomInput = ({
   field, form: { touched, errors }, label, inputRef, ...props
 }) => (
-  <div className="input-group">
+  <div className="form-group">
     {touched[field.name] && errors[field.name] ? (
-      <span className="label-input label-error">{errors[field.name]}</span>
+      <span className="form-label fs-3 invalid-feedback">{errors[field.name]}</span>
     ) : (
-      <label className="label-input" htmlFor={field.name}>{label}</label>
+      <label className="form-label fs-3 p-0 mb-2" htmlFor={field.name}>{label}</label>
     )}
     <input
       type="text"
       id={field.name}
-      className={`input-form ${touched[field.name] && errors[field.name] && 'input-error'}`}
+      className={`form-control ${touched[field.name] && errors[field.name] && 'is-invalid'}`}
+      style={{ borderRadius: "8px", textTransform: 'capitalize', height: "42px", fontSize: "16px" }}
       ref={inputRef}
       {...field}
       {...props}
@@ -25,16 +26,6 @@ const CustomInput = ({
 
 CustomInput.defaultProps = {
   inputRef: undefined
-};
-
-CustomInput.propTypes = {
-  label: PropType.string.isRequired,
-  field: PropType.object.isRequired,
-  form: PropType.object.isRequired,
-  inputRef: PropType.oneOfType([
-    PropType.func,
-    PropType.shape({ current: PropType.instanceOf(Element) })
-  ])
 };
 
 export default CustomInput;

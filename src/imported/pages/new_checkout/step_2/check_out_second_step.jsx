@@ -86,39 +86,34 @@ const ShippingDetails = () => {
         <div className="checkout">
           <StepTracker current={2} />
           <div className="checkout-step-2">
-            <h3 className="text-center">Delivery Details</h3>
+            <h3 className="text-center mt-5 my-3 fs-1" style={{ color: "#222" }}>Delivery Details</h3>
             <Formik
               initialValues={initFormikValues}
               validateOnChange
               validationSchema={FormSchema}
-              onSubmit={onSubmitForm}
             >
               {() => (
                 <Form>
                   <ShippingForm />
                   <br />
-                  {/*  ---- TOTAL --------- */}
-                  <ShippingTotal subtotal={subtotal} />
+                  <div className="basket-total text-right">
+                    <span className="basket-total-title fs-2 me-3" style={{ color: "#888" }}>Total:</span>
+                    <span className="basket-total-amount fs-2 me-3" style={{ color: "#222" }}>$50</span>
+                  </div>
                   <br />
-                  {/*  ----- NEXT/PREV BUTTONS --------- */}
                   <div className="checkout-shipping-action">
-                    <button
-                      className="button button-muted"
+                    <div
                       onClick={() => navigate(PageRoutes.checkOutFirstStep.path)}
-                      type="button"
-                    >
-                      <ArrowLeftOutlined />
-                      &nbsp;
-                      Go Back
-                    </button>
-                    <button
-                      className="button button-icon"
-                      type="submit"
-                    >
-                      Next Step
-                      &nbsp;
-                      <ArrowRightOutlined />
-                    </button>
+                      className='d-flex gap-2 check-out-buttons-controllers align-items-center'>
+                      <img src="https://img.icons8.com/metro/26/null/back.png" height={15} />
+                      <span className='fs-3 fw-bold'>Go Back</span>
+                    </div>
+                    <div
+                      onClick={onSubmitForm}
+                      className='d-flex gap-2 check-out-buttons-controllers align-items-center'>
+                      <span className='fs-3 fw-bold'>Next Step</span>
+                      <img src="https://img.icons8.com/metro/26/null/forward.png" height={15} />
+                    </div>
                   </div>
                 </Form>
               )}
@@ -128,24 +123,6 @@ const ShippingDetails = () => {
       </Boundary>
     </div>
   );
-};
-
-ShippingDetails.propTypes = {
-  subtotal: PropType.number.isRequired,
-  profile: PropType.shape({
-    fullname: PropType.string,
-    email: PropType.string,
-    address: PropType.string,
-    mobile: PropType.object
-  }).isRequired,
-  shipping: PropType.shape({
-    fullname: PropType.string,
-    email: PropType.string,
-    address: PropType.string,
-    mobile: PropType.object,
-    isInternational: PropType.bool,
-    isDone: PropType.bool
-  }).isRequired
 };
 
 export default ShippingDetails;

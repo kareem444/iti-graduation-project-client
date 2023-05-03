@@ -9,3 +9,16 @@ footer {
 footer .text-muted {
   color: white !important;
 }
+
+NavLink{
+font-weight:    lighter !important;
+color: #CED4DA !important
+}
+button {
+  background-color: #6570C9;
+}
+
+button:hover{
+  background: #F75781 !important;
+  color:white !important
+}

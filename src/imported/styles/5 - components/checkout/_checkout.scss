@@ -12,7 +12,6 @@
   justify-content: center;
   position: sticky;
   top: $nav-height;
-  background: $background-color;
   padding: 1rem 0;
   margin-bottom: 3rem;
   z-index: 1;
@@ -97,8 +96,8 @@
 }
 
 .is-active-step .checkout-header-step {
-  background: $black;
   color: $white;
+  background-color: #6c7ae0;
 }
 
 .is-done-step .checkout-header-step {
@@ -107,7 +106,7 @@
 }
 
 .is-active-step .checkout-header-subtitle {
-  color: $black;
+  color: #6c7ae0;
 }
 
 .checkout-action {
@@ -269,4 +268,22 @@
 
 .payment-img-discover {
   background-position: 175px 115px;
+}
+
+.check-out-buttons-controllers{
+  padding: 10px;
+}
+
+.check-out-buttons-controllers:hover {
+  cursor: pointer;
+  background-color: #6c7ae0;
+  color: white;
+}
+
+.check-out-buttons-controllers span{
+  color: #222;
+}
+
+.check-out-buttons-controllers span:hover{
+  color: white;
 }
