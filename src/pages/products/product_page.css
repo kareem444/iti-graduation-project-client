@@ -1,6 +1,7 @@
-.bi-star-fill{
+.star-fill{
   color: yellow !important;
 }
+
 .product_page_button_search{
     font-family: var(--Roboto-font);
     font-size: 2rem;
