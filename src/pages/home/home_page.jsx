@@ -120,7 +120,7 @@ const HomePage = () => {
             </h2>
 
             <div className='col-md-4 px-5 my-5 text-center '>
-              <i className='bi bi-geo-alt-fill'></i>
+              <i className='bi bi-geo-alt-fill' ></i>
               <h2 className='RobotoFont px-4  mt-3 fs-1'>Location</h2>
               <p className='RobotoFont px-4  p__Color fs-4'>
                 This is a short description elaborating the service you have
@@ -129,7 +129,7 @@ const HomePage = () => {
             </div>
 
             <div className='col-md-4 px-5 my-5 text-center'>
-              <FontAwesomeIcon icon={faCamera} />
+              <FontAwesomeIcon icon={faCamera}/>
               <h2 className='RobotoFont px-4  mt-3 fs-1'>Photographer</h2>
               <p className='RobotoFont px-4  p__Color fs-4'>
                 This is a short description elaborating the service you have
@@ -173,7 +173,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      {/* <Footersection></Footersection> */}
     </>
   )
 }

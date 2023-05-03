@@ -72,11 +72,7 @@
   &:first-child {
     border-bottom: .5px solid $background-color;
   }
-}
-
-.user-sub-open {
-  border-bottom: 2px solid $black;
-}
+} 
 
 .user-sub-open .user-caret {
   transform: rotate(180deg);

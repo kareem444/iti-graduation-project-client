@@ -11,9 +11,9 @@ const AboutPage = () => {
                     className="bg-img1 text-center align-middle p-lr-15 p-tb-92 mt-5 "
                     style={{ backgroundImage: 'url(' + background + ')',height:"40vh" }}
                 >
-                    <h2 className="ltext-105 cl0 text-center mt-5 pt-5">About</h2>
+                    <h2 className="ltext-105 cl0 txt-center txt__mar">About</h2>
                 </section>
-                <section className="bg0 p-t-75 p-b-120">
+                <section className="bg0 p-t-75 p-b-120 px-5">
                     <div className="container">
                         <div className="row p-b-148">
                             <div className="col-md-6 col-lg-7 ">

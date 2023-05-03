@@ -9,7 +9,7 @@ const NavBarComponent = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg secondbg navbar-light  bg-body-tertiary">
+      <nav className=" navbar navbar-expand-lg secondbg navbar-light  bg-body-tertiary">
         <div className="container-fluid">
           <NavLink to={"/"} className="navbar-brand">
             Dreamy Weddings
