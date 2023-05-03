@@ -212,74 +212,74 @@ const Signup = () => {
       {/* al sing up al gadeda */}
 
       <section class="vh-100 bg-image bk__img">
-  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-          <div class="card card__style">
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center robotoFont mb-5">Create an account</h2>
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+          <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <div class="card card__style">
+                  <div class="card-body p-5">
+                    <h2 class="text-uppercase text-center robotoFont mb-5">Create an account</h2>
 
-              <form>
+                    <form>
 
-                <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg cus__Input" placeholder="Your Name" name="userName"/>
-                  
+                      <div class="form-outline mb-4">
+                        <input type="text" id="form3Example1cg" class="form-control form-control-lg cus__Input" placeholder="Your Name" name="userName" />
+
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <input type="email" id="form3Example3cg" class="form-control form-control-lg cus__Input" placeholder="Your Email" name="email" />
+
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <input type="password" id="form3Example4cg" class="form-control form-control-lg cus__Input" placeholder="Your Password" name="password" />
+
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <input type="password" id="form3Example4cdg" class="form-control form-control-lg cus__Input" placeholder="Repeat Your Password" name="rePassword" />
+
+                      </div>
+
+                      <h3 className="mt-4 robotoFont__Body">User Type:</h3>
+                      <div class="d-flex row justify-content-between mt-4 mb-4 w-100 ms-1">
+
+                        <div className="sign-up-user-type-btn col-5 col-md-4 justify-content-start ">
+                          <input type="radio" id="saller" value="saller" className="ms-2" name="accType" />
+                          <label htmlFor="saller">
+                            <span>SELLER</span>
+                          </label>
+
+                        </div>
+                        <div className="sign-up-user-type-btn col-5 col-md-4 justify-content-start">
+                          <input type="radio" id="client" value="cleint" className="ms-2" name="accType" />
+                          <label htmlFor="client">
+                            <span>Cleint</span>
+                          </label>
+                        </div>
+
+                      </div>
+
+
+
+                      <div class="d-flex justify-content-center">
+                        <button type="button"
+                          class="btn btn__OwnHouver btn-block btn-lg gradient-custom-4 text-white">Register</button>
+                      </div>
+
+                      <p class="text-center text-muted mt-5 mb-0 robotoFont__Body">Have already an account? <a href="#!"
+                        class="fw-bold text-body"><u>Login here</u></a></p>
+
+                    </form>
+
+                  </div>
                 </div>
-
-                <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg cus__Input" placeholder="Your Email" name="email"/>
-                  
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg cus__Input" placeholder="Your Password" name="password"/>
-                  
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg cus__Input" placeholder="Repeat Your Password" name="rePassword"/>
-                  
-                </div>
-
-                  <h3 className="mt-4 robotoFont__Body">User Type:</h3>
-                <div class="d-flex justify-content-between mt-4 mb-4">
-                  
-                    <div className="sign-up-user-type-btn">
-                      <input type="radio" id="saller" value="saller" name="accType"/>
-                      <label htmlFor="saller">
-                      <span>SELLER</span>
-                      </label>
-                      
-                    </div>
-                    <div className="sign-up-user-type-btn">
-                    <input type="radio" id="client" value="cleint" name="accType" />
-                      <label htmlFor="client">
-                      <span>Cleint</span>
-                      </label>
-                    </div>
-                   
-                </div>
-
-                
-
-                <div class="d-flex justify-content-center">
-                  <button type="button"
-                    class="btn btn__OwnHouver btn-block btn-lg gradient-custom-4 text-white">Register</button>
-                </div>
-
-                <p class="text-center text-muted mt-5 mb-0 robotoFont__Body">Have already an account? <a href="#!"
-                    class="fw-bold text-body"><u>Login here</u></a></p>
-
-              </form>
-
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
     </>
   );
 };
