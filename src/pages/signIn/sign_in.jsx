@@ -1,54 +1,60 @@
-import React from 'react'
+import React from "react";
 import { useForm } from "react-hook-form";
-import '../../Styling/signin.css'
-import LoadingButton from '@mui/lab/LoadingButton';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { RepoAuthLogin } from '../../repositories/auth.repo';
-import PageRoutes from '../../router/page_routes';
-import useAuth from '../../custom_hooks/use_auth';
+import "../../Styling/signin.css";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { RepoAuthLogin } from "../../repositories/auth.repo";
+import PageRoutes from "../../router/page_routes";
+import useAuth from "../../custom_hooks/use_auth";
 
 const Sign_in = () => {
-    const { mutate, isLoading } = RepoAuthLogin()
-    const navigate = useNavigate()
+    const { mutate, isLoading } = RepoAuthLogin();
+    const navigate = useNavigate();
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
     const handleRegistration = async (data) => {
-        mutate(data)
+        mutate(data);
     };
-    const handleError = (errors) => { console.log(`errors`, errors); };
+    const handleError = (errors) => {
+        console.log(`errors`, errors);
+    };
 
     const { isAuth } = useAuth();
 
     useEffect(() => {
         if (isAuth) {
-            navigate(PageRoutes.homeRoute.path)
+            navigate(PageRoutes.homeRoute.path);
         }
-    }, [isAuth])
+    }, [isAuth]);
 
     const registerOptions = {
         email: {
             required: "Email is required",
             pattern: {
-                value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: "Enter Valid Email"
-            }
+                value:
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: "Enter Valid Email",
+            },
         },
         password: {
             required: "Password is required",
             minLength: {
                 value: 8,
-                message: "Password must have at least 8 characters"
+                message: "Password must have at least 8 characters",
             },
             pattern: {
                 value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                message: "at least one letter, one number and one special character"
-            }
-        }
+                message: "at least one letter, one number and one special character",
+            },
+        },
     };
     return (
         <>
-
             {/* <div className="login-page bg-light">
                 <div className="container">
                     <div className="row">
@@ -113,55 +119,62 @@ const Sign_in = () => {
             {/* mahmoud page */}
 
             <section class="vh-100 bg-image bk__img__SingIn">
-  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-          <div class="card card__style">
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+                    <div class="container h-100">
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                                <div class="card card__style">
+                                    <div class="card-body p-5">
+                                        <h2 class="text-uppercase text-center mt-3 mb-5">
+                                            Create an account
+                                        </h2>
 
-              <form>
+                                        <form>
+                                            <div class="form-outline mb-4">
+                                                <input
+                                                    type="email"
+                                                    id="form3Example3cg"
+                                                    class="form-control form-control-lg cus__Input"
+                                                    placeholder="Your Email"
+                                                    name="email"
+                                                />
+                                            </div>
 
-                
+                                            <div class="form-outline mb-4">
+                                                <input
+                                                    type="password"
+                                                    id="form3Example4cg"
+                                                    class="form-control form-control-lg cus__Input"
+                                                    placeholder="Your Password"
+                                                    name="password"
+                                                    style={{ padding:"11px 10px" }}
+                                                />
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <button
+                                                    type="button"
+                                                    class="btn my-3 btn__OwnHouver btn-block btn-lg gradient-custom-4 text-white col-6"
+                                                >
+                                                    Sing in
+                                                </button>
+                                            </div>
 
-                <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg cus__Input" placeholder="Your Email" name="email"/>
-                  
+                                            <p class="text-center mt-4 mb-0 robotoFont__Body">
+                                                Don't Have a account?
+                                                <a href="#!" class="fw-bold text-body ms-3">
+                                                    <u>Sing Up Here</u>
+                                                </a>
+                                            </p>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg cus__Input" placeholder="Your Password" name="password"/>
-                  
-                </div>
-
-                
-
-                 
-               
-
-                
-
-                <div class="d-flex justify-content-center">
-                  <button type="button"
-                    class="btn btn__OwnHouver btn-block btn-lg gradient-custom-4 text-white">Sing in</button>
-                </div>
-
-                <p class="text-center text-muted mt-5 mb-0 robotoFont__Body">Don't Have a account? <a href="#!"
-                    class="fw-bold text-body"><u>Sing Up Here</u></a></p>
-
-              </form>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+            </section>
         </>
-    )
-}
+    );
+};
 
-export default Sign_in
+export default Sign_in;

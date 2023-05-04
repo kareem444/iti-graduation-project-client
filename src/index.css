@@ -9,6 +9,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* background-color: #f2f6fc; */
   /* color: #69707a; */
+  /* background-image: url(https://websitedemos.net/kate-stone-designer-bio-02/wp-content/uploads/sites/1185/2023/03/kate-stone-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: cover;
+    background-attachment: fixed; */
 }
 
 #root{

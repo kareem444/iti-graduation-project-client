@@ -35,9 +35,17 @@ const NavBarComponent = () => {
     // ROUTE.CHECKOUT_STEP_1,
   ]
 
+  const handleActiveColor = (path) => {
+    if (pathname == path) {
+      return { color: "#6c7ae0" }
+    } else {
+      return { color: "#222" }
+    }
+  };
+
   return (
     <nav
-      className='navigation navbar navbar-expand-lg navbar-light bg-light'
+      className='navigation navbar navbar-expand-lg navbar-light shadow-sm bg-white'
       ref={navbar}
     >
       <div className='container navigation-menu-main' style={{ maxWidth: "100%" }}>
@@ -64,44 +72,49 @@ const NavBarComponent = () => {
         </button>
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav me-auto mb-2 align-middle mb-lg-0'>
-            <li className='nav-item my-3 my-lg-0'>
+            <li className='nav-item my-3 my-lg-0 ms-lg-5'>
               <NavLink
-                activeClassName='navigation-menu-active nav-link active navigation-menu-active'
+                className='navigation-menu-active nav-link active fw-bold px-4'
                 aria-current='page'
                 exact
                 to={PageRoutes.homeRoute.path}
+                style={handleActiveColor(PageRoutes.homeRoute.path)}
               >
                 Home
               </NavLink>
             </li>
             <li className='nav-item my-3 my-lg-0'>
               <NavLink
-                activeClassName='navigation-menu-active nav-link'
+                className='navigation-menu-active nav-link fw-bold px-4'
                 to={PageRoutes.productsRoute.path}
+                style={handleActiveColor(PageRoutes.productsRoute.path)}
               >
                 Products
               </NavLink>
             </li>
             <li className='nav-item my-3 my-lg-0'>
               <NavLink
-                activeClassName='navigation-menu-active nav-link'
+                className='navigation-menu-active nav-link fw-bold px-4'
                 to={PageRoutes.aboutRoute.path}
+                style={handleActiveColor(PageRoutes.aboutRoute.path)}
               >
                 About
               </NavLink>
             </li>
             <li className='nav-item my-3 my-lg-0'>
               <NavLink
-                activeClassName='navigation-menu-active nav-link'
+                className='navigation-menu-active nav-link fw-bold px-4'
                 to={PageRoutes.contactUsRoute.path}
+                style={handleActiveColor(PageRoutes.contactUsRoute.path)}
               >
                 Contact Us
               </NavLink>
             </li>
             <li className='nav-item d-block d-lg-none my-3'>
               <NavLink
-                activeClassName='navigation-menu-active nav-link'
+                className='navigation-menu-active nav-link fw-bold px-4'
                 to={PageRoutes.checkOutFirstStep.path}
+                style={handleActiveColor(PageRoutes.checkOutFirstStep.path)}
               >
                 Check out
                 <BadgeComponent count={2} />
@@ -109,23 +122,25 @@ const NavBarComponent = () => {
             </li>
             <li className='nav-item d-block d-lg-none my-3'>
               <NavLink
-                activeClassName='navigation-menu-active nav-link'
-                to={PageRoutes.signINRoute.path}
-              >
-                Sign in
-              </NavLink>
-            </li>
-            <li className='nav-item d-block d-lg-none my-3'>
-              <NavLink
-                activeClassName='navigation-menu-active nav-link'
+                className='navigation-menu-active nav-link fw-bold px-4'
                 to={PageRoutes.signUpRoute.path}
+                style={handleActiveColor(PageRoutes.signUpRoute.path)}
               >
                 sign up
               </NavLink>
             </li>
             <li className='nav-item d-block d-lg-none my-3'>
               <NavLink
-                activeClassName='navigation-menu-active nav-link'
+                className='navigation-menu-active nav-link fw-bold px-4'
+                to={PageRoutes.signINRoute.path}
+                style={handleActiveColor(PageRoutes.signINRoute.path)}
+              >
+                Sign in
+              </NavLink>
+            </li>
+            <li className='nav-item d-block d-lg-none my-3'>
+              <NavLink
+                className='navigation-menu-active nav-link fw-bold px-4'
                 to={PageRoutes.checkOutFirstStep.path}
               >
                 Logout
@@ -154,20 +169,22 @@ const NavBarComponent = () => {
             </li>
             <li className=' mt-2 nav-item d-sm-none d-none d-lg-block'>
               <Link
-                className='d-none d-lg-block'
+                className='nav-item margin-left-s d-none d-lg-block fw-bold'
                 onClick={onClickLink}
-                to={PageRoutes.signUpRoute.path}
+                to={PageRoutes.signINRoute.path}
+                style={handleActiveColor(PageRoutes.signINRoute.path)}
               >
-                Sign Up
+                Sign In
               </Link>
             </li>
             <li className=' mt-2 nav-item d-sm-none d-none d-lg-block'>
               <Link
-                className='nav-item margin-left-s d-none d-lg-block'
+                className='d-none d-lg-block fw-bold'
                 onClick={onClickLink}
-                to={PageRoutes.signINRoute.path}
+                to={PageRoutes.signUpRoute.path}
+                style={handleActiveColor(PageRoutes.signUpRoute.path)}
               >
-                Sign In
+                Sign Up
               </Link>
             </li>
           </ul>

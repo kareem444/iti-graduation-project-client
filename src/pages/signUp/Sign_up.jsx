@@ -233,16 +233,16 @@ const Signup = () => {
                       </div>
 
                       <div class="form-outline mb-4">
-                        <input type="password" id="form3Example4cg" class="form-control form-control-lg cus__Input" placeholder="Your Password" name="password" />
+                        <input type="password" id="form3Example4cg" class="form-control form-control-lg cus__Input" placeholder="Your Password" name="password" style={{ padding:"12px 10px" }}/>
 
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <input type="password" id="form3Example4cdg" class="form-control form-control-lg cus__Input" placeholder="Repeat Your Password" name="rePassword" />
+                      <div class="form-outline mb-5">
+                        <input type="password" id="form3Example4cdg" class="form-control form-control-lg cus__Input" placeholder="Repeat Your Password" name="rePassword" style={{ padding:"12px 10px" }}/>
 
                       </div>
 
-                      <h3 className="mt-4 robotoFont__Body">User Type:</h3>
+                      <h3 className="mt-5 robotoFont__Body">User Type:</h3>
                       <div class="d-flex row justify-content-between mt-4 mb-4 w-100 ms-1">
 
                         <div className="sign-up-user-type-btn col-5 col-md-4 justify-content-start ">
@@ -261,11 +261,9 @@ const Signup = () => {
 
                       </div>
 
-
-
                       <div class="d-flex justify-content-center">
                         <button type="button"
-                          class="btn btn__OwnHouver btn-block btn-lg gradient-custom-4 text-white">Register</button>
+                          class="mt-5 btn col-6 btn__OwnHouver btn-block btn-lg gradient-custom-4 text-white">Register</button>
                       </div>
 
                       <p class="text-center text-muted mt-5 mb-0 robotoFont__Body">Have already an account? <a href="#!"
