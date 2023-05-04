@@ -1,9 +1,10 @@
 import React from 'react';
+import logo from "../../imported/images/logoWithNewColor.png"
 
 const SplashScreenComponent = () => {
     return (
-        <div>
-            <h1>Splash Screen Component...</h1>
+        <div className='container content d-flex justify-content-center'>
+            <img src={logo} height={100} className='logo-animation'/>
         </div>
     );
 }

@@ -12,8 +12,6 @@ const NavBarComponent = () => {
   const navbar = useRef(null)
   const { pathname } = useLocation()
 
-  const store = {}
-
   const scrollHandler = () => {
     if (navbar.current && window.screen.width > 480) {
       if (window.pageYOffset >= 70) {
@@ -28,8 +26,6 @@ const NavBarComponent = () => {
     window.addEventListener('scroll', scrollHandler)
     return () => window.removeEventListener('scroll', scrollHandler)
   }, [])
-
-  const onClickLink = e => { }
 
   const basketDisabledPathNames = [
     // ROUTE.CHECKOUT_STEP_1,
@@ -48,7 +44,7 @@ const NavBarComponent = () => {
       className='navigation navbar navbar-expand-lg navbar-light shadow-sm bg-white'
       ref={navbar}
     >
-      <div className='container navigation-menu-main' style={{ maxWidth: "100%" }}>
+      <div className='container navigation-menu-main'>
         <a className='navbar-brand' href='#'>
           <Link to='/'>
             <img
@@ -107,7 +103,7 @@ const NavBarComponent = () => {
                 to={PageRoutes.contactUsRoute.path}
                 style={handleActiveColor(PageRoutes.contactUsRoute.path)}
               >
-                Contact Us
+                Contact
               </NavLink>
             </li>
             <li className='nav-item d-block d-lg-none my-3'>
@@ -123,19 +119,19 @@ const NavBarComponent = () => {
             <li className='nav-item d-block d-lg-none my-3'>
               <NavLink
                 className='navigation-menu-active nav-link fw-bold px-4'
-                to={PageRoutes.signUpRoute.path}
-                style={handleActiveColor(PageRoutes.signUpRoute.path)}
+                to={PageRoutes.signINRoute.path}
+                style={handleActiveColor(PageRoutes.signINRoute.path)}
               >
-                sign up
+                Sign in
               </NavLink>
             </li>
             <li className='nav-item d-block d-lg-none my-3'>
               <NavLink
                 className='navigation-menu-active nav-link fw-bold px-4'
-                to={PageRoutes.signINRoute.path}
-                style={handleActiveColor(PageRoutes.signINRoute.path)}
+                to={PageRoutes.signUpRoute.path}
+                style={handleActiveColor(PageRoutes.signUpRoute.path)}
               >
-                Sign in
+                sign up
               </NavLink>
             </li>
             <li className='nav-item d-block d-lg-none my-3'>
@@ -169,18 +165,16 @@ const NavBarComponent = () => {
             </li>
             <li className=' mt-2 nav-item d-sm-none d-none d-lg-block'>
               <Link
-                className='nav-item margin-left-s d-none d-lg-block fw-bold'
-                onClick={onClickLink}
+                className='nav-item margin-left-s d-none d-lg-block fw-bold '
                 to={PageRoutes.signINRoute.path}
                 style={handleActiveColor(PageRoutes.signINRoute.path)}
               >
                 Sign In
               </Link>
             </li>
-            <li className=' mt-2 nav-item d-sm-none d-none d-lg-block'>
+            <li className=' mt-2 nav-item d-sm-none d-none d-lg-block '>
               <Link
                 className='d-none d-lg-block fw-bold'
-                onClick={onClickLink}
                 to={PageRoutes.signUpRoute.path}
                 style={handleActiveColor(PageRoutes.signUpRoute.path)}
               >
