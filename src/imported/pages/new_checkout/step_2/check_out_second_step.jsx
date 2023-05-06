@@ -1,18 +1,13 @@
-/* eslint-disable react/forbid-prop-types */
-/* eslint-disable no-nested-ternary */
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import Boundary from '../../../components/common/Boundary';
 import { Form, Formik } from 'formik';
 import { useDocumentTitle, useScrollTop } from '../../../hooks';
-import PropType from 'prop-types';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-// import { setShippingDetails } from 'redux/actions/checkoutActions';
 import * as Yup from 'yup';
 import StepTracker from '../component/step_tracker_component';
 import ShippingForm from './ShippingForm';
-import ShippingTotal from './ShippingTotal';
 import PageRoutes from '../../../../router/page_routes';
 
 const FormSchema = Yup.object().shape({
@@ -24,17 +19,7 @@ const FormSchema = Yup.object().shape({
     .email('Email is not valid.')
     .required('Email is required.'),
   address: Yup.string()
-    .required('Shipping address is required.'),
-  mobile: Yup.object()
-    .shape({
-      country: Yup.string(),
-      countryCode: Yup.string(),
-      dialCode: Yup.string().required('Mobile number is required'),
-      value: Yup.string().required('Mobile number is required')
-    })
-    .required('Mobile number is required.'),
-  isInternational: Yup.boolean(),
-  isDone: Yup.boolean()
+    .required('Shipping address is required.')
 });
 
 const ShippingDetails = () => {
@@ -61,22 +46,11 @@ const ShippingDetails = () => {
     fullname: shipping?.fullname || profile.fullname || '',
     email: shipping?.email || profile.email || '',
     address: shipping?.address || profile.address || '',
-    mobile: shipping?.mobile || profile.mobile || {},
-    isInternational: shipping?.isInternational || false,
-    isDone: shipping?.isDone || false
   };
 
   const subtotal = 50
 
   const onSubmitForm = (form) => {
-    // dispatch(setShippingDetails({
-    //   fullname: form.fullname,
-    //   email: form.email,
-    //   address: form.address,
-    //   mobile: form.mobile,
-    //   isInternational: form.isInternational,
-    //   isDone: true
-    // }));
     navigate(PageRoutes.checkOutThirdStep.path);
   };
 

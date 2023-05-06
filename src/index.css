@@ -20,8 +20,9 @@ body {
   height: 100vh;
 }
 
-.container{
-  /* height: 92vh; */
+.on-hover-btn:hover{
+  background-color: #6c7ae0;
+  color: white;
 }
 
 code {

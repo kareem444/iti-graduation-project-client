@@ -26,7 +26,7 @@ const AccountMenuComponent = (props) => {
         >
           <NavLink
             to={PageRoutes.profileRoute.path}
-            activeClassName="active-link "
+            className="active-link "
             style={{
               color:
                 location.pathname == PageRoutes.accountRoute.path
@@ -46,7 +46,7 @@ const AccountMenuComponent = (props) => {
         >
           <NavLink
             to={PageRoutes.myOrdersRoute.path}
-            activeClassName="active-link"
+            className="active-link"
             style={{
               color:
                 location.pathname == PageRoutes.myOrdersRoute.path

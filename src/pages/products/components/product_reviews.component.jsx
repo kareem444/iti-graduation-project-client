@@ -1,74 +1,124 @@
-import React from 'react';
-import avatar from '../../../imported/images/logo-full.png'
-import { Rating } from '@mui/material';
-const ProductReviewsComponent = () => {
+import React, { useEffect, useState } from "react";
+import userImage from "../../../imported/images/user.png";
+import StarRatings from "react-star-ratings";
+import { RepoCreateRate } from "../../../repositories/rate.repo";
+import { RepoCreateComment } from "../../../repositories/comment.repo";
+import useAuth from "../../../custom_hooks/use_auth";
+
+const ProductReviewsComponent = ({ product }) => {
+    const [enteredComment, setEnteredComment] = useState("");
+
+    const { mutate: createRate } = RepoCreateRate();
+    const { mutate: createComment } = RepoCreateComment();
+
+    const [myRate, setMyRate] = useState(null);
+
+    const { authData } = useAuth();
+
+    useEffect(() => {
+        if (product?.rates != null && myRate == null && authData != null) {
+            let myRate = product.rates.users.find((user) => user.id === authData?.id);
+            setMyRate(myRate);
+        }
+    }, [product, authData]);
+
     return (
-        // <div class="row">
-        //     <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-        //         <div className='row mb-5 '>
-        //             <h4 className='col-6 text-black-50 py-3'>Reviews</h4>
-        //             <Rating
-        //                 name="simple-controlled"
-        //                 className='col-6'
-        //                 value={3}
-        //                 onChange={(event, newValue) => {
-        //                     // setValue(newValue);
-        //                 }}
-        //             />
-        //         </div>
-        //         <div class="p-b-30 m-lr-15-sm">
-        //             <div class="flex-w flex-t p-b-68">
-        //                 <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-        //                     <img src={avatar} alt="AVATAR" />
-        //                 </div>
-
-        //                 <div class="size-207">
-        //                     <div class="flex-w flex-sb-m p-b-17">
-        //                         <span class="mtext-107 cl2 p-r-20">
-        //                             Ariana Grande
-        //                         </span>
-        //                     </div>
-
-        //                     <p class="stext-102 cl6">
-        //                         Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
-        //                     </p>
-        //                 </div>
-        //             </div>
-
-        //             <hr />
-
-        //             <form class="w-full">
-        //                 <div class="flex-w flex-m p-t-50 p-b-23">
-        //                     <span class="stext-102 cl3 m-r-16">
-        //                         Your Rating
-        //                     </span>
-
-        //                     <span class="wrap-rating fs-18 cl11 pointer">
-        //                         <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-        //                         <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-        //                         <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-        //                         <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-        //                         <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-        //                         <input class="dis-none" type="number" name="rating" />
-        //                     </span>
-        //                 </div>
-
-        //                 <div class="row p-b-25">
-        //                     <div class="col-12 p-b-5">
-        //                         <label class="stext-102 cl3" for="review">Your review</label>
-        //                         <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
-        //                     </div>
-        //                 </div>
-
-        //                 <button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-        //                     Submit
-        //                 </button>
-        //             </form>
-        //         </div>
-        //     </div>
-        // </div>
-        <></>
+        <div className="bor10 m-t-50 p-t-43 p-b-40">
+            {/* Tab01 */}
+            <div className="tab01">
+                {/* Nav tabs */}
+                <ul className="nav nav-tabs" role="tablist">
+                    <li className="nav-item p-b-10">
+                        <a
+                            className="nav-link"
+                            data-toggle="tab"
+                            href="#reviews"
+                            role="tab"
+                        >
+                            Reviews {product?.comments.length}
+                        </a>
+                    </li>
+                </ul>
+                {/* Tab panes */}
+                <div className="tab-content p-t-43">
+                    <div
+                        className="tab-pane fade show active"
+                        id="reviews"
+                        role="tabpanel"
+                    >
+                        <div className="row">
+                            <div className="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
+                                <div className="p-b-30 m-lr-15-sm">
+                                    {/* Review */}
+                                    {product?.comments.map((comment) => {
+                                        return (
+                                            <div className="flex-w flex-t p-b-68">
+                                                <div className="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+                                                    <img
+                                                        src={comment.user.avatar ?? userImage}
+                                                        alt="AVATAR"
+                                                    />
+                                                </div>
+                                                <div className="size-207">
+                                                    <div className="flex-w flex-sb-m p-b-17">
+                                                        <span className="mtext-107 cl2 p-r-20">
+                                                            {comment.user.name}
+                                                        </span>
+                                                    </div>
+                                                    <p className="stext-102 cl6">{comment.comment}</p>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                    {/* Add review */}
+                                    <form className="w-full">
+                                        <hr />
+                                        <div className="flex-w flex-m p-t-50 p-b-23">
+                                            <span className="stext-102 cl3 m-r-16">Your Rating</span>
+                                            <StarRatings
+                                                rating={myRate?.rate ?? 0}
+                                                starDimension="20px"
+                                                starSpacing=""
+                                                changeRating={(val) => {
+                                                    createRate({ id: product["_id"], rate: val });
+                                                    setMyRate({ ...myRate, rate: val });
+                                                }}
+                                                starRatedColor="#faaf00"
+                                            />
+                                        </div>
+                                        <form className="row p-b-25">
+                                            <div className="col-12 p-b-5">
+                                                <label className="stext-102 cl3" htmlFor="review">
+                                                    Your review
+                                                </label>
+                                                <textarea
+                                                    className="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10"
+                                                    id="review"
+                                                    onChange={(e) => setEnteredComment(e.target.value)}
+                                                    value={enteredComment}
+                                                />
+                                            </div>
+                                            <button
+                                                className="flex-c-m mt-5 stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10 m-auto col-6"
+                                                disabled={enteredComment?.trim().length < 1}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    createComment({ id: product["_id"], comment: enteredComment })
+                                                    setEnteredComment("")
+                                                }}
+                                            >
+                                                Submit
+                                            </button>
+                                        </form>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
-}
+};
 
 export default ProductReviewsComponent;

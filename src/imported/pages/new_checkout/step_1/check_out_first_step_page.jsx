@@ -1,8 +1,6 @@
-import { ArrowRightOutlined, ShopOutlined } from '@ant-design/icons';
 import { useDocumentTitle, useScrollTop } from '../../../hooks';
-import PropType from 'prop-types';
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import BasketItem from '../../../components/basket/BasketItem';
 import PageRoutes from '../../../../router/page_routes';
@@ -15,23 +13,29 @@ const OrderSummary = () => {
     const navigate = useNavigate();
     const onClickPrevious = () => navigate(PageRoutes.productsRoute.path);
     const onClickNext = () => navigate(PageRoutes.checkOutSecondStep.path);
+    const cart = useSelector(state => state.order.cart)
+    const basket = cart.map(product => {
+        return {
+            price: product.totalPrice ?? product.price ?? 0,
+            name: product.product.name,
+            image: product.product.thumbImage
+        }
+    })
 
-    const basket = [
-        {
-            price: 50,
-            quantity: 2,
-            name: "kareem",
-            image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80"
-        },
-        {
-            price: 50,
-            quantity: 2,
-            name: "kareem",
-            image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80"
-        },
-    ]
+    const [totalPrice, setTotalPrice] = useState(0)
 
-    const subtotal = 50
+    useEffect(() => {
+        if (cart.length > 0) {
+            let price = 0
+            cart.forEach(item => {
+                price += (item.totalPrice ?? item.price ?? 0)
+            })
+            setTotalPrice(price)
+        } else {
+            navigate(PageRoutes.homeRoute.path)
+        }
+    }, [cart])
+
     return (
         <div className='content'>
             <div className="checkout">
@@ -40,19 +44,19 @@ const OrderSummary = () => {
                     <h3 className="text-center mt-5 mb-2 fs-1" style={{ color: "#222" }}>Order Summary</h3>
                     <span className="d-block text-center fs-4" style={{ color: "#888" }}>Review items in your basket.</span>
                     <div className="checkout-items ab-b-l my-5">
-                        {basket.map((product) => (
+                        {basket.map((product, i) => (
                             <BasketItem
-                                basket={basket}
-                                dispatch={dispatch}
                                 key={product.id}
                                 product={product}
+                                index={i}
+                                order = {cart[i]}
                             />
                         ))}
                     </div>
                     <br />
                     <div className="basket-total text-right">
                         <span className="basket-total-title fs-2 me-3" style={{ color: "#888" }}>Total:</span>
-                        <span className="basket-total-amount fs-2 me-3" style={{ color: "#222" }}>$50</span>
+                        <span className="basket-total-amount fs-2 me-3" style={{ color: "#222" }}>${totalPrice}</span>
                     </div>
                     <br />
                     <div className="checkout-shipping-action">
