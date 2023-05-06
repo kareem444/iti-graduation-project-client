@@ -4,6 +4,8 @@ export const ENDPOINT_CONTACTS = 'contacts'
 export const ENDPOINT_ORDERS = 'orders'
 export const ENDPOINT_PAYMENTS = 'payments'
 export const ENDPOINT_PRODUCTS = 'products'
+export const ENDPOINT_RATES = 'rates'
+export const ENDPOINT_COMMENTS = 'comments'
 export const ENDPOINT_ONE_ORDER= "orders/order"
 
 export const ENDPOINT_AUTH_LOGIN = ENDPOINT_AUTH + '/' + 'login'

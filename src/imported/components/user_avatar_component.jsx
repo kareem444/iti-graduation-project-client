@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import PageRoutes from "../../router/page_routes";
 import dropDownIcon from "../../imported/images/icons/icons8-arrow-down-22.png";
+import userImage from '../../imported/images/user.png'
 
 const UserAvatarComponent = ({ authData, logout }) => {
   const userNav = useRef(null);
@@ -37,7 +38,7 @@ const UserAvatarComponent = ({ authData, logout }) => {
       tabIndex={0}
     >
       <div className="user-nav-img-wrapper me-3">
-        <img alt="" className="user-nav-img" src={authData?.avatar ?? "assets/user.png"} />
+        <img alt="" className="user-nav-img" src={authData?.avatar ?? userImage} />
       </div>
       <h5
         className="text-overflow-ellipsis mb-0 className='navigation-menu-active nav-link fw-bold"

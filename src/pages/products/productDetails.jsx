@@ -5,13 +5,19 @@ import StarRatings from "react-star-ratings";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../redux/order/order.reducer";
+import { useEffect, useState } from "react";
+import useAuth from "../../custom_hooks/use_auth";
+import { RepoCreateRate } from "../../repositories/rate.repo";
+import { RepoCreateComment } from "../../repositories/comment.repo";
+import ProductReviewsComponent from "./components/product_reviews.component";
+
 const ProductDetails = () => {
   const params = useParams();
   const orderId = params.id;
 
   const { data: product } = RepGetOneProduct(orderId);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -20,19 +26,21 @@ const ProductDetails = () => {
   } = useForm();
 
   const handleRegistration = (data) => {
-    let totalPrice = 0
+    let totalPrice = 0;
 
-    const selectedItems = Object.entries(data).map(([key, value], index) => {
-      if (parseInt(value) > 0) {
-        totalPrice += parseInt(value) * product.items[parseInt(key)].price
-        return {
-          name: product.items[parseInt(key)].name,
-          price: product.items[parseInt(key)].price,
-          quantity: parseInt(value)
+    const selectedItems = Object.entries(data)
+      .map(([key, value], index) => {
+        if (parseInt(value) > 0) {
+          totalPrice += parseInt(value) * product.items[parseInt(key)].price;
+          return {
+            name: product.items[parseInt(key)].name,
+            price: product.items[parseInt(key)].price,
+            quantity: parseInt(value),
+          };
         }
-      }
-      return null
-    }).filter(item => item !== null);
+        return null;
+      })
+      .filter((item) => item !== null);
 
     const createCartItem = {
       status: "PENDING",
@@ -42,11 +50,11 @@ const ProductDetails = () => {
         id: product["_id"],
         name: product.title,
         thumbImage: product.thumbImage,
-        items: selectedItems
-      }
-    }
+        items: selectedItems,
+      },
+    };
 
-    dispatch(addItemToCart(createCartItem))
+    dispatch(addItemToCart(createCartItem));
   };
 
   return (
@@ -91,7 +99,10 @@ const ProductDetails = () => {
                   >
                     {product?.items.map((item, index) => {
                       return (
-                        <div key={index} className="w-100 d-flex justify-content-between my-2">
+                        <div
+                          key={index}
+                          className="w-100 d-flex justify-content-between my-2"
+                        >
                           <span className="product-item-desc me-2">
                             {item.name}
                           </span>
@@ -109,17 +120,21 @@ const ProductDetails = () => {
                               {...register(`${index}`, {
                                 required: item?.minQuantity > 0,
                                 validate: (value) => {
-                                  if (value < item?.minQuantity || value > item?.maxQuantity) {
+                                  if (
+                                    value < item?.minQuantity ||
+                                    value > item?.maxQuantity
+                                  ) {
                                     return false;
                                   } else {
                                     return true;
                                   }
-                                }
+                                },
                               })}
                             />
                             {errors[`${index}`] && (
                               <span className="fs-5 text-danger">
-                                The min allowed is {item?.minQuantity}-{item?.maxQuantity}
+                                The min allowed is {item?.minQuantity}-
+                                {item?.maxQuantity}
                               </span>
                             )}
                           </div>
@@ -139,127 +154,7 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-          <div className="bor10 m-t-50 p-t-43 p-b-40">
-            {/* Tab01 */}
-            <div className="tab01">
-              {/* Nav tabs */}
-              <ul className="nav nav-tabs" role="tablist">
-                <li className="nav-item p-b-10">
-                  <a
-                    className="nav-link"
-                    data-toggle="tab"
-                    href="#reviews"
-                    role="tab"
-                  >
-                    Reviews (1)
-                  </a>
-                </li>
-              </ul>
-              {/* Tab panes */}
-              <div className="tab-content p-t-43">
-                <div
-                  className="tab-pane fade show active"
-                  id="reviews"
-                  role="tabpanel"
-                >
-                  <div className="row">
-                    <div className="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-                      <div className="p-b-30 m-lr-15-sm">
-                        {/* Review */}
-                        <div className="flex-w flex-t p-b-68">
-                          <div className="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                            <img src={product?.thumbImage} alt="AVATAR" />
-                          </div>
-                          <div className="size-207">
-                            <div className="flex-w flex-sb-m p-b-17">
-                              <span className="mtext-107 cl2 p-r-20">
-                                Ariana Grande
-                              </span>
-                              <span className="fs-18 cl11">
-                                <i class="bi bi-star-fill item-rating pointer zmdi zmdi-star-outline"></i>
-                                <i class="bi bi-star-fill item-rating pointer zmdi zmdi-star-outline"></i>
-                                <i class="bi bi-star-fill item-rating pointer zmdi zmdi-star-outline"></i>
-                                <i class="bi bi-star-fill item-rating pointer zmdi zmdi-star-outline"></i>
-                                <i class="bi bi-star-fill item-rating pointer zmdi zmdi-star-outline"></i>
-                              </span>
-                            </div>
-                            <p className="stext-102 cl6">
-                              Quod autem in homine praestantissimum atque
-                              optimum est, id deseruit. Apud ceteros autem
-                              philosophos
-                            </p>
-                          </div>
-                        </div>
-                        {/* Add review */}
-                        <form className="w-full">
-                          <h5 className="mtext-108 cl2 p-b-7">Add a review</h5>
-                          <p className="stext-102 cl6">
-                            Your email address will not be published. Required
-                            fields are marked *
-                          </p>
-                          <div className="flex-w flex-m p-t-50 p-b-23">
-                            <span className="stext-102 cl3 m-r-16">
-                              Your Rating
-                            </span>
-                            <span className="wrap-rating fs-18 cl11 pointer ">
-                              <i class="bi bi-star item-rating pointer zmdi zmdi-star-outline"></i>
-                              <i class="bi bi-star item-rating pointer zmdi zmdi-star-outline"></i>
-                              <i class="bi bi-star item-rating pointer zmdi zmdi-star-outline"></i>
-                              <i class="bi bi-star item-rating pointer zmdi zmdi-star-outline"></i>
-                              <i class="bi bi-star item-rating pointer zmdi zmdi-star-outline"></i>
-                              <input
-                                className="dis-none"
-                                type="number"
-                                name="rating"
-                              />
-                            </span>
-                          </div>
-                          <div className="row p-b-25">
-                            <div className="col-12 p-b-5">
-                              <label className="stext-102 cl3" htmlFor="review">
-                                Your review
-                              </label>
-                              <textarea
-                                className="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10"
-                                id="review"
-                                name="review"
-                                defaultValue={""}
-                              />
-                            </div>
-                            <div className="col-sm-6 p-b-5">
-                              <label className="stext-102 cl3" htmlFor="name">
-                                Name
-                              </label>
-                              <input
-                                className="size-111 bor8 stext-102 cl2 p-lr-20"
-                                id="name"
-                                type="text"
-                                name="name"
-                              />
-                            </div>
-                            <div className="col-sm-6 p-b-5">
-                              <label className="stext-102 cl3" htmlFor="email">
-                                Email
-                              </label>
-                              <input
-                                className="size-111 bor8 stext-102 cl2 p-lr-20"
-                                id="email"
-                                type="text"
-                                name="email"
-                              />
-                            </div>
-                          </div>
-                          <button className="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-                            Submit
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProductReviewsComponent product={product}/>
         </div>
       </section>
     </>

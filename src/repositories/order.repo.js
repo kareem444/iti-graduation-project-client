@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { showErrorAlert } from "../redux/global/global.reducer";
 import { useNavigate } from "react-router-dom";
 import PageRoutes from "../router/page_routes";
+import useAuth from "../custom_hooks/use_auth";
 
 export const RepoGetOrders = () => {
   return useQuery([KEY_REPO_ORDERS], () =>
@@ -25,9 +26,14 @@ export const RepoGetOrders = () => {
 };
 
 export const RepoGetMyOrders = () => {
+  const { isAuth } = useAuth()
   return useQuery(
     [KEY_REPO_GET_MY_ORDERS],
-    () => AxiosApiHelper.get(ENDPOINT_MY_ORDERS),
+    () => {
+      if (isAuth) {
+        return AxiosApiHelper.get(ENDPOINT_MY_ORDERS)
+      }
+    },
     {
       refetchOnWindowFocus: false,
     }
