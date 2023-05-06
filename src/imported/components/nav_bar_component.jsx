@@ -8,8 +8,10 @@ import PageRoutes from "../../router/page_routes";
 import cartIcon from "../../imported/images/icons/icons8-shopping-cart-64.png";
 import useAuth from "../../custom_hooks/use_auth";
 import SwitchLanguageComponent from "../../components/switch_button_component/switch_button_component";
+import { useLang } from '../../custom_hooks/use_get_current_language';
 
 const NavBarComponent = () => {
+  const {translate,isArabic} = useLang()
   const { isAuth, logout, authData } = useAuth();
   const navbar = useRef(null);
   const { pathname } = useLocation();
@@ -73,7 +75,7 @@ const NavBarComponent = () => {
                 to={PageRoutes.homeRoute.path}
                 style={handleActiveColor(PageRoutes.homeRoute.path)}
               >
-                Home
+                {translate("nav_Home")}
               </NavLink>
             </li>
             <li className="nav-item my-3 my-lg-0">
@@ -82,7 +84,7 @@ const NavBarComponent = () => {
                 to={PageRoutes.productsRoute.path}
                 style={handleActiveColor(PageRoutes.productsRoute.path)}
               >
-                Products
+                {translate("nav_Product")}
               </NavLink>
             </li>
             <li className="nav-item my-3 my-lg-0">
@@ -91,7 +93,7 @@ const NavBarComponent = () => {
                 to={PageRoutes.aboutRoute.path}
                 style={handleActiveColor(PageRoutes.aboutRoute.path)}
               >
-                About
+                {translate("nav_About")}
               </NavLink>
             </li>
             <li className="nav-item my-3 my-lg-0">
@@ -100,7 +102,7 @@ const NavBarComponent = () => {
                 to={PageRoutes.contactUsRoute.path}
                 style={handleActiveColor(PageRoutes.contactUsRoute.path)}
               >
-                Contact
+                {translate("nav_Contact")}
               </NavLink>
             </li>
             {isAuth == false && (
@@ -111,7 +113,7 @@ const NavBarComponent = () => {
                     to={PageRoutes.signINRoute.path}
                     style={handleActiveColor(PageRoutes.signINRoute.path)}
                   >
-                    Sign in
+                    {translate("nav_SingIn")}
                   </NavLink>
                 </li>
                 <li className="nav-item d-block d-lg-none my-3">
@@ -120,7 +122,7 @@ const NavBarComponent = () => {
                     to={PageRoutes.signUpRoute.path}
                     style={handleActiveColor(PageRoutes.signUpRoute.path)}
                   >
-                    sign up
+                    {translate("nav_SingUp")}
                   </NavLink>
                 </li>
               </>
@@ -142,7 +144,7 @@ const NavBarComponent = () => {
                     className="navigation-menu-active nav-link fw-bold px-4"
                     to={PageRoutes.checkOutFirstStep.path}
                   >
-                    Logout
+                    {translate("nav_SingOut")}
                   </NavLink>
                 </li>
               </>
@@ -180,7 +182,7 @@ const NavBarComponent = () => {
                     to={PageRoutes.signINRoute.path}
                     style={handleActiveColor(PageRoutes.signINRoute.path)}
                   >
-                    Sign In
+                    {translate("nav_SingIn")}
                   </Link>
                 </li>
                 <li className=" mt-2 nav-item d-sm-none d-none d-lg-block ">
@@ -189,7 +191,7 @@ const NavBarComponent = () => {
                     to={PageRoutes.signUpRoute.path}
                     style={handleActiveColor(PageRoutes.signUpRoute.path)}
                   >
-                    Sign Up
+                    {translate("nav_SingUp")}
                   </Link>
                 </li>
               </>

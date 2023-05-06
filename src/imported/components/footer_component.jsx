@@ -3,9 +3,11 @@ import { useLocation } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import logo from "../../imported/images/logoWithNewColor.png" ;
 import PageRoutes from '../../router/page_routes';
-import "../../../src/Styling/footer_section.css"
+import "../../../src/Styling/footer_section.css";
+import { useLang } from '../../custom_hooks/use_get_current_language';
 const FooterComponent = () => {
   const { pathname } = useLocation();
+  const {translate,isArabic} = useLang();
 
   const visibleOnlyPath = [
     PageRoutes.homeRoute.path,
@@ -27,7 +29,7 @@ const FooterComponent = () => {
         <div className="row mt-5 mb-4 justify-content-around text-white">
           <div className=" col-3  mb-4">
             <h4 className=" fw-bold mb-4 text-white ft__titleSize">
-              Explore
+              {translate("footer_ex")}
             </h4>
             <p>
               <NavLink

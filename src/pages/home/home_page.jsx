@@ -12,7 +12,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import CelebrationIcon from '@mui/icons-material/Celebration'
 import '../../Styling/home_page.css'
+import { useLang } from '../../custom_hooks/use_get_current_language'
 const HomePage = () => {
+  const {translate,isArabic} = useLang()
+
   return (
     <>
       <div className='container-fluid '>
@@ -44,14 +47,14 @@ const HomePage = () => {
               <div className='carousel-item active h-100'>
                 <img src={image2} className='d-block w-100 h-100' alt='...' />
                 <div className='carousel-caption d-none d-md-block'>
-                  <h5 className='fs-1'>First slide label</h5>
+                  <h5 className='fs-1'> {translate("first_carouselTitle")} </h5>
                   <p className='fs-2'>
-                    Some representative placeholder content for the first slide.
+                    {translate("first_carouselBody")}
                   </p>
                   <div className='mt-5'>
                     <p>
                       <a href='#' className='btn mt3'>
-                        Explore Now
+                      {translate("first_carouselBtn")}
                       </a>
                     </p>
                   </div>
@@ -60,15 +63,14 @@ const HomePage = () => {
               <div className='carousel-item h-100'>
                 <img src={image1} className='d-block w-100 h-100' alt='...' />
                 <div className='carousel-caption d-none d-md-block'>
-                  <h5 className='fs-1'>Second slide label</h5>
+                  <h5 className='fs-1'>{translate("second_carouselTitle")}</h5>
                   <p className='fs-2'>
-                    Some representative placeholder content for the second
-                    slide.
+                    {translate("second_carouselBody")}
                   </p>
                   <div className='mt-5'>
                     <p>
                       <a href='#' className='btn mt3'>
-                        Explore Now
+                      {translate("first_carouselBtn")}
                       </a>
                     </p>
                   </div>
@@ -77,14 +79,14 @@ const HomePage = () => {
               <div className='carousel-item h-100'>
                 <img src={image3} className='d-block w-100 h-100' alt='...' />
                 <div className='carousel-caption d-none d-md-block'>
-                  <h5 className='fs-1'>Third slide label</h5>
+                  <h5 className='fs-1'> {translate("third_carouselTitle")} </h5>
                   <p className='fs-2'>
-                    Some representative placeholder content for the third slide.
+                    {translate("third_carouselBody")}
                   </p>
                   <div className='mt-5'>
                     <p>
                       <a href='#' className='btn  mt3'>
-                        Explore Now
+                      {translate("first_carouselBtn")}
                       </a>
                     </p>
                   </div>
@@ -116,58 +118,52 @@ const HomePage = () => {
         <div className='container my-4'>
           <div className='row my-3'>
             <h2 className='text-center titleSize RobotoFont  pb-4 mb-4'>
-              Our Services
+              {translate('services_title')}
             </h2>
 
             <div className='col-md-4 px-5 my-5 text-center '>
               <i className='bi bi-geo-alt-fill' ></i>
-              <h2 className='RobotoFont px-4  mt-3 fs-1'>Location</h2>
+              <h2 className='RobotoFont px-4  mt-3 fs-1'> {translate("services_ThirdTitle")} </h2>
               <p className='RobotoFont px-4  p__Color fs-4'>
-                This is a short description elaborating the service you have
-                mentioned above.
+                {translate("services_Thirdbody")}
               </p>
             </div>
 
             <div className='col-md-4 px-5 my-5 text-center'>
               <FontAwesomeIcon icon={faCamera}/>
-              <h2 className='RobotoFont px-4  mt-3 fs-1'>Photographer</h2>
+              <h2 className='RobotoFont px-4  mt-3 fs-1'> {translate("services_SecTitle")} </h2>
               <p className='RobotoFont px-4  p__Color fs-4'>
-                This is a short description elaborating the service you have
-                mentioned above.
+                {translate("services_Secbody")}
               </p>
             </div>
             <div className='col-md-4 px-5 my-5 text-center'>
               <FontAwesomeIcon icon={faChair} />
-              <h2 className='RobotoFont px-4  mt-3 fs-1'>Hall Chairs</h2>
+              <h2 className='RobotoFont px-4  mt-3 fs-1'> {translate("services_FirstTitle")} </h2>
               <p className='RobotoFont px-4  p__Color fs-4'>
-                This is a short description elaborating the service you have
-                mentioned above.
+              {translate("services_Firstbody")}
               </p>
             </div>
           </div>
           <div className='row mt-5'>
             <div className='col-md-4 px-5 my-5 text-center'>
               <FontAwesomeIcon icon={faNewspaper} />
-              <h2 className='RobotoFont px-4  mt-3 fs-1'>Documentation</h2>
+              <h2 className='RobotoFont px-4  mt-3 fs-1'> {translate("services_SixTitle")} </h2>
               <p className='RobotoFont px-4  p__Color fs-4'>
-                This is a short description elaborating the service you have
-                mentioned above.
+              {translate("services_Sixbody")}
               </p>
             </div>
             <div className='col-md-4 px-5 my-5 text-center'>
               <CelebrationIcon />
-              <h2 className='RobotoFont px-4  mt-3 fs-1'>Celebration</h2>
+              <h2 className='RobotoFont px-4  mt-3 fs-1'> {translate("services_FifthTitle")} </h2>
               <p className='RobotoFont px-4  p__Color fs-4'>
-                This is a short description elaborating the service you have
-                mentioned above.
+                {translate("services_Fifthbody")}
               </p>
             </div>
             <div className='col-md-4 px-5 my-5 text-center'>
               <FontAwesomeIcon icon={faChampagneGlasses} />
-              <h2 className='RobotoFont px-4  mt-3 fs-1'>Food & Drinks</h2>
+              <h2 className='RobotoFont px-4  mt-3 fs-1'> {translate("services_FourthTitle")} </h2>
               <p className='RobotoFont px-4  p__Color fs-4'>
-                This is a short description elaborating the service you have
-                mentioned above.
+                {translate("services_Fourthdbody")}
               </p>
             </div>
           </div>
