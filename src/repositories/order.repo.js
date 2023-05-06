@@ -13,6 +13,10 @@ import {
   KEY_REPO_GET_MY_ORDERS,
 } from "../utils/constants/queries_keys.constants";
 import AxiosApiHelper from "../helper/axios_api.helper";
+import { useDispatch } from "react-redux";
+import { showErrorAlert } from "../redux/global/global.reducer";
+import { useNavigate } from "react-router-dom";
+import PageRoutes from "../router/page_routes";
 
 export const RepoGetOrders = () => {
   return useQuery([KEY_REPO_ORDERS], () =>
@@ -21,8 +25,12 @@ export const RepoGetOrders = () => {
 };
 
 export const RepoGetMyOrders = () => {
-  return useQuery([KEY_REPO_GET_MY_ORDERS], () =>
-    AxiosApiHelper.get(ENDPOINT_MY_ORDERS)
+  return useQuery(
+    [KEY_REPO_GET_MY_ORDERS],
+    () => AxiosApiHelper.get(ENDPOINT_MY_ORDERS),
+    {
+      refetchOnWindowFocus: false,
+    }
   );
 };
 
@@ -39,15 +47,25 @@ export const RepGetOneOrder = (orderId) => {
 };
 
 export const RepoCreateOrder = () => {
-  return useMutation((data) => AxiosApiHelper.post(ENDPOINT_ORDERS, data));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  return useMutation((data) => AxiosApiHelper.post(ENDPOINT_ORDERS, data), {
+    onSuccess: (data) => {
+      navigate(PageRoutes.checkOutFirstStep.path);
+    },
+    onError: (error) => {
+      dispatch(showErrorAlert(error));
+    },
+  });
 };
 
 export const RepoUpdateOrder = () => {
-  return useMutation((id, data) =>
-    AxiosApiHelper.patch(ENDPOINT_ORDERS + "/" + id, data)
+  return useMutation((order) =>
+    AxiosApiHelper.patch(ENDPOINT_ORDERS + "/" + order["_id"], order)
   );
 };
 
-export const RepoDeleteProduct = () => {
+export const RepoDeleteOrder = () => {
   return useMutation((id) => AxiosApiHelper.delete(ENDPOINT_ORDERS + "/" + id));
 };

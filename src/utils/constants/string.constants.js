@@ -8,4 +8,5 @@ export const REDUCER_COUNTER = 'counter'
 export const REDUCER_GLOBAL = 'global'
 export const REDUCER_USER = 'user'
 export const REDUCER_TITLE = 'title'
+export const REDUCER_ORDER = 'order'
 //#endregion

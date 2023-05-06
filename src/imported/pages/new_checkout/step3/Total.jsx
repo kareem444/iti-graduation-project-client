@@ -1,36 +1,71 @@
-import { ArrowLeftOutlined, CheckOutlined } from '@ant-design/icons';
-import { useFormikContext } from 'formik';
-import { displayMoney } from '../../../helpers/utils';
-import PropType from 'prop-types';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PageRoutes from '../../../../router/page_routes';
-// import { setPaymentDetails } from 'redux/actions/checkoutActions';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { clearCart } from '../../../../redux/order/order.reducer';
+import { RepoGetMyOrders, RepoUpdateOrder } from '../../../../repositories/order.repo';
+import { RepoCreatePayment } from '../../../../repositories/payment.repo';
 
-const Total = ({ isInternational, subtotal }) => {
-  const { values, submitForm } = useFormikContext();
+const Total = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const onClickBack = () => {
-    // destructure to only select left fields omitting cardnumber and ccv
-    const { cardnumber, ccv, ...rest } = values;
+  const cart = useSelector(state => state.order.cart)
+  const [totalPrice, setTotalPrice] = useState(0)
+  const { data: myOrders } = RepoGetMyOrders();
+  const { mutate: createPayment } = RepoCreatePayment()
+  const { mutate: updateOrder } = RepoUpdateOrder()
+  const [order, setOrder] = useState([]);
 
-    // dispatch(setPaymentDetails({ ...rest })); 
+  useEffect(() => {
+    if (myOrders) {
+      let k = []
+      myOrders.forEach(el => {
+        if (el.status == "PENDING") {
+          k.push(el)
+        }
+      });
+      setOrder(k)
+    }
+  }, [myOrders])
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      let price = 0
+      cart.forEach(item => {
+        price += item.totalPrice
+      })
+      setTotalPrice(price)
+    } else {
+      navigate(PageRoutes.homeRoute.path)
+    }
+  }, [cart])
+
+  const onClickBack = () => {
     navigate(PageRoutes.checkOutSecondStep.path);
   };
+
+  const submitForm = () => {
+    order.forEach((value) => {
+      createPayment(value["_id"])
+      updateOrder({ ...value, status: "ACCEPTED" })
+    })
+    dispatch(clearCart())
+    navigate(PageRoutes.homeRoute.path);
+  }
 
   return (
     <>
       <div className="basket-total text-right mt-5">
         <span className="basket-total-title fs-2 me-3" style={{ color: "#888" }}>Total:</span>
-        <span className="basket-total-amount fs-2 me-3" style={{ color: "#222" }}>$50</span>
+        <span className="basket-total-amount fs-2 me-3" style={{ color: "#222" }}>${totalPrice}</span>
       </div>
       <br />
       <div className="checkout-shipping-action">
         <div
-          onClick={() => onClickBack(values)}
+          onClick={() => onClickBack()}
           className='d-flex gap-2 check-out-buttons-controllers align-items-center'>
           <img src="https://img.icons8.com/metro/26/null/back.png" height={15} />
           <span className='fs-3 fw-bold'>Go Back</span>
@@ -44,11 +79,6 @@ const Total = ({ isInternational, subtotal }) => {
       </div>
     </>
   );
-};
-
-Total.propTypes = {
-  isInternational: PropType.bool.isRequired,
-  subtotal: PropType.number.isRequired
 };
 
 export default Total;

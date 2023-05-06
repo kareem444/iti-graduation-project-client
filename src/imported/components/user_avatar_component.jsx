@@ -20,7 +20,6 @@ const UserAvatarComponent = ({ authData, logout }) => {
 
   useEffect(() => {
     document.addEventListener("click", toggleDropdown);
-
     return () => document.removeEventListener("click", toggleDropdown);
   }, []);
 

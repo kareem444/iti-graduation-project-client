@@ -8,11 +8,13 @@ import PageRoutes from "../../router/page_routes";
 import cartIcon from "../../imported/images/icons/icons8-shopping-cart-64.png";
 import useAuth from "../../custom_hooks/use_auth";
 import SwitchLanguageComponent from "../../components/switch_button_component/switch_button_component";
+import { useSelector } from "react-redux";
 
 const NavBarComponent = () => {
   const { isAuth, logout, authData } = useAuth();
   const navbar = useRef(null);
   const { pathname } = useLocation();
+  const cart = useSelector(state => state.order.cart)
 
   const scrollHandler = () => {
     if (navbar.current && window.screen.width > 480) {
@@ -160,7 +162,7 @@ const NavBarComponent = () => {
                         onClick={onClickToggle}
                         type="button"
                       >
-                        <BadgeComponent count={2}>
+                        <BadgeComponent count={cart.length ?? 0}>
                           <img src={cartIcon} height={20} />
                         </BadgeComponent>
                       </button>

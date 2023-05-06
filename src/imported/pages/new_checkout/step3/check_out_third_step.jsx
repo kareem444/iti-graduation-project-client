@@ -1,15 +1,12 @@
 import { Form, Formik } from 'formik';
 import { displayActionMessage } from '../../../helpers/utils';
 import { useDocumentTitle, useScrollTop } from '../../../hooks';
-import PropType from 'prop-types';
 import React from 'react';
-import { Navigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import StepTracker from '../component/step_tracker_component';
 import CreditPayment from './CreditPayment';
 import PayPalPayment from './PayPalPayment';
 import Total from './Total';
-import PageRoutes from '../../../../router/page_routes';
 
 const FormSchema = Yup.object().shape({
   name: Yup.string()
@@ -44,9 +41,6 @@ const Payment = ({ shipping, payment, subtotal }) => {
     displayActionMessage('Feature not ready yet :)', 'info');
   };
 
-  // if (!shipping || !shipping.isDone) {
-  //   return <Navigate to={PageRoutes.checkOutFirstStep.path} />;
-  // }
   return (
     <div className='content'>
       <div className="checkout">
@@ -67,7 +61,6 @@ const Payment = ({ shipping, payment, subtotal }) => {
               <CreditPayment />
               <PayPalPayment />
               <Total
-                isInternational={shipping?.isInternational ?? false}
                 subtotal={subtotal}
               />
             </Form>
