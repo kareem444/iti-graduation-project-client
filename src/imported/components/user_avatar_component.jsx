@@ -1,23 +1,10 @@
-/* eslint-disable indent */
-import {
-  LoadingOutlined,
-  LogoutOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import PropTypes from "prop-types";
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import PageRoutes from "../../router/page_routes";
 import dropDownIcon from "../../imported/images/icons/icons8-arrow-down-22.png";
 
-const UserAvatarComponent = () => {
-  const profile = {
-    fullname: "kareem",
-    avatar:
-      "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80",
-  };
+const UserAvatarComponent = ({ authData, logout }) => {
   const userNav = useRef(null);
-  const isAuthenticating = false;
 
   const toggleDropdown = (e) => {
     const closest = e.target.closest("div.user-nav");
@@ -51,34 +38,30 @@ const UserAvatarComponent = () => {
       tabIndex={0}
     >
       <div className="user-nav-img-wrapper me-3">
-        <img alt="" className="user-nav-img" src={profile.avatar} />
+        <img alt="" className="user-nav-img" src={authData?.avatar ?? "assets/user.png"} />
       </div>
       <h5
         className="text-overflow-ellipsis mb-0 className='navigation-menu-active nav-link fw-bold"
-        style={{ color: "#222", fontSize: "1.4rem" , textTransform:"capitalize" }}
+        style={{ color: "#222", fontSize: "1.4rem", textTransform: "capitalize" }}
       >
-        {profile.fullname && profile.fullname.split(" ")[0]}
+        {authData?.name && authData?.name.split(" ")[0]}
       </h5>
       <img src={dropDownIcon} className="ms-3" height={15} />
       <div className="user-nav-sub mt-4">
         <Link to={PageRoutes.accountRoute.path} className="user-nav-sub-link fw-bold">
-        <img src="https://img.icons8.com/pastel-glyph/64/null/person-male--v1.png" height={25}/>
+          <img src="https://img.icons8.com/pastel-glyph/64/null/person-male--v1.png" height={25} />
           Profile
         </Link>
         <a
           className="user-nav-sub-link margin-0 d-flex fw-bold"
-          // onClick={() => dispatch(signOut())}
+          onClick={() => logout()}
         >
-          <img src="https://img.icons8.com/pastel-glyph/64/null/last-1.png" height={20}/>
+          <img src="https://img.icons8.com/pastel-glyph/64/null/last-1.png" height={20} />
           SIGN OUT
         </a>
       </div>
     </div>
   );
-};
-
-UserAvatarComponent.propType = {
-  profile: PropTypes.object.isRequired,
 };
 
 export default UserAvatarComponent;

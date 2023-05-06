@@ -1,107 +1,175 @@
-import React from 'react'
-import "./icon-font.min.css"
-import "../../Styling/contact.css"
+import React from "react";
+import "./icon-font.min.css";
+import "../../Styling/contact.css";
 import { useForm } from "react-hook-form";
-import background from '../../imported/images/image4.jpg'
-import mailIcon from '../../imported/images/icons/icon-email.png'
-import phoneIcon from '../../imported/images/icons/icons8-phone-22.png'
-import profileIcon from '../../imported/images/icons/icons8-administrator-male-22.png'
+import background from "../../imported/images/image4.jpg";
+import mailIcon from "../../imported/images/icons/icon-email.png";
+import phoneIcon from "../../imported/images/icons/icons8-phone-22.png";
+import profileIcon from "../../imported/images/icons/icons8-administrator-male-22.png";
+import { RepoCreateContact } from "../../repositories/contact.repo";
+import LoadingComponent from "../../components/loading_component/loading_component";
 
 const Contact_us = () => {
-	const { register, handleSubmit, formState: { errors } } = useForm();
-	const handleRegistration = (data) => console.log(data);
-	const handleError = (errors) => { console.log(`errors`, errors); };
+	const { mutate, isLoading } = RepoCreateContact()
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm();
+
+	const handleRegistration = (data) => {
+		mutate(data)
+		reset();
+	};
+
 	const registerOptions = {
 		name: {
 			required: "Name is required",
 			minLength: {
 				value: 3,
-				message: "Name must have at least 3 characters"
-			}, maxLength: {
+				message: "Name must have at least 3 characters",
+			},
+			maxLength: {
 				value: 20,
-				message: "Name Max length 20 characters"
+				message: "Name Max length 20 characters",
 			},
 			pattern: {
 				value: /^[a-zA-Z]+(([_\][a-zA-Z ])?[a-zA-Z]*)*$/,
-				message: "Accept _ and space"
-			}
+				message: "Accept _ and space",
+			},
 		},
 		email: {
 			required: "Email is required",
 			pattern: {
-				value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-				message: "Enter Valid Email"
-			}
+				value:
+					/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+				message: "Enter Valid Email",
+			},
 		},
 		phone: {
 			required: "Phone is required",
 			pattern: {
 				value: /^01[0-9]{9}$/,
-				message: "Enter Valid Phone Number"
-			}
+				message: "Enter Valid Phone Number",
+			},
 		},
 		subject: {
-			required: "Subject is required", minLength: {
+			required: "Subject is required",
+			minLength: {
 				value: 3,
-				message: "Message must have at least 3 characters"
-			}, maxLength: {
+				message: "Message must have at least 3 characters",
+			},
+			maxLength: {
 				value: 250,
-				message: "Message Max length 30 characters"
-			}
+				message: "Message Max length 30 characters",
+			},
 		},
 		message: {
 			required: "Message is required",
 			minLength: {
 				value: 5,
-				message: "Message must have at least 5 characters"
-			}, maxLength: {
+				message: "Message must have at least 5 characters",
+			},
+			maxLength: {
 				value: 250,
-				message: "Message Max length 250 characters"
-			}
+				message: "Message Max length 250 characters",
+			},
 		},
-
-
 	};
 	return (
 		<>
-			<section className="bg-img1 txt-center p-lr-15 p-tb-92 contact__bk d-flex justify-content-center align-items-center"
-				style={{ backgroundImage: 'url(' + background + ')', height: "40vh" }}>
-				<h2 className="ltext-105 cl0 txt-center mt-lg-5">
-					Contact
-				</h2>
+			<section
+				className="bg-img1 txt-center p-lr-15 p-tb-92 contact__bk d-flex justify-content-center align-items-center"
+				style={{ backgroundImage: "url(" + background + ")", height: "40vh" }}
+			>
+				<h2 className="ltext-105 cl0 txt-center mt-lg-5">Contact</h2>
 			</section>
-
 
 			<section className="bg0 p-t-104 p-b-116">
 				<div className="container">
 					<div className="flex-w flex-tr">
 						<div className="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-							<form>
+							<form onSubmit={handleSubmit(handleRegistration)}>
 								<h4 className="mtext-105 cl2 txt-center p-b-30">
 									Send Us A Message
 								</h4>
 
-								<div className="bor8 m-b-20 how-pos4-parent">
-									<input className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="userName" placeholder="Your Name" />
-									<img className="how-pos4 pointer-none " src={profileIcon} alt="ICON" />
+								<div className="m-b-20">
+									<div className="bor8 how-pos4-parent">
+										<input
+											className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30"
+											type="text"
+											name="userName"
+											placeholder="Your Name"
+											{...register("name", registerOptions.name)}
+										/>
+										<img
+											className="how-pos4 pointer-none "
+											src={profileIcon}
+											alt="ICON"
+										/>
+									</div>
+									<small className="text-danger fs-4 ">
+										{errors?.name && errors.name.message}
+									</small>
+								</div>
+								<div className="m-b-20">
+									<div className="bor8 how-pos4-parent">
+										<input
+											className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30"
+											type="text"
+											name="email"
+											placeholder="Your Email Address"
+											{...register("email", registerOptions.email)}
+										/>
+										<img
+											className="how-pos4 pointer-none"
+											src={mailIcon}
+											alt="ICON"
+										/>
+									</div>
+									<small className="text-danger fs-4 ">
+										{errors?.email && errors.email.message}
+									</small>
 								</div>
 
-								<div className="bor8 m-b-20 how-pos4-parent">
-									<input className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address" />
-									<img className="how-pos4 pointer-none" src={mailIcon} alt="ICON" />
+								<div className="m-b-20">
+									<div className="bor8 how-pos4-parent">
+										<input
+											className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30"
+											type="text"
+											name="mobile"
+											placeholder="Your Phone Number"
+											{...register("phone", registerOptions.phone)}
+										/>
+										<img
+											className="how-pos4 pointer-none "
+											src={phoneIcon}
+											alt="ICON"
+										/>
+									</div>
+									<small className="text-danger fs-4 ">
+										{errors?.phone && errors.phone.message}
+									</small>
 								</div>
 
-								<div className="bor8 m-b-20 how-pos4-parent">
-									<input className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="mobile" placeholder="Your Phone Number" />
-									<img className="how-pos4 pointer-none " src={phoneIcon} alt="ICON" />
-								</div>
-
-								<div class="bor8 m-b-30">
-									<textarea className="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="How Can We Help?"></textarea>
+								<div className="m-b-30">
+									<div class="bor8 ">
+										<textarea
+											className="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25"
+											name="msg"
+											placeholder="How Can We Help?"
+											{...register("message", registerOptions.message)}
+										></textarea>
+									</div>
+									<small className="text-danger fs-4">
+										{errors?.message && errors.message.message}
+									</small>
 								</div>
 
 								<button className="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-									Submit
+									{isLoading == true ? <LoadingComponent />: "Submit"}
 								</button>
 							</form>
 						</div>
@@ -113,12 +181,11 @@ const Contact_us = () => {
 								</span>
 
 								<div class="size-212 p-t-2">
-									<span class="mtext-110 cl2">
-										Address
-									</span>
+									<span class="mtext-110 cl2">Address</span>
 
 									<p class="stext-115 cl6 size-213 p-t-18">
-										Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US
+										Coza Store Center 8th floor, 379 Hudson St, New York, NY
+										10018 US
 									</p>
 								</div>
 							</div>
@@ -129,13 +196,9 @@ const Contact_us = () => {
 								</span>
 
 								<div class="size-212 p-t-2">
-									<span class="mtext-110 cl2">
-										Lets Talk
-									</span>
+									<span class="mtext-110 cl2">Lets Talk</span>
 
-									<p class="stext-115 cl1 size-213 p-t-18">
-										+1 800 1236879
-									</p>
+									<p class="stext-115 cl1 size-213 p-t-18">+1 800 1236879</p>
 								</div>
 							</div>
 
@@ -145,9 +208,7 @@ const Contact_us = () => {
 								</span>
 
 								<div class="size-212 p-t-2">
-									<span class="mtext-110 cl2">
-										Sale Support
-									</span>
+									<span class="mtext-110 cl2">Sale Support</span>
 
 									<p class="stext-115 cl1 size-213 p-t-18">
 										contact@example.com
@@ -159,7 +220,7 @@ const Contact_us = () => {
 				</div>
 			</section>
 		</>
-	)
-}
+	);
+};
 
-export default Contact_us
+export default Contact_us;

@@ -1,9 +1,27 @@
 import React from "react";
+import { RepoUpdateMyProfile } from "../../../../../repositories/user.repo";
+import { useForm } from "react-hook-form";
 
-const MainAccountComponent = () => {
-    const user = {};
+const MainAccountComponent = ({ authData }) => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm({
+        values: {
+            name: authData?.name ?? '',
+            email: authData?.email ?? '',
+            bio: authData?.bio ?? ''
+        }
+    })
 
-    function handleSubmit() { }
+    const { mutate, isLoading } = RepoUpdateMyProfile()
+    const handleRegistration = data => mutate(data)
+
+    const registerOptions = {
+        name: { required: 'Name is required' },
+        email: { required: 'Email is required' }
+    }
 
     return (
         <div className="account">
@@ -17,7 +35,7 @@ const MainAccountComponent = () => {
             </h3>
             <hr className="my-4" />
             <div className="account-details">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(handleRegistration)}>
                     <div className="row">
                         <div className="col-12 col-md-6 p-3">
                             <input
@@ -25,8 +43,11 @@ const MainAccountComponent = () => {
                                 className="form-control p-4"
                                 placeholder="Please Enter Your Name"
                                 style={{ fontSize: "16px" }}
-                                onChange={(e) => { }}
+                                {...register('name', registerOptions.name)}
                             />
+                            <small className="text-danger fs-4">
+                                {errors?.name && errors.name.message}
+                            </small>
                         </div>
                         <div className="col-12 col-md-6 p-3">
                             <input
@@ -34,8 +55,11 @@ const MainAccountComponent = () => {
                                 className="form-control p-4"
                                 placeholder="Please Enter Your Email"
                                 style={{ fontSize: "16px" }}
-                                onChange={(e) => { }}
+                                {...register('email', registerOptions.email)}
                             />
+                            <small className="text-danger fs-4">
+                                {errors?.email && errors.email.message}
+                            </small>
                         </div>
 
                         <div className="col-12 p-3">
@@ -44,7 +68,7 @@ const MainAccountComponent = () => {
                                 className="form-control p-4"
                                 placeholder="Please Enter Your Description"
                                 style={{ fontSize: "16px" }}
-                                onChange={(e) => { }}
+                                {...register('bio')}
                             />
                         </div>
                     </div>
@@ -56,7 +80,13 @@ const MainAccountComponent = () => {
                                 backgroundColor: "#6c7ae0",
                             }}
                         >
-                            Save changes
+                            {isLoading == true ? (
+                                <div class="spinner-border" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            ) : (
+                                "Save changes"
+                            )}
                         </button>
                     </div>
                 </form>

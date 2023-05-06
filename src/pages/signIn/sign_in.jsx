@@ -1,9 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import "../../Styling/signin.css";
-import LoadingButton from "@mui/lab/LoadingButton";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RepoAuthLogin } from "../../repositories/auth.repo";
 import PageRoutes from "../../router/page_routes";
 import useAuth from "../../custom_hooks/use_auth";
@@ -129,7 +128,7 @@ const Sign_in = () => {
                                             Create an account
                                         </h2>
 
-                                        <form>
+                                        <form onSubmit={handleSubmit(handleRegistration)}>
                                             <div class="form-outline mb-4">
                                                 <input
                                                     type="email"
@@ -137,7 +136,11 @@ const Sign_in = () => {
                                                     class="form-control form-control-lg cus__Input"
                                                     placeholder="Your Email"
                                                     name="email"
+                                                    {...register("email", registerOptions.email)}
                                                 />
+                                                <small className="text-danger fs-4">
+                                                    {errors?.email && errors.email.message}
+                                                </small>
                                             </div>
 
                                             <div class="form-outline mb-4">
@@ -147,23 +150,36 @@ const Sign_in = () => {
                                                     class="form-control form-control-lg cus__Input"
                                                     placeholder="Your Password"
                                                     name="password"
-                                                    style={{ padding:"11px 10px" }}
+                                                    style={{ padding: "11px 10px" }}
+                                                    {...register("password", registerOptions.password)}
                                                 />
+                                                <small className="text-danger fs-4">
+                                                    {errors?.password && errors.password.message}
+                                                </small>
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <button
-                                                    type="button"
+                                                    type="submit"
                                                     class="btn my-3 btn__OwnHouver btn-block btn-lg gradient-custom-4 text-white col-6"
                                                 >
-                                                    Sing in
+                                                    {isLoading == true ? (
+                                                        <div class="spinner-border" role="status">
+                                                            <span class="visually-hidden">Loading...</span>
+                                                        </div>
+                                                    ) : (
+                                                        "Sing in"
+                                                    )}
                                                 </button>
                                             </div>
 
                                             <p class="text-center mt-4 mb-0 robotoFont__Body">
                                                 Don't Have a account?
-                                                <a href="#!" class="fw-bold text-body ms-3">
+                                                <Link
+                                                    to={PageRoutes.signUpRoute.path}
+                                                    class="fw-bold text-body ms-3"
+                                                >
                                                     <u>Sing Up Here</u>
-                                                </a>
+                                                </Link>
                                             </p>
                                         </form>
                                     </div>

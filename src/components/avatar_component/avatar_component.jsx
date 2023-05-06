@@ -20,7 +20,7 @@ const AvatarComponent = ({ src }) => {
                 </div>
             }
         >
-            <Avatar src={src} style={{ height: "150px", width: "150px" }} />
+            <Avatar src={src ?? "assets/user.png"} style={{ height: "150px", width: "150px" }} />
         </Badge>
     );
 }

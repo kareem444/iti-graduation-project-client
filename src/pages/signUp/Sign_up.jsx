@@ -3,11 +3,9 @@ import { useForm } from "react-hook-form";
 import "../../Styling/signup.css";
 import { RepoAuthRegister } from "../../repositories/auth.repo";
 import { useEffect } from "react";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PageRoutes from "../../router/page_routes";
 import useAuth from "../../custom_hooks/use_auth";
-
 
 const Signup = () => {
   const { mutate, isLoading } = RepoAuthRegister();
@@ -17,6 +15,7 @@ const Signup = () => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
   const handleRegistration = (data) => mutate(data);
   const handleError = (errors) => {
@@ -62,10 +61,16 @@ const Signup = () => {
         message: "Password must have at least 8 characters",
       },
       pattern: {
-        value:
-          /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        message:
-          "at least one letter, one number and one special character",
+        value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        message: "at least one letter, one number and one special character",
+      },
+    },
+    confirm_password: {
+      required: "Confirm password is required",
+      validate: (val) => {
+        if (watch("password") != val) {
+          return "Your passwords do no match";
+        }
       },
     },
     userType: { required: "Account Type is required" },
@@ -218,59 +223,131 @@ const Signup = () => {
               <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                 <div class="card card__style">
                   <div class="card-body p-5">
-                    <h2 class="text-uppercase text-center robotoFont mb-5">Create an account</h2>
+                    <h2 class="text-uppercase text-center robotoFont mb-5">
+                      Create an account
+                    </h2>
 
-                    <form>
-
+                    <form
+                      onSubmit={handleSubmit(handleRegistration, handleError)}
+                    >
                       <div class="form-outline mb-4">
-                        <input type="text" id="form3Example1cg" class="form-control form-control-lg cus__Input" placeholder="Your Name" name="userName" />
-
+                        <input
+                          type="text"
+                          id="form3Example1cg"
+                          class="form-control form-control-lg cus__Input"
+                          placeholder="Your Name"
+                          name="userName"
+                          {...register("name", registerOptions.name)}
+                        />
+                        <small className="text-danger fs-4 p-2">
+                          {errors?.name && errors.name.message}
+                        </small>
                       </div>
 
                       <div class="form-outline mb-4">
-                        <input type="email" id="form3Example3cg" class="form-control form-control-lg cus__Input" placeholder="Your Email" name="email" />
-
+                        <input
+                          type="email"
+                          id="form3Example3cg"
+                          class="form-control form-control-lg cus__Input"
+                          placeholder="Your Email"
+                          name="email"
+                          {...register("email", registerOptions.email)}
+                        />
+                        <small className="text-danger fs-4 p-2">
+                          {errors?.email && errors.email.message}
+                        </small>
                       </div>
 
                       <div class="form-outline mb-4">
-                        <input type="password" id="form3Example4cg" class="form-control form-control-lg cus__Input" placeholder="Your Password" name="password" style={{ padding:"12px 10px" }}/>
-
+                        <input
+                          type="password"
+                          id="form3Example4cg"
+                          class="form-control form-control-lg cus__Input"
+                          placeholder="Your Password"
+                          name="password"
+                          style={{ padding: "12px 10px" }}
+                          {...register("password", registerOptions.password)}
+                        />
+                        <small className="text-danger fs-4 p-2">
+                          {errors?.password && errors.password.message}
+                        </small>
                       </div>
 
                       <div class="form-outline mb-5">
-                        <input type="password" id="form3Example4cdg" class="form-control form-control-lg cus__Input" placeholder="Repeat Your Password" name="rePassword" style={{ padding:"12px 10px" }}/>
-
+                        <input
+                          type="password"
+                          id="form3Example4cdg"
+                          class="form-control form-control-lg cus__Input"
+                          placeholder="Repeat Your Password"
+                          name="rePassword"
+                          style={{ padding: "12px 10px" }}
+                          {...register(
+                            "confirm_password",
+                            registerOptions.confirm_password
+                          )}
+                        />
+                        <small className="text-danger fs-4 p-2">
+                          {errors?.confirm_password &&
+                            errors.confirm_password.message}
+                        </small>
                       </div>
 
                       <h3 className="mt-5 robotoFont__Body">User Type:</h3>
                       <div class="d-flex row justify-content-between mt-4 mb-4 w-100 ms-1">
-
-                        <div className="sign-up-user-type-btn col-5 col-md-4 justify-content-start ">
-                          <input type="radio" id="saller" value="saller" className="ms-2" name="accType" />
-                          <label htmlFor="saller">
-                            <span>SELLER</span>
-                          </label>
-
-                        </div>
                         <div className="sign-up-user-type-btn col-5 col-md-4 justify-content-start">
-                          <input type="radio" id="client" value="cleint" className="ms-2" name="accType" />
+                          <input
+                            type="radio"
+                            id="client"
+                            value="CLIENT"
+                            className="ms-2"
+                            name="accType"
+                            checked
+                            {...register("role")}
+                          />
                           <label htmlFor="client">
                             <span>Cleint</span>
                           </label>
                         </div>
-
+                        <div className="sign-up-user-type-btn col-5 col-md-4 justify-content-start ">
+                          <input
+                            type="radio"
+                            id="saller"
+                            value="SELLER"
+                            className="ms-2"
+                            name="accType"
+                            {...register("role")}
+                          />
+                          <label htmlFor="saller">
+                            <span>SELLER</span>
+                          </label>
+                        </div>
                       </div>
 
                       <div class="d-flex justify-content-center">
-                        <button type="button"
-                          class="mt-5 btn col-6 btn__OwnHouver btn-block btn-lg gradient-custom-4 text-white">Register</button>
+                        <button
+                          type="submit"
+                          class="mt-5 btn col-6 btn__OwnHouver btn-block btn-lg gradient-custom-4 text-white"
+                        >
+                          {isLoading == true ? (
+                            <div class="spinner-border" role="status">
+                              <span class="visually-hidden">Loading...</span>
+                            </div>
+                          ) : (
+                            "Register"
+                          )}
+                        </button>
                       </div>
 
-                      <p class="text-center text-muted mt-5 mb-0 robotoFont__Body">Have already an account? <a href="#!"
-                        class="fw-bold text-body"><u>Login here</u></a></p>
-
+                      <p class="text-center text-muted mt-5 mb-0 robotoFont__Body">
+                        Have already an account?
+                        <Link
+                          to={PageRoutes.signINRoute.path}
+                          class="fw-bold text-body ms-2"
+                        >
+                          <u>Login here</u>
+                        </Link>
+                      </p>
                     </form>
-
                   </div>
                 </div>
               </div>

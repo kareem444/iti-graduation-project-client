@@ -12,4 +12,6 @@ export const ENDPOINT_AUTH_REGISTER = ENDPOINT_AUTH + '/' + 'register'
 export const ENDPOINT_USER_PROFILE = ENDPOINT_USERS + '/' + 'profile'
 
 export const ENDPOINT_MYPRODUCTS = ENDPOINT_PRODUCTS + '/' + 'myProducts'
+export const ENDPOINT_MY_ORDERS = ENDPOINT_ORDERS + '/' + 'myOrders'
+
 export const ENDPOINT_ORDERS_SELLER = ENDPOINT_ORDERS + '/' + 'requestsOrders'

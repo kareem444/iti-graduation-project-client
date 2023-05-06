@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 import {
+  ENDPOINT_MY_ORDERS,
   ENDPOINT_ONE_ORDER,
   ENDPOINT_ORDERS,
   ENDPOINT_ORDERS_SELLER,
@@ -9,12 +10,19 @@ import {
   KEY_REPO_GET_OREDER,
   KEY_REPO_ORDERS,
   KEY_REPO_GET_ALL_MY_ORDERS,
+  KEY_REPO_GET_MY_ORDERS,
 } from "../utils/constants/queries_keys.constants";
 import AxiosApiHelper from "../helper/axios_api.helper";
 
 export const RepoGetOrders = () => {
   return useQuery([KEY_REPO_ORDERS], () =>
     AxiosApiHelper.get(ENDPOINT_ORDERS_SELLER + "/myorders")
+  );
+};
+
+export const RepoGetMyOrders = () => {
+  return useQuery([KEY_REPO_GET_MY_ORDERS], () =>
+    AxiosApiHelper.get(ENDPOINT_MY_ORDERS)
   );
 };
 

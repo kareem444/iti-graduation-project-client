@@ -2,7 +2,7 @@ import React from 'react';
 import { languagesOptions } from '../../utils/constants/language_options.constants';
 import { GlobeIcon } from '../../components/globe_Icon.component' ;
 import i18next from 'i18next';
-import useGetCurrentLanguage from '../../custom_hooks/use_get_current_language';
+import {useGetCurrentLanguage} from '../../custom_hooks/use_get_current_language';
 import { useTranslation } from 'react-i18next';
 
 const LanguageExampleComponent = () => {

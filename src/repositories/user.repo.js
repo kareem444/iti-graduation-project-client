@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import {
     ENDPOINT_CONTACTS,
     ENDPOINT_USERS,
@@ -11,30 +11,48 @@ import {
 } from '../utils/constants/queries_keys.constants'
 import AxiosApiHelper from '../helper/axios_api.helper'
 import useAuth from '../custom_hooks/use_auth'
+import { useDispatch } from 'react-redux'
+import { showErrorAlert } from '../redux/global/global.reducer'
 
 export const RepoGetAllUsers = () => {
+    const dispatch = useDispatch();
+    
     return useQuery(KEY_REPO_GET_ALL_USERS, () =>
-        AxiosApiHelper.get(ENDPOINT_USERS)
+    AxiosApiHelper.get(ENDPOINT_USERS), {
+        onError: error => {
+            dispatch(showErrorAlert(error))
+        }
+    }
     )
 }
 
 export const RepoGetOneUser = userId => {
+    const dispatch = useDispatch();
     return useQuery([KEY_REPO_GET_One_USER, userId], () =>
-        AxiosApiHelper.get(ENDPOINT_USERS + '/' + userId)
+    AxiosApiHelper.get(ENDPOINT_USERS + '/' + userId), {
+        onError: error => {
+            dispatch(showErrorAlert(error))
+        }
+    }
     )
 }
 
 export const RepoUserProfile = () => {
+    const dispatch = useDispatch();
     return useQuery(
         [KEY_REPO_USER_PROFILE],
         () => AxiosApiHelper.get(ENDPOINT_USER_PROFILE),
         {
-            enabled: false
+            enabled: false,
+            onError: error => {
+                dispatch(showErrorAlert(error))
+            }
         }
-    )
-}
-
-export const RepoUpdateMyProfile = () => {
+        )
+    }
+    
+    export const RepoUpdateMyProfile = () => {
+    const dispatch = useDispatch();
     const { authData, setAuth } = useAuth()
 
     return useMutation(
@@ -66,6 +84,9 @@ export const RepoUpdateMyProfile = () => {
                     ...authData,
                     ...data
                 })
+            },
+            onError: error => {
+                dispatch(showErrorAlert(error))
             }
         }
     )
