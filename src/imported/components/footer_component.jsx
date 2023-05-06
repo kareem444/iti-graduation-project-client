@@ -36,7 +36,7 @@ const FooterComponent = () => {
                 to={"/about"}
                 className="  text-muted ft__headSize"
               >
-                About us
+                {translate("footer_About")}
               </NavLink>
             </p>
             <p>
@@ -44,7 +44,7 @@ const FooterComponent = () => {
                 to={"/products"}
                 className="  text-muted ft__headSize "
               >
-                Products
+                {translate("footer_Product")}
               </NavLink>
             </p>
             <p>
@@ -52,27 +52,27 @@ const FooterComponent = () => {
                 to={"/contactus"}
                 className="  text-muted  ft__headSize"
               >
-                Contact us
+                {translate("footer_Contact")}
               </NavLink>
             </p>
           </div>
         
           <div className=" col-3   mb-4">
             <h4 className=" fw-bold mb-4 text-white  ft__titleSize">
-    Account
+                   {translate("footer_Account")}
             </h4>
             <p>
               <NavLink
                to="/profile"
                 className="  text-muted ft__headSize"
-              >Profile</NavLink>
+              > {translate("footer_Profile")} </NavLink>
             </p>
             <p>
               <NavLink
                 to="/signin"
                 className="  text-muted ft__headSize"
               >
-                Sign In
+                {translate("footer_SingIn")}
               </NavLink>
             </p>
             <p>
@@ -80,13 +80,13 @@ const FooterComponent = () => {
                 to="/signup"
                 className="  text-muted  ft__headSize"
               >
-                Sign Up
+                {translate("footer_SingUp")}
               </NavLink></p>
           </div>
        <div className=" col-3   mb-4 ">
             <div>
-              <h4 className='hd__get'>Get In Touch !!</h4>
-              <p className='bd__get'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, eum natus? Voluptatum, esse? Aliquam, rem!</p>
+              <h4 className='hd__get'> {translate("footer_GetInTouch")} </h4>
+              <p className='bd__get'>{translate("footer_GetInTouchMsg")}</p>
             </div>
    
             <button className='px-5  py-3 rounded-pill  btn__OwnColor'>
@@ -94,7 +94,7 @@ const FooterComponent = () => {
                 to=""
                 className="text-white bd__get__btn"
               >
-                Contact Us
+                {translate("footer_GetInTouchBtn")}
               </NavLink></button>
           </div>
         </div>
@@ -104,7 +104,7 @@ const FooterComponent = () => {
                 to={"/"}
                 className=" "
               >
-              <p className='bd__get'> All copyright for DreamWedding.com 2023 &copy; </p>
+              <p className='bd__get'> {translate("footer_CopyRight")} &copy; </p>
               </NavLink>
           </div>{" "}
         </div>

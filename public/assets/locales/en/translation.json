@@ -32,5 +32,13 @@
   "footer_ex":"Explore",
   "footer_About":"About Us",
   "footer_Product":"Product",
-  "footer_Contact":"Contact US"
+  "footer_Contact":"Contact US",
+  "footer_Account":"Account",
+  "footer_Profile":"Profile",
+  "footer_SingUp":"Sing Up",
+  "footer_SingIn":"Sing In",
+  "footer_GetInTouch":"Get In Touch !!",
+  "footer_GetInTouchMsg":"If any issues arise or if you have any specific inquiries, please don't hesitate to contact us",
+  "footer_GetInTouchBtn":"Contact Us",
+  "footer_CopyRight":"All copyright for DreamWedding.com 2023 "
 }
