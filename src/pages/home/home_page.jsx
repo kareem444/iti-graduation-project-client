@@ -13,8 +13,11 @@ import {
 import CelebrationIcon from '@mui/icons-material/Celebration'
 import '../../Styling/home_page.css'
 import { useLang } from '../../custom_hooks/use_get_current_language'
+import PageRoutes from '../../router/page_routes'
+import {Link} from 'react-router-dom'
+
 const HomePage = () => {
-  const {translate,isArabic} = useLang()
+  const { translate, isArabic } = useLang()
 
   return (
     <>
@@ -52,10 +55,10 @@ const HomePage = () => {
                     {translate("first_carouselBody")}
                   </p>
                   <div className='mt-5'>
-                    <p>
-                      <a href='#' className='btn mt3'>
-                      {translate("first_carouselBtn")}
-                      </a>
+                    <p >
+                      <Link to={PageRoutes.productsRoute.path} className='btn mt3'>
+                        {translate("first_carouselBtn")}
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -69,9 +72,9 @@ const HomePage = () => {
                   </p>
                   <div className='mt-5'>
                     <p>
-                      <a href='#' className='btn mt3'>
-                      {translate("first_carouselBtn")}
-                      </a>
+                      <Link to={PageRoutes.productsRoute.path} className='btn mt3'>
+                        {translate("first_carouselBtn")}
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -85,9 +88,9 @@ const HomePage = () => {
                   </p>
                   <div className='mt-5'>
                     <p>
-                      <a href='#' className='btn  mt3'>
-                      {translate("first_carouselBtn")}
-                      </a>
+                      <Link to={PageRoutes.productsRoute.path} className='btn  mt3'>
+                        {translate("first_carouselBtn")}
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -130,7 +133,7 @@ const HomePage = () => {
             </div>
 
             <div className='col-md-4 px-5 my-5 text-center'>
-              <FontAwesomeIcon icon={faCamera}/>
+              <FontAwesomeIcon icon={faCamera} />
               <h2 className='RobotoFont px-4  mt-3 fs-1'> {translate("services_SecTitle")} </h2>
               <p className='RobotoFont px-4  p__Color fs-4'>
                 {translate("services_Secbody")}
@@ -140,7 +143,7 @@ const HomePage = () => {
               <FontAwesomeIcon icon={faChair} />
               <h2 className='RobotoFont px-4  mt-3 fs-1'> {translate("services_FirstTitle")} </h2>
               <p className='RobotoFont px-4  p__Color fs-4'>
-              {translate("services_Firstbody")}
+                {translate("services_Firstbody")}
               </p>
             </div>
           </div>
@@ -149,7 +152,7 @@ const HomePage = () => {
               <FontAwesomeIcon icon={faNewspaper} />
               <h2 className='RobotoFont px-4  mt-3 fs-1'> {translate("services_SixTitle")} </h2>
               <p className='RobotoFont px-4  p__Color fs-4'>
-              {translate("services_Sixbody")}
+                {translate("services_Sixbody")}
               </p>
             </div>
             <div className='col-md-4 px-5 my-5 text-center'>
