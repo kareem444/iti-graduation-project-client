@@ -58,10 +58,6 @@ const Total = () => {
 
   return (
     <>
-      <div className="basket-total text-right mt-5">
-        <span className="basket-total-title fs-2 me-3" style={{ color: "#888" }}>Total:</span>
-        <span className="basket-total-amount fs-2 me-3" style={{ color: "#222" }}>${totalPrice}</span>
-      </div>
       <br />
       <div className="checkout-shipping-action">
         <div

@@ -2,8 +2,8 @@ import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import Boundary from '../../../components/common/Boundary';
 import { Form, Formik } from 'formik';
 import { useDocumentTitle, useScrollTop } from '../../../hooks';
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import StepTracker from '../component/step_tracker_component';
@@ -54,6 +54,18 @@ const ShippingDetails = () => {
     navigate(PageRoutes.checkOutThirdStep.path);
   };
 
+  const cart = useSelector(state => state.order.cart)
+  const [totalPrice, setTotalPrice] = useState(0)
+
+  useEffect(() => {
+    if (cart.length > 0 && totalPrice < 1) {
+      cart.forEach(item => {
+        setTotalPrice(totalPrice + (item.totalPrice ?? item.price ?? 0))
+      })
+    } else {
+      navigate(PageRoutes.homeRoute.path)
+    }
+  }, [cart])
   return (
     <div className='content'>
       <Boundary>
@@ -72,7 +84,7 @@ const ShippingDetails = () => {
                   <br />
                   <div className="basket-total text-right">
                     <span className="basket-total-title fs-2 me-3" style={{ color: "#888" }}>Total:</span>
-                    <span className="basket-total-amount fs-2 me-3" style={{ color: "#222" }}>$50</span>
+                    <span className="basket-total-amount fs-2 me-3" style={{ color: "#222" }}>${totalPrice}</span>
                   </div>
                   <br />
                   <div className="checkout-shipping-action">

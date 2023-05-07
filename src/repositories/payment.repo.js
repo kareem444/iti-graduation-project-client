@@ -2,7 +2,7 @@ import {
   useMutation,
   useQuery,
 } from "@tanstack/react-query";
-import { ENDPOINT_PAYMENTS } from "../utils/constants/endpoints.constants";
+import { ENDPOINT_CREATE_PAYMENTS, ENDPOINT_INTENT_STRIPE, ENDPOINT_PAYMENTS } from "../utils/constants/endpoints.constants";
 import {
   KEY_REPO_GET_USER_PAYMENT,
   KEY_REPO_GET_PAYMENTS,
@@ -26,6 +26,12 @@ export const RepoGetOnePayment = (orderId) => {
 
 export const RepoCreatePayment = () => {
   return useMutation((orderId) =>
-    AxiosApiHelper.post(ENDPOINT_PAYMENTS + "/" + orderId)
+    AxiosApiHelper.post(ENDPOINT_CREATE_PAYMENTS + "/" + orderId)
+  );
+};
+
+export const RepoIntentStrip = () => {
+  return useMutation((data) =>
+    AxiosApiHelper.post(ENDPOINT_INTENT_STRIPE, data)
   );
 };

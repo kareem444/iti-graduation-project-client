@@ -1,71 +1,81 @@
-import { Form, Formik } from 'formik';
-import { displayActionMessage } from '../../../helpers/utils';
-import { useDocumentTitle, useScrollTop } from '../../../hooks';
-import React from 'react';
-import * as Yup from 'yup';
-import StepTracker from '../component/step_tracker_component';
-import CreditPayment from './CreditPayment';
-import PayPalPayment from './PayPalPayment';
-import Total from './Total';
+import { useDocumentTitle, useScrollTop } from "../../../hooks";
+import React, { useEffect } from "react";
+import StepTracker from "../component/step_tracker_component";
+import { loadStripe } from "@stripe/stripe-js";
+import {
+  Elements
+} from "@stripe/react-stripe-js";
+import { RepoIntentStrip } from "../../../../repositories/payment.repo";
+import { useState } from "react";
+import StripePayment from "./stripe_payment";
+import { useNavigate } from "react-router-dom";
+import PageRoutes from "../../../../router/page_routes";
+import { useSelector } from "react-redux";
 
-const FormSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(4, 'Name should be at least 4 characters.')
-    .required('Name is required'),
-  cardnumber: Yup.string()
-    .min(13, 'Card number should be 13-19 digits long')
-    .max(19, 'Card number should only be 13-19 digits long')
-    .required('Card number is required.'),
-  expiry: Yup.date()
-    .required('Credit card expiry is required.'),
-  ccv: Yup.string()
-    .min(3, 'CCV length should be 3-4 digit')
-    .max(4, 'CCV length should only be 3-4 digit')
-    .required('CCV is required.'),
-  type: Yup.string().required('Please select paymend mode')
-});
+const stripePromise = loadStripe(
+  "pk_test_51N52GABvLrAOD6UM0C8m54rfnqtBTAMKcm0lo1GFkfAdp7FhGkHbYSSL8urHOLUlor1wj7ey8qlFendH35YlZpoh00R8h55oYO"
+);
 
-const Payment = ({ shipping, payment, subtotal }) => {
-  useDocumentTitle('Check Out Final Step | Lunetas-cam');
+const Payment = ({ subtotal }) => {
+  useDocumentTitle("Check Out Final Step | Dreamy Weddings");
   useScrollTop();
 
-  const initFormikValues = {
-    name: payment?.name || '',
-    cardnumber: payment?.cardnumber || '',
-    expiry: payment?.expiry || '',
-    ccv: payment?.ccv || '',
-    type: payment?.type || 'paypal'
-  };
+  const navigate = useNavigate();
 
-  const onConfirm = () => {
-    displayActionMessage('Feature not ready yet :)', 'info');
+  const [clientSecrete, setClientSecrete] = useState(null);
+
+  const { mutate, data } = RepoIntentStrip();
+
+  const cart = useSelector(state => state.order.cart)
+  const [totalPrice, setTotalPrice] = useState(0)
+
+  useEffect(() => {
+    if (cart.length > 0 && totalPrice < 1) {
+      cart.forEach(item => {
+        setTotalPrice(totalPrice + (item.totalPrice ?? item.price))
+      })
+    } else {
+      navigate(PageRoutes.homeRoute.path)
+    }
+  }, [cart])
+
+  useEffect(() => {
+    mutate({ amount: subtotal ?? 4 });
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setClientSecrete(data);
+    }
+  }, [data]);
+
+  const options = {
+    clientSecret: clientSecrete,
   };
 
   return (
-    <div className='content'>
+    <div className="content">
       <div className="checkout">
         <StepTracker current={3} />
-        <Formik
-          initialValues={initFormikValues}
-          validateOnChange
-          validationSchema={FormSchema}
-          validate={(form) => {
-            if (form.type === 'paypal') {
-              displayActionMessage('Feature not ready yet :)', 'info');
-            }
-          }}
-          onSubmit={onConfirm}
-        >
-          {() => (
-            <Form className="checkout-step-3">
-              <CreditPayment />
-              <PayPalPayment />
-              <Total
-                subtotal={subtotal}
-              />
-            </Form>
+        <div className="checkout-step-3">
+          <h3 className="text-center mt-5 my-5 fs-1" style={{ color: "#222" }}>
+            Payments
+          </h3>
+          {clientSecrete != null ? (
+            <Elements stripe={stripePromise} options={options}>
+              <StripePayment totalPrice={totalPrice} />
+            </Elements>
+          ) : (
+            <div></div>
           )}
-        </Formik>
+          {/* <Total subtotal={subtotal} /> */}
+          <div
+            onClick={() => navigate(PageRoutes.checkOutSecondStep.path)}
+            className='d-flex gap-2 check-out-buttons-controllers align-items-center mt-5 col-2'>
+            <img src="https://img.icons8.com/metro/26/null/back.png" height={15} />
+            <span className='fs-3 fw-bold'>Go Back</span>
+          </div>
+        </div>
       </div>
     </div>
   );
