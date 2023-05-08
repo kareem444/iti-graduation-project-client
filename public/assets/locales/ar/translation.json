@@ -52,5 +52,12 @@
   "contact_placeHolderEmail":"عنوان البريد الالكتروني",
   "contact_placeHolderPhone":"رقم الهاتف المحمول ",
   "contact_placeHolderMsg":"كيف يمكننا مساعدة ؟",
-  "contact_placeHolderbtn":"إرسال"
+  "contact_placeHolderbtn":"إرسال",
+
+  "contact_infoAddress":"العنوان",
+  "contact_infoAddressBody":"القرية الذكية مبنى 5",
+  "contact_infotalk":"للتواصل معنا عبر الهاتف",
+  "contact_infotalkBody":"+201023456789",
+  "contact_infoSale":"الايميل للمساعدة",
+  "contact_infoSaleBody":"Contact@DreamWedding.com"
 }

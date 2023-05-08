@@ -11,7 +11,7 @@ import LoadingComponent from "../../components/loading_component/loading_compone
 import { useLang } from '../../custom_hooks/use_get_current_language';
 
 const Contact_us = () => {
-	const {translate,isArabic} = useLang();
+	const {translate} = useLang();
 	const { mutate, isLoading } = RepoCreateContact()
 	const {
 		register,
@@ -95,6 +95,7 @@ const Contact_us = () => {
 							<form onSubmit={handleSubmit(handleRegistration)}>
 								<h4 className="mtext-105 cl2 txt-center p-b-30">
 									{translate("contact_SendUSTitle")}
+									
 								</h4>
 
 								<div className="m-b-20">
@@ -183,11 +184,10 @@ const Contact_us = () => {
 								</span>
 
 								<div class="size-212 p-t-2">
-									<span class="mtext-110 cl2">Address</span>
+									<span class="mtext-110 cl2"> {translate("contact_infoAddress")} </span>
 
 									<p class="stext-115 cl6 size-213 p-t-18">
-										Coza Store Center 8th floor, 379 Hudson St, New York, NY
-										10018 US
+										{translate("contact_infoAddressBody")}
 									</p>
 								</div>
 							</div>
@@ -198,9 +198,9 @@ const Contact_us = () => {
 								</span>
 
 								<div class="size-212 p-t-2">
-									<span class="mtext-110 cl2">Lets Talk</span>
+									<span class="mtext-110 cl2">{translate("contact_infotalk")}</span>
 
-									<p class="stext-115 cl1 size-213 p-t-18">+1 800 1236879</p>
+									<p class="stext-115 cl1 size-213 p-t-18"> {translate("contact_infotalkBody")} </p>
 								</div>
 							</div>
 
@@ -210,10 +210,10 @@ const Contact_us = () => {
 								</span>
 
 								<div class="size-212 p-t-2">
-									<span class="mtext-110 cl2">Sale Support</span>
+									<span class="mtext-110 cl2"> {translate("contact_infoSale")} </span>
 
 									<p class="stext-115 cl1 size-213 p-t-18">
-										contact@example.com
+										{translate("contact_infoSaleBody")}
 									</p>
 								</div>
 							</div>
