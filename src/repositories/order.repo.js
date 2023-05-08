@@ -57,9 +57,6 @@ export const RepoCreateOrder = () => {
   const navigate = useNavigate();
 
   return useMutation((data) => AxiosApiHelper.post(ENDPOINT_ORDERS, data), {
-    onSuccess: (data) => {
-      navigate(PageRoutes.checkOutFirstStep.path);
-    },
     onError: (error) => {
       dispatch(showErrorAlert(error));
     },

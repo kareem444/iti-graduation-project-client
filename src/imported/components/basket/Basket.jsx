@@ -1,13 +1,14 @@
 import "../../../Styling/basket.css"
 import React, { useEffect, useState } from 'react';
 import { CloseOutlined } from '@ant-design/icons';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Boundary from '../common/Boundary';
 import BasketToggle from './BasketToggle';
 import BasketItem from './BasketItem';
 import { useDispatch, useSelector } from "react-redux";
 import { RepoCreateOrder, RepoGetMyOrders } from "../../../repositories/order.repo";
 import { addItemToCart } from "../../../redux/order/order.reducer";
+import PageRoutes from "../../../router/page_routes";
 
 const Basket = () => {
   const cart = useSelector(state => state.order.cart)
@@ -19,6 +20,7 @@ const Basket = () => {
     }
   })
 
+  const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const { mutate } = RepoCreateOrder()
@@ -27,10 +29,11 @@ const Basket = () => {
     if (cart.length > 0) {
       document.body.classList.remove('is-basket-open');
       await cart.forEach(async (value) => {
-        if(!value["_id"]){
+        if (!value["_id"]) {
           mutate(value)
         }
       })
+      navigate(PageRoutes.checkOutFirstStep.path);
     }
   };
 
@@ -95,7 +98,7 @@ const Basket = () => {
               key={`${product.id}_${i}`}
               product={product}
               index={i}
-              order = {cart[i]}
+              order={cart[i]}
             />
           ))}
         </div>
