@@ -40,5 +40,17 @@
   "footer_GetInTouch":"Get In Touch !!",
   "footer_GetInTouchMsg":"If any issues arise or if you have any specific inquiries, please don't hesitate to contact us",
   "footer_GetInTouchBtn":"Contact Us",
-  "footer_CopyRight":"All copyright for DreamWedding.com 2023 "
-}
+  "footer_CopyRight":"All copyright for DreamWedding.com 2023 ",
+  "About_title":"About",
+  "About_firstSecTitle":"Our Story",
+  "About_firstSecbody":"We are a group of young individuals who recognized the struggles that people face when planning and organizing their wedding. With our expertise in website design, we created this platform to help people efficiently plan and choose the most suitable wedding arrangements from a specialized marketplace, saving them time and effort",
+  "About_secnodSecTitle":"Our Mission",
+  "About_secnodSecBody":"We are committed to reaching a wide range of wedding planners to offer a vast selection of choices that cater to different tastes. We also strive to maintain a high level of quality execution for the ceremony and ensure that all content on our site is compliant with the law and free from any offensive material.",
+  "contact_title":"Contact",
+  "contact_SendUSTitle":"Send Us A Message",
+  "contact_placeHolderName":"Your Name",
+  "contact_placeHolderEmail":"Your Email Address",
+  "contact_placeHolderPhone":"Your Phone Number",
+  "contact_placeHolderMsg":"How can we Help You ?",
+  "
+}contact_placeHolderbtn":"Submit"

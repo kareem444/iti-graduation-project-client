@@ -14,7 +14,7 @@ import CelebrationIcon from '@mui/icons-material/Celebration'
 import '../../Styling/home_page.css'
 import { useLang } from '../../custom_hooks/use_get_current_language'
 const HomePage = () => {
-  const {translate,isArabic} = useLang()
+  const {translate} = useLang()
 
   return (
     <>

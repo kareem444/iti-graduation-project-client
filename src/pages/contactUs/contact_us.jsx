@@ -8,8 +8,10 @@ import phoneIcon from "../../imported/images/icons/icons8-phone-22.png";
 import profileIcon from "../../imported/images/icons/icons8-administrator-male-22.png";
 import { RepoCreateContact } from "../../repositories/contact.repo";
 import LoadingComponent from "../../components/loading_component/loading_component";
+import { useLang } from '../../custom_hooks/use_get_current_language';
 
 const Contact_us = () => {
+	const {translate,isArabic} = useLang();
 	const { mutate, isLoading } = RepoCreateContact()
 	const {
 		register,
@@ -83,7 +85,7 @@ const Contact_us = () => {
 				className="bg-img1 txt-center p-lr-15 p-tb-92 contact__bk d-flex justify-content-center align-items-center"
 				style={{ backgroundImage: "url(" + background + ")", height: "40vh" }}
 			>
-				<h2 className="ltext-105 cl0 txt-center mt-lg-5">Contact</h2>
+				<h2 className="ltext-105 cl0 txt-center mt-lg-5"> {translate("contact_title")} </h2>
 			</section>
 
 			<section className="bg0 p-t-104 p-b-116">
@@ -92,7 +94,7 @@ const Contact_us = () => {
 						<div className="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
 							<form onSubmit={handleSubmit(handleRegistration)}>
 								<h4 className="mtext-105 cl2 txt-center p-b-30">
-									Send Us A Message
+									{translate("contact_SendUSTitle")}
 								</h4>
 
 								<div className="m-b-20">
@@ -101,7 +103,7 @@ const Contact_us = () => {
 											className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30"
 											type="text"
 											name="userName"
-											placeholder="Your Name"
+											placeholder={translate("contact_placeHolderName")}
 											{...register("name", registerOptions.name)}
 										/>
 										<img
@@ -120,7 +122,7 @@ const Contact_us = () => {
 											className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30"
 											type="text"
 											name="email"
-											placeholder="Your Email Address"
+											placeholder={translate("contact_placeHolderEmail")}
 											{...register("email", registerOptions.email)}
 										/>
 										<img
@@ -140,7 +142,7 @@ const Contact_us = () => {
 											className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30"
 											type="text"
 											name="mobile"
-											placeholder="Your Phone Number"
+											placeholder={translate("contact_placeHolderPhone")}
 											{...register("phone", registerOptions.phone)}
 										/>
 										<img
@@ -159,7 +161,7 @@ const Contact_us = () => {
 										<textarea
 											className="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25"
 											name="msg"
-											placeholder="How Can We Help?"
+											placeholder={translate("contact_placeHolderMsg")}
 											{...register("message", registerOptions.message)}
 										></textarea>
 									</div>
@@ -169,7 +171,7 @@ const Contact_us = () => {
 								</div>
 
 								<button className="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-									{isLoading == true ? <LoadingComponent />: "Submit"}
+									{isLoading == true ? <LoadingComponent />: translate("contact_placeHolderbtn") } 
 								</button>
 							</form>
 						</div>
