@@ -48,13 +48,14 @@ const UserAvatarComponent = ({ authData, logout }) => {
       </h5>
       <img src={dropDownIcon} className="ms-3" height={15} />
       <div className="user-nav-sub mt-4">
-        <Link to={PageRoutes.accountRoute.path} className="user-nav-sub-link fw-bold">
+        <Link to={PageRoutes.accountRoute.path} className="user-nav-sub-link fw-bold" style={{ color:"#222" }}>
           <img src="https://img.icons8.com/pastel-glyph/64/null/person-male--v1.png" height={25} />
           Profile
         </Link>
         <a
           className="user-nav-sub-link margin-0 d-flex fw-bold"
           onClick={() => logout()}
+          style={{ color:"#222" }}
         >
           <img src="https://img.icons8.com/pastel-glyph/64/null/last-1.png" height={20} />
           SIGN OUT

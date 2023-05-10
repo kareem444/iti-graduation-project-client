@@ -12,13 +12,13 @@ import {
 import AxiosApiHelper from '../helper/axios_api.helper'
 import useAuth from '../custom_hooks/use_auth'
 import { useDispatch } from 'react-redux'
-import { showErrorAlert } from '../redux/global/global.reducer'
+import { showErrorAlert, showSuccessAlert } from '../redux/global/global.reducer'
 
 export const RepoGetAllUsers = () => {
     const dispatch = useDispatch();
-    
+
     return useQuery(KEY_REPO_GET_ALL_USERS, () =>
-    AxiosApiHelper.get(ENDPOINT_USERS), {
+        AxiosApiHelper.get(ENDPOINT_USERS), {
         onError: error => {
             dispatch(showErrorAlert(error))
         }
@@ -29,7 +29,7 @@ export const RepoGetAllUsers = () => {
 export const RepoGetOneUser = userId => {
     const dispatch = useDispatch();
     return useQuery([KEY_REPO_GET_One_USER, userId], () =>
-    AxiosApiHelper.get(ENDPOINT_USERS + '/' + userId), {
+        AxiosApiHelper.get(ENDPOINT_USERS + '/' + userId), {
         onError: error => {
             dispatch(showErrorAlert(error))
         }
@@ -48,10 +48,10 @@ export const RepoUserProfile = () => {
                 dispatch(showErrorAlert(error))
             }
         }
-        )
-    }
-    
-    export const RepoUpdateMyProfile = () => {
+    )
+}
+
+export const RepoUpdateMyProfile = () => {
     const dispatch = useDispatch();
     const { authData, setAuth } = useAuth()
 
@@ -84,6 +84,7 @@ export const RepoUserProfile = () => {
                     ...authData,
                     ...data
                 })
+                dispatch(showSuccessAlert("Profile updated successfully"))
             },
             onError: error => {
                 dispatch(showErrorAlert(error))

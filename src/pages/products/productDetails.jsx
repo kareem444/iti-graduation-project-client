@@ -12,6 +12,7 @@ import { RepoCreateComment } from "../../repositories/comment.repo";
 import ProductReviewsComponent from "./components/product_reviews.component";
 import { DatePicker } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
+import { RepoCreateOrder } from "../../repositories/order.repo";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -32,6 +33,8 @@ const ProductDetails = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const { mutate } = RepoCreateOrder();
 
   const handleRegistration = (data) => {
     let totalPrice = 0;
@@ -63,7 +66,8 @@ const ProductDetails = () => {
       },
     };
 
-    dispatch(addItemToCart(createCartItem));
+    mutate(createCartItem);
+
   };
 
   return (

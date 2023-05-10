@@ -9,7 +9,9 @@ const BasketItem = ({ product, index, order }) => {
   const dispatch = useDispatch();
 
   const { mutate } = RepoDeleteOrder()
-
+console.log('====================================')
+console.log(order)
+console.log('====================================')
   return (
     <div className="d-flex align-items-center border my-4 rounded-3" >
       <div className="basket-item-img-wrapper">
@@ -21,7 +23,7 @@ const BasketItem = ({ product, index, order }) => {
       </div>
       <div className="ms-3">
         <Link
-          to={`/product/${product?.product?.id}`}
+          to={`/productdetails/${order?.product?.id}`}
           onClick={() => document.body.classList.remove("is-basket-open")}
         >
           <h4 className="my-3 fs-4 fw-bold" style={{ color: "#222" }}>{product.name}</h4>

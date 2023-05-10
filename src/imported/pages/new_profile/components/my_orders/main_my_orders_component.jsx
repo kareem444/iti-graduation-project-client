@@ -48,7 +48,7 @@ const MainMyOrdersComponent = () => {
           {data?.map((order) => {
             return (
               <div className="order-box border w-100 rounded my-3">
-                <Link to="/" className="d-block box-link">
+                <Link to={"/productDetails/" + order.product.id} className="d-block box-link">
                   <div className="d-flex flex-column flex-sm-row justify-content-sm-between">
                     <div className="d-flex flex-column flex-sm-row justify-content-sm-between text-center text-sm-start">
                       <div className="order-first-item p-lg-3">

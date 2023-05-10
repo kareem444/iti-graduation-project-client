@@ -8,6 +8,7 @@ import ProgressLineComponent from '../../components/progress_line_component/prog
 import NavBarComponent from '../../imported/components/nav_bar_component';
 import Basket from  '../../imported/components/basket/Basket'
 import FooterComponent from '../../imported/components/footer_component';
+import SuccessAlertComponent from '../../components/success_alert/success_alert_component';
 
 const LayoutPage = () => {
     const { dir } = useLang()
@@ -23,6 +24,7 @@ const LayoutPage = () => {
             <NavBarComponent />
             <ProgressLineComponent />
             <ErrorAlertComponent />
+            <SuccessAlertComponent />
             <Basket />
             {/* The ExampleComponent component is for testing only you have to comment it in publish */}
             <Outlet />

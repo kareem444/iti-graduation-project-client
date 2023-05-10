@@ -14,10 +14,11 @@ import {
 } from "../utils/constants/queries_keys.constants";
 import AxiosApiHelper from "../helper/axios_api.helper";
 import { useDispatch } from "react-redux";
-import { showErrorAlert } from "../redux/global/global.reducer";
+import { showErrorAlert, showSuccessAlert } from "../redux/global/global.reducer";
 import { useNavigate } from "react-router-dom";
 import PageRoutes from "../router/page_routes";
 import useAuth from "../custom_hooks/use_auth";
+import { addItemToCart } from "../redux/order/order.reducer";
 
 export const RepoGetOrders = () => {
   return useQuery([KEY_REPO_ORDERS], () =>
@@ -57,6 +58,10 @@ export const RepoCreateOrder = () => {
   const navigate = useNavigate();
 
   return useMutation((data) => AxiosApiHelper.post(ENDPOINT_ORDERS, data), {
+    onSuccess: (date, data) => {
+      dispatch(addItemToCart(data));
+      dispatch(showSuccessAlert("Order created successfully"));
+    },
     onError: (error) => {
       dispatch(showErrorAlert(error));
     },
@@ -64,11 +69,23 @@ export const RepoCreateOrder = () => {
 };
 
 export const RepoUpdateOrder = () => {
+  const dispatch = useDispatch();
   return useMutation((order) =>
-    AxiosApiHelper.patch(ENDPOINT_ORDERS + "/" + order["_id"], order)
+    AxiosApiHelper.patch(ENDPOINT_ORDERS + "/" + order["_id"], order), {
+    onSuccess: () => {
+      dispatch(showSuccessAlert("Order updated successfully"));
+    }
+  }
   );
 };
 
 export const RepoDeleteOrder = () => {
-  return useMutation((id) => AxiosApiHelper.delete(ENDPOINT_ORDERS + "/" + id));
+  const dispatch = useDispatch();
+  return useMutation((id) => AxiosApiHelper.delete(ENDPOINT_ORDERS + "/" + id),
+    {
+      onSuccess: () => {
+        dispatch(showSuccessAlert("Order deleted successfully"));
+      }
+    }
+  );
 };

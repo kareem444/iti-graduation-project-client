@@ -10,12 +10,19 @@ export const globalSlice = createSlice({
             state.showErrorAlert = true;
             state.error = action.payload
         },
+        showSuccessAlert: (state, action) => {
+            state.showSuccessAlert = true;
+            state.successMessage = action.payload
+        },
         hideErrorAlert: (state) => {
             state.showErrorAlert = false
         },
+        hideSuccessAlert: (state) => {
+            state.showSuccessAlert = false
+        }
     },
 })
 
-export const { showErrorAlert, hideErrorAlert } = globalSlice.actions
+export const { showErrorAlert, hideErrorAlert , hideSuccessAlert, showSuccessAlert} = globalSlice.actions
 
 export default globalSlice.reducer

@@ -130,6 +130,7 @@ const ProductReviewsComponent = ({ product }) => {
                                                         createComment({
                                                             id: product["_id"],
                                                             comment: enteredComment,
+                                                            productId : product["_id"]
                                                         });
                                                         setEnteredComment("");
                                                     }}

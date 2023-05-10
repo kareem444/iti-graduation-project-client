@@ -9,6 +9,8 @@ import {
 } from "../utils/constants/queries_keys.constants";
 
 import AxiosApiHelper from "../helper/axios_api.helper";
+import { useDispatch } from "react-redux";
+import { showSuccessAlert } from "../redux/global/global.reducer";
 
 export const RepoGetAllPayments = () => {
   return useQuery([KEY_REPO_GET_PAYMENTS], () =>
@@ -25,8 +27,13 @@ export const RepoGetOnePayment = (orderId) => {
 };
 
 export const RepoCreatePayment = () => {
+  const dispatch = useDispatch()
   return useMutation((orderId) =>
-    AxiosApiHelper.post(ENDPOINT_CREATE_PAYMENTS + "/" + orderId)
+    AxiosApiHelper.post(ENDPOINT_CREATE_PAYMENTS + "/" + orderId),{
+      onSuccess: (res) => {
+        dispatch(showSuccessAlert("Payment Created Successfully"))
+      }
+    }
   );
 };
 

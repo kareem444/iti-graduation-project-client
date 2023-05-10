@@ -33,16 +33,16 @@ const Basket = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const { mutate } = RepoCreateOrder();
+  // const { mutate } = RepoCreateOrder();
 
   const onCheckOut = async () => {
     if (cart.length > 0) {
       document.body.classList.remove("is-basket-open");
-      await cart.forEach(async (value) => {
-        if (!value["_id"]) {
-          mutate(value);
-        }
-      });
+      // cart.forEach(async (value) => {
+      //   if (!value["_id"]) {
+      //     mutate(value);
+      //   }
+      // });
       navigate(PageRoutes.checkOutFirstStep.path);
     }
   };
