@@ -47,7 +47,7 @@
   "About_secnodSecTitle":"مهمتنا",
   "About_secnodSecBody":"نحن ملتزمون بالوصول إلى مجموعة واسعة من منظمي حفلات الزفاف لتقديم مجموعة واسعة من الخيارات التي تلبي مختلف الأذواق. كما نسعى جاهدين للحفاظ على مستوى عالٍ من الجودة في تنفيذ الحفل والتأكد من أن جميع محتويات موقعنا متوافقة مع القانون وخالية من أي مواد مسيئة.",
   "contact_title":"تواصل معنا",
-  "contact_SendUSTitle":"أرسل لنا رسالة",
+  "contact_SendUSTitle":"تواصل معنا",
   "contact_placeHolderName":"اسم المستخدم",
   "contact_placeHolderEmail":"عنوان البريد الالكتروني",
   "contact_placeHolderPhone":"رقم الهاتف المحمول ",
@@ -59,5 +59,12 @@
   "contact_infotalk":"للتواصل معنا عبر الهاتف",
   "contact_infotalkBody":"+201023456789",
   "contact_infoSale":"الايميل للمساعدة",
-  "contact_infoSaleBody":"Contact@DreamWedding.com"
+  "contact_infoSaleBody":"Contact@DreamWedding.com",
+
+  "singIn_title":"تسجيل الدخول",
+  "singIn_userName":"البريد الالكتروني",
+  "singIn_userPass":"كلمة السر",
+  "singIn_userBtn":"تسجيل الدخول",
+  "singIn_userSwap":"إذا كنت لا تملك حساب؟ ",
+  "singIn_userSwapLink":"إنشاء حساب جديد"
 }

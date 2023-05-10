@@ -85,7 +85,7 @@ const Contact_us = () => {
 				className="bg-img1 txt-center p-lr-15 p-tb-92 contact__bk d-flex justify-content-center align-items-center"
 				style={{ backgroundImage: "url(" + background + ")", height: "40vh" }}
 			>
-				<h2 className="ltext-105 cl0 txt-center mt-lg-5"> {translate("contact_title")} </h2>
+				<h2 className="ltext-105 cl0 txt-center mt-lg-5 RobotoFont"> {translate("contact_title")} </h2>
 			</section>
 
 			<section className="bg0 p-t-104 p-b-116">
@@ -93,7 +93,7 @@ const Contact_us = () => {
 					<div className="flex-w flex-tr">
 						<div className="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
 							<form onSubmit={handleSubmit(handleRegistration)}>
-								<h4 className="mtext-105 cl2 txt-center p-b-30">
+								<h4 className="mtext-105 cl2 txt-center p-b-30 RobotoFont">
 									{translate("contact_SendUSTitle")}
 									
 								</h4>
@@ -101,7 +101,7 @@ const Contact_us = () => {
 								<div className="m-b-20">
 									<div className="bor8 how-pos4-parent">
 										<input
-											className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30"
+											className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30 RobotoFont"
 											type="text"
 											name="userName"
 											placeholder={translate("contact_placeHolderName")}
@@ -120,7 +120,7 @@ const Contact_us = () => {
 								<div className="m-b-20">
 									<div className="bor8 how-pos4-parent">
 										<input
-											className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30"
+											className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30 RobotoFont"
 											type="text"
 											name="email"
 											placeholder={translate("contact_placeHolderEmail")}
@@ -140,7 +140,7 @@ const Contact_us = () => {
 								<div className="m-b-20">
 									<div className="bor8 how-pos4-parent">
 										<input
-											className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30"
+											className="stext-111 cl2 plh3 size-116 p-l-62 p-r-30 RobotoFont"
 											type="text"
 											name="mobile"
 											placeholder={translate("contact_placeHolderPhone")}
@@ -157,7 +157,7 @@ const Contact_us = () => {
 									</small>
 								</div>
 
-								<div className="m-b-30">
+								<div className="m-b-30 RobotoFont">
 									<div class="bor8 ">
 										<textarea
 											className="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25"
@@ -171,7 +171,7 @@ const Contact_us = () => {
 									</small>
 								</div>
 
-								<button className="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+								<button className="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer RobotoFont">
 									{isLoading == true ? <LoadingComponent />: translate("contact_placeHolderbtn") } 
 								</button>
 							</form>
@@ -184,9 +184,9 @@ const Contact_us = () => {
 								</span>
 
 								<div class="size-212 p-t-2">
-									<span class="mtext-110 cl2"> {translate("contact_infoAddress")} </span>
+									<span class="mtext-110 cl2 RobotoFont"> {translate("contact_infoAddress")} </span>
 
-									<p class="stext-115 cl6 size-213 p-t-18">
+									<p class="stext-115 cl6 size-213 p-t-18 RobotoFont">
 										{translate("contact_infoAddressBody")}
 									</p>
 								</div>
@@ -198,9 +198,9 @@ const Contact_us = () => {
 								</span>
 
 								<div class="size-212 p-t-2">
-									<span class="mtext-110 cl2">{translate("contact_infotalk")}</span>
+									<span class="mtext-110 cl2 RobotoFont">{translate("contact_infotalk")}</span>
 
-									<p class="stext-115 cl1 size-213 p-t-18"> {translate("contact_infotalkBody")} </p>
+									<p class="stext-115 cl1 size-213 p-t-18 RobotoFont"> {translate("contact_infotalkBody")} </p>
 								</div>
 							</div>
 
@@ -210,9 +210,9 @@ const Contact_us = () => {
 								</span>
 
 								<div class="size-212 p-t-2">
-									<span class="mtext-110 cl2"> {translate("contact_infoSale")} </span>
+									<span class="mtext-110 cl2 RobotoFont"> {translate("contact_infoSale")} </span>
 
-									<p class="stext-115 cl1 size-213 p-t-18">
+									<p class="stext-115 cl1 size-213 p-t-18 RobotoFont">
 										{translate("contact_infoSaleBody")}
 									</p>
 								</div>

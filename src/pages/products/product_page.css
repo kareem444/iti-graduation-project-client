@@ -2,6 +2,10 @@
   color: yellow !important;
 }
 
+.RobotoFont{
+  font-family: var(--Roboto-font) !important;
+}
+
 .product_page_button_search{
     font-family: var(--Roboto-font);
     font-size: 2rem;

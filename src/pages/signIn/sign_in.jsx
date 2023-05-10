@@ -6,8 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { RepoAuthLogin } from "../../repositories/auth.repo";
 import PageRoutes from "../../router/page_routes";
 import useAuth from "../../custom_hooks/use_auth";
-
+import { useLang } from '../../custom_hooks/use_get_current_language';
 const Sign_in = () => {
+    const {translate} = useLang();
     const { mutate, isLoading } = RepoAuthLogin();
     const navigate = useNavigate();
 
@@ -125,7 +126,7 @@ const Sign_in = () => {
                                 <div class="card card__style">
                                     <div class="card-body p-5">
                                         <h2 class="text-uppercase text-center mt-3 mb-5">
-                                            Create an account
+                                        {translate("singIn_title")}
                                         </h2>
 
                                         <form onSubmit={handleSubmit(handleRegistration)}>
@@ -134,7 +135,7 @@ const Sign_in = () => {
                                                     type="email"
                                                     id="form3Example3cg"
                                                     class="form-control form-control-lg cus__Input"
-                                                    placeholder="Your Email"
+                                                    placeholder={translate("singIn_userName")}
                                                     name="email"
                                                     {...register("email", registerOptions.email)}
                                                 />
@@ -148,7 +149,7 @@ const Sign_in = () => {
                                                     type="password"
                                                     id="form3Example4cg"
                                                     class="form-control form-control-lg cus__Input"
-                                                    placeholder="Your Password"
+                                                    placeholder={translate("singIn_userPass")}
                                                     name="password"
                                                     style={{ padding: "11px 10px" }}
                                                     {...register("password", registerOptions.password)}
@@ -167,18 +168,18 @@ const Sign_in = () => {
                                                             <span class="visually-hidden">Loading...</span>
                                                         </div>
                                                     ) : (
-                                                        "Sing in"
+                                                        translate("singIn_userBtn")
                                                     )}
                                                 </button>
                                             </div>
 
                                             <p class="text-center mt-4 mb-0 robotoFont__Body">
-                                                Don't Have a account?
+                                                {translate("singIn_userSwap")}
                                                 <Link
                                                     to={PageRoutes.signUpRoute.path}
                                                     class="fw-bold text-body ms-3"
                                                 >
-                                                    <u>Sing Up Here</u>
+                                                    <u>{translate("singIn_userSwapLink")}</u>
                                                 </Link>
                                             </p>
                                         </form>

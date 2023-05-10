@@ -14,7 +14,7 @@ const AboutPage = () => {
                     className="bg-img1 txt-center p-lr-15 p-tb-92 contact__bk d-flex justify-content-center align-items-center"
                     style={{ backgroundImage: 'url(' + background + ')',height:"40vh" }}
                 >
-                    <h2 className="ltext-105 cl0 txt-center mt-lg-5">
+                    <h2 className="ltext-105 cl0 txt-center mt-lg-5 RobotoFont">
                         {translate('About_title')}
                         </h2>
                 </section>
@@ -23,10 +23,10 @@ const AboutPage = () => {
                         <div className="row p-b-148">
                             <div className="col-md-6 col-lg-7 ">
                                 <div className="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
-                                    <h3 className="mtext-111 cl2 p-b-16 ">
+                                    <h3 className="mtext-111 cl2 p-b-16 RobotoFont">
                                         {translate("About_firstSecTitle")}
                                     </h3>
-                                    <p className="stext-113 cl6 p-b-26 ">
+                                    <p className="stext-113 cl6 p-b-26 RobotoFont">
                                         {translate("About_firstSecbody")}
                                     </p>
                                 </div>
@@ -40,12 +40,12 @@ const AboutPage = () => {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="order-md-2 col-md-6 col-lg-7 me-5 p-b-30">
+                            <div className="order-md-2 col-md-6 col-lg-7 me-5 p-b-30 RobotoFont">
                                 <div className="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
-                                    <h3 className="mtext-111 cl2 p-b-16">
+                                    <h3 className="mtext-111 cl2 p-b-16 RobotoFont">
                                         {translate("About_secnodSecTitle")}
                                         </h3>
-                                    <p className="stext-113 cl6 p-b-26">
+                                    <p className="stext-113 cl6 p-b-26 RobotoFont">
                                         {translate("About_secnodSecBody")}
                                     </p>
                                 </div>

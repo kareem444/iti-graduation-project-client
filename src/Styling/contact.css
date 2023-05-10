@@ -5,6 +5,10 @@
   font-family: var(--inter-font) !important;
 }
 
+.RobotoFont{
+  font-family: var(--Roboto-font) !important;
+}
+
 .gentiumFont {
   font-family: var(--gentium-font) !important;
 }

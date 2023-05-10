@@ -68,5 +68,14 @@
   "contact_infotalk":"let's Talk",
   "contact_infotalkBody":"+201023456789",
   "contact_infoSale":"Sale Support",
-  "contact_infoSaleBody":"Contact@DreamWedding.com"
+  "contact_infoSaleBody":"Contact@DreamWedding.com",
+
+  "singIn_title":"Sing In",
+  "singIn_userName":"Your E-mail",
+  "singIn_userPass":"Your Password",
+  "singIn_userBtn":"Sing In",
+  "singIn_userSwap":"Don't Have a account?",
+  "singIn_userSwapLink":"Sing Up Here"
+
+
 }

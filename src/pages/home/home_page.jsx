@@ -58,7 +58,7 @@ const HomePage = () => {
                   </p>
                   <div className='mt-5'>
                     <p >
-                      <Link to={PageRoutes.productsRoute.path} className='btn mt3'>
+                      <Link to={PageRoutes.productsRoute.path} className='btn mt3 '>
                         {translate("first_carouselBtn")}
                       </Link>
                     </p>
