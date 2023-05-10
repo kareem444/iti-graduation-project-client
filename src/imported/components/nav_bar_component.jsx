@@ -8,18 +8,18 @@ import PageRoutes from "../../router/page_routes";
 import cartIcon from "../../imported/images/icons/icons8-shopping-cart-64.png";
 import useAuth from "../../custom_hooks/use_auth";
 import SwitchLanguageComponent from "../../components/switch_button_component/switch_button_component";
-// <<<<<<< HEAD
 import { useLang } from '../../custom_hooks/use_get_current_language';
-// =======
 import { useSelector } from "react-redux";
-// >>>>>>> 45b5e57b3d25e6432222fab6ef32ef81435efc92
 
 const NavBarComponent = () => {
-  const {translate,isArabic} = useLang()
+  const { translate, isArabic } = useLang()
   const { isAuth, logout, authData } = useAuth();
   const navbar = useRef(null);
   const { pathname } = useLocation();
-  const cart = useSelector(state => state.order.cart)
+  const cart = [
+    ...useSelector((state) => state.order.acceptedOrders),
+    ...useSelector((state) => state.order.cart),
+  ];
 
   const scrollHandler = () => {
     if (navbar.current && window.screen.width > 480) {

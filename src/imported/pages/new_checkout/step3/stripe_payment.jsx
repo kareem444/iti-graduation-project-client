@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { RepoGetMyOrders, RepoUpdateOrder } from '../../../../repositories/order.repo';
 import { RepoCreatePayment } from '../../../../repositories/payment.repo';
 import { useDispatch } from 'react-redux';
-import { clearCart } from '../../../../redux/order/order.reducer';
+import { clearAcceptedOrders } from '../../../../redux/order/order.reducer';
 import PageRoutes from '../../../../router/page_routes';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,6 +23,21 @@ const StripePayment = ({ totalPrice }) => {
     const [loading, setLoading] = useState(false);
 
     const [errorMessage, setErrorMessage] = useState(null)
+
+    const { data: myOrders } = RepoGetMyOrders();
+    const [order, setOrder] = useState([]);
+
+    useEffect(() => {
+        if (myOrders) {
+            let k = []
+            myOrders.forEach(el => {
+                if (el.status == "ACCEPTED") {
+                    k.push(el)
+                }
+            });
+            setOrder(k)
+        }
+    }, [myOrders])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,29 +62,14 @@ const StripePayment = ({ totalPrice }) => {
             } else if (paymentIntent && paymentIntent.status == "succeeded") {
                 order.forEach((value) => {
                     createPayment(value["_id"])
-                    updateOrder({ ...value, status: "ACCEPTED" })
+                    updateOrder({ ...value, status: "PAID" })
                 })
-                dispatch(clearCart())
+                dispatch(clearAcceptedOrders())
                 navigate(PageRoutes.homeRoute.path);
             }
             setLoading(false)
         }
     };
-
-    const { data: myOrders } = RepoGetMyOrders();
-    const [order, setOrder] = useState([]);
-
-    useEffect(() => {
-        if (myOrders) {
-            let k = []
-            myOrders.forEach(el => {
-                if (el.status == "PENDING") {
-                    k.push(el)
-                }
-            });
-            setOrder(k)
-        }
-    }, [myOrders])
 
     return (
         <form className="card p-5">

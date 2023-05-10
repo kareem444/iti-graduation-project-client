@@ -13,8 +13,8 @@ const OrderSummary = () => {
     const navigate = useNavigate();
     const onClickPrevious = () => navigate(PageRoutes.productsRoute.path);
     const onClickNext = () => navigate(PageRoutes.checkOutSecondStep.path);
-    const cart = useSelector(state => state.order.cart)
-    const basket = cart.map(product => {
+    const acceptedOrders = useSelector(state => state.order.acceptedOrders)
+    const basket = acceptedOrders.map(product => {
         return {
             price: product.totalPrice ?? product.price ?? 0,
             name: product.product.name,
@@ -25,16 +25,16 @@ const OrderSummary = () => {
     const [totalPrice, setTotalPrice] = useState(0)
 
     useEffect(() => {
-        if (cart.length > 0) {
+        if (acceptedOrders.length > 0) {
             let price = 0
-            cart.forEach(item => {
+            acceptedOrders.forEach(item => {
                 price += (item.totalPrice ?? item.price ?? 0)
             })
             setTotalPrice(price)
         } else {
             navigate(PageRoutes.homeRoute.path)
         }
-    }, [cart])
+    }, [acceptedOrders])
 
     return (
         <div className='content'>
@@ -49,7 +49,7 @@ const OrderSummary = () => {
                                 key={product.id}
                                 product={product}
                                 index={i}
-                                order = {cart[i]}
+                                order = {acceptedOrders[i]}
                             />
                         ))}
                     </div>

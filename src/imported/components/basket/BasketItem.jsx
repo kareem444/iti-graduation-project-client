@@ -30,17 +30,23 @@ const BasketItem = ({ product, index, order }) => {
           <h4 className="my-0 fs-4" style={{ color: "#888" }}>${product.price}</h4>
         </div>
       </div>
-      <img
-        src="https://img.icons8.com/ios-glyphs/30/null/delete-sign.png"
-        height={20}
-        style={{ cursor: "pointer", marginLeft: "auto", marginRight: "20px" }}
-        onClick={async () => {
-          if (order["_id"]) {
-            mutate(order["_id"])
-          }
-          dispatch(removeItemFromCart(index))
-        }}
-      />
+      <div className="ms-auto">
+        <span className="me-5" style={{
+          color: order?.status == "ACCEPTED" ?
+            "green" : "#222"
+        }}>{order?.status}</span>
+        <img
+          src="https://img.icons8.com/ios-glyphs/30/null/delete-sign.png"
+          height={20}
+          style={{ cursor: "pointer", marginRight: "20px" }}
+          onClick={async () => {
+            if (order["_id"]) {
+              mutate(order["_id"])
+            }
+            dispatch(removeItemFromCart(index))
+          }}
+        />
+      </div>
     </div>
   );
 };

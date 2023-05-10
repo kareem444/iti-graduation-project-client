@@ -10,10 +10,18 @@ import useAuth from "../../custom_hooks/use_auth";
 import { RepoCreateRate } from "../../repositories/rate.repo";
 import { RepoCreateComment } from "../../repositories/comment.repo";
 import ProductReviewsComponent from "./components/product_reviews.component";
+import { DatePicker } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
 
 const ProductDetails = () => {
   const params = useParams();
   const orderId = params.id;
+
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  console.log('====================================');
+  console.log(selectedDate);
+  console.log('====================================');
 
   const { data: product } = RepGetOneProduct(orderId);
 
@@ -46,6 +54,7 @@ const ProductDetails = () => {
       status: "PENDING",
       sellerId: product.ownerId,
       totalPrice: totalPrice,
+      date: selectedDate ?? new Date().toISOString(),
       product: {
         id: product["_id"],
         name: product.title,
@@ -90,57 +99,91 @@ const ProductDetails = () => {
                 </div>
                 <p className="stext-102 cl3 p-t-23">{product?.description}</p>
                 <p className="stext-102 cl3 p-t-23">
-                  Location: {product?.location}{" "}
+                  Location: {product?.location}
                 </p>
                 <div className="p-t-33">
                   <form
                     className="flex-w flex-r-m p-b-10"
                     onSubmit={handleSubmit(handleRegistration)}
                   >
-                    {product?.items.map((item, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="w-100 d-flex justify-content-between my-2"
-                        >
-                          <span className="product-item-desc me-2">
-                            {item.name}
-                          </span>
-                          <span className="product-item-desc me-2">
-                            ${item.price}
-                          </span>
-                          <div className="col-sm-3">
-                            <input
-                              type="number"
-                              min={item?.minQuantity}
-                              max={item?.maxQuantity}
-                              className="rounded w-100 product-page-input-product-details p-2"
-                              placeholder="Quantity"
-                              defaultValue={item?.minQuantity}
-                              {...register(`${index}`, {
-                                required: item?.minQuantity > 0,
-                                validate: (value) => {
-                                  if (
-                                    value < item?.minQuantity ||
-                                    value > item?.maxQuantity
-                                  ) {
-                                    return false;
-                                  } else {
-                                    return true;
+                    <div className="my-3 col-10 d-flex justify-content-between m-auto">
+                      <label className="fs-2 col-6 ms-2">Choose Day</label>
+                      <DatePicker
+                        shouldDisableDate={(date) => {
+                          date.setHours(0, 0, 0, 0);
+                          return product?.notAvailableDAtes.includes(
+                            date.toISOString()
+                          );
+                        }}
+                        format="yyyy-MM-dd"
+                        className="col-6"
+                        onChangeCalendarDate={(date) => {
+                          date.setHours(0, 0, 0, 0);
+                          date.setDate(date.getDate() + 1);
+                          setSelectedDate(date.toISOString());
+                        }}
+                      />
+                    </div>
+                    <div className="row w-100 justify-content-center">
+                      {product?.items.map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="border p-3 rounded-4  d-flex flex-column col-10 my-3"
+                            style={{
+                            }}
+                          >
+                            <span className="product-item-desc fw-bold mb-2 col-12">
+                              {item.name}
+                            </span>
+                            <span className="product-item-desc col-12">
+                              {item.description}
+                            </span>
+                            <span className="product-item-desc fw-bold fs-2 my-3 col-12" >
+                              ${item.price}
+                            </span>
+                            <div className="col-12">
+                              <div className="d-flex">
+                                <input
+                                  type="number"
+                                  min={item?.minQuantity}
+                                  max={item?.maxQuantity}
+                                  className="rounded col-9 d-flex product-page-input-product-details p-2"
+                                  placeholder="Quantity"
+                                  defaultValue={item?.minQuantity}
+                                  {...register(`${index}`, {
+                                    required: item?.minQuantity > 0,
+                                    validate: (value) => {
+                                      if (
+                                        value < item?.minQuantity ||
+                                        value > item?.maxQuantity
+                                      ) {
+                                        return false;
+                                      } else {
+                                        return true;
+                                      }
+                                    },
+                                  })}
+                                />
+                                <span className="col-3 text-center">
+                                  {
+                                    item?.minQuantity == 0 ?
+                                      "Optional" :
+                                      "Max: " + item?.maxQuantity
                                   }
-                                },
-                              })}
-                            />
-                            {errors[`${index}`] && (
-                              <span className="fs-5 text-danger">
-                                The min allowed is {item?.minQuantity}-
-                                {item?.maxQuantity}
-                              </span>
-                            )}
+                                </span>
+                              </div>
+                              {errors[`${index}`] && (
+                                <span className="fs-5 text-danger col-12">
+                                  The min allowed is {item?.minQuantity}-
+                                  {item?.maxQuantity}
+                                </span>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
                     <div className="size-204 flex-w flex-m respon6-next">
                       <button
                         type="submit"
@@ -154,7 +197,7 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
-          <ProductReviewsComponent product={product}/>
+          <ProductReviewsComponent product={product} />
         </div>
       </section>
     </>

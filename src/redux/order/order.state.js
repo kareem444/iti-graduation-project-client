@@ -1,5 +1,6 @@
 let OrderState = {
-    cart: []
+    cart: [],
+    acceptedOrders: [],
 }
 
 export default OrderState

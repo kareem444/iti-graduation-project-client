@@ -40,32 +40,22 @@ const ShippingDetails = () => {
     },
   }
 
-  const shipping = {}
-
-  const initFormikValues = {
-    fullname: shipping?.fullname || profile.fullname || '',
-    email: shipping?.email || profile.email || '',
-    address: shipping?.address || profile.address || '',
-  };
-
-  const subtotal = 50
-
   const onSubmitForm = (form) => {
     navigate(PageRoutes.checkOutThirdStep.path);
   };
 
-  const cart = useSelector(state => state.order.cart)
+  const acceptedOrders = useSelector(state => state.order.acceptedOrders)
   const [totalPrice, setTotalPrice] = useState(0)
 
   useEffect(() => {
-    if (cart.length > 0 && totalPrice < 1) {
-      cart.forEach(item => {
+    if (acceptedOrders.length > 0 && totalPrice < 1) {
+      acceptedOrders.forEach(item => {
         setTotalPrice(totalPrice + (item.totalPrice ?? item.price ?? 0))
       })
     } else {
       navigate(PageRoutes.homeRoute.path)
     }
-  }, [cart])
+  }, [acceptedOrders])
   return (
     <div className='content'>
       <Boundary>
@@ -74,7 +64,6 @@ const ShippingDetails = () => {
           <div className="checkout-step-2">
             <h3 className="text-center mt-5 my-3 fs-1" style={{ color: "#222" }}>Delivery Details</h3>
             <Formik
-              initialValues={initFormikValues}
               validateOnChange
               validationSchema={FormSchema}
             >

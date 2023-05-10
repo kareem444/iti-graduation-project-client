@@ -26,18 +26,18 @@ const Payment = ({ subtotal }) => {
 
   const { mutate, data } = RepoIntentStrip();
 
-  const cart = useSelector(state => state.order.cart)
+  const acceptedOrders = useSelector(state => state.order.acceptedOrders)
   const [totalPrice, setTotalPrice] = useState(0)
 
   useEffect(() => {
-    if (cart.length > 0 && totalPrice < 1) {
-      cart.forEach(item => {
+    if (acceptedOrders.length > 0 && totalPrice < 1) {
+      acceptedOrders.forEach(item => {
         setTotalPrice(totalPrice + (item.totalPrice ?? item.price))
       })
     } else {
       navigate(PageRoutes.homeRoute.path)
     }
-  }, [cart])
+  }, [acceptedOrders])
 
   useEffect(() => {
     mutate({ amount: subtotal ?? 4 });
