@@ -20,10 +20,6 @@ const ProductDetails = () => {
 
   const [selectedDate, setSelectedDate] = useState(null);
 
-  console.log('====================================');
-  console.log(selectedDate);
-  console.log('====================================');
-
   const { data: product } = RepGetOneProduct(orderId);
 
   const dispatch = useDispatch();

@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import userImage from "../../../imported/images/user.png";
 import StarRatings from "react-star-ratings";
 import { RepoCreateRate } from "../../../repositories/rate.repo";
-import { RepoCreateComment } from "../../../repositories/comment.repo";
+import {
+    RepoCreateComment,
+    RepoDeleteComment,
+} from "../../../repositories/comment.repo";
 import useAuth from "../../../custom_hooks/use_auth";
 import { RepoGetMyOrders } from "../../../repositories/order.repo";
 
@@ -11,10 +14,11 @@ const ProductReviewsComponent = ({ product }) => {
 
     const { mutate: createRate } = RepoCreateRate();
     const { mutate: createComment } = RepoCreateComment();
+    const { mutate: deleteComment } = RepoDeleteComment();
 
     const [myRate, setMyRate] = useState(null);
 
-    const { authData } = useAuth();
+    const { authData, isAdmin } = useAuth();
 
     const { data: myOrders } = RepoGetMyOrders();
 
@@ -83,11 +87,23 @@ const ProductReviewsComponent = ({ product }) => {
                                                         <p className="stext-102 cl6">{comment.comment}</p>
                                                     </div>
                                                 </div>
-                                                {/* <img
-                                                    src="https://img.icons8.com/ios-glyphs/30/null/delete-sign.png"
-                                                    height={20}
-                                                    style={{ cursor: "pointer", marginLeft: "auto", marginRight: "20px" }}
-                                                /> */}
+                                                {isAdmin == true && (
+                                                    <img
+                                                        src="https://img.icons8.com/ios-glyphs/30/null/delete-sign.png"
+                                                        height={20}
+                                                        style={{
+                                                            cursor: "pointer",
+                                                            marginLeft: "auto",
+                                                            marginRight: "20px",
+                                                        }}
+                                                        onClick={() =>
+                                                            deleteComment({
+                                                                commentId: comment["_id"],
+                                                                productId: product["_id"],
+                                                            })
+                                                        }
+                                                    />
+                                                )}
                                             </div>
                                         );
                                     })}
@@ -130,7 +146,7 @@ const ProductReviewsComponent = ({ product }) => {
                                                         createComment({
                                                             id: product["_id"],
                                                             comment: enteredComment,
-                                                            productId : product["_id"]
+                                                            productId: product["_id"],
                                                         });
                                                         setEnteredComment("");
                                                     }}
@@ -141,7 +157,10 @@ const ProductReviewsComponent = ({ product }) => {
                                         </form>
                                     ) : (
                                         <div>
-                                            <h5 className="text-center fs-3 mt-5" style={{ color: "#888" }}>
+                                            <h5
+                                                className="text-center fs-3 mt-5"
+                                                style={{ color: "#888" }}
+                                            >
                                                 You must order this product to be able to review it
                                             </h5>
                                         </div>
