@@ -107,9 +107,13 @@ function MainRouter() {
           path={RoutsPath.sellerOrderDetails.path}
           element={RoutsPath.sellerOrderDetails.component}
         />
-        <Route
+        {/* <Route
           path={RoutsPath.sellerCalender.path}
           element={RoutsPath.sellerCalender.component}
+        /> */}
+        <Route
+          path={RoutsPath.sellerProductDetails.path}
+          element={RoutsPath.sellerProductDetails.component}
         />
       </Route>
     </Routes>

@@ -155,6 +155,11 @@ export default class PageRoutes {
     path: "productdetails/:id",
     component: <ProductDetails />,
   };
+  static sellerProductDetails = {
+    path: "sellerproductdetails/:id",
+    component: <SellerProductDetails />,
+  }
+  
   static NoPageRoute = {
     path: "*",
     component: <NoPage />,

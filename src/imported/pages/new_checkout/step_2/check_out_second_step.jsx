@@ -28,7 +28,7 @@ const ShippingDetails = () => {
   }, [acceptedOrders])
 
   return (
-    <div className='content'>
+    <div className='h-100'>
       <Boundary>
         <div className="checkout">
           <StepTracker current={2} />

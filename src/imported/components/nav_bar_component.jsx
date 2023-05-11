@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 
 const NavBarComponent = () => {
   const { translate, isArabic } = useLang()
-  const { isAuth, logout, authData } = useAuth();
+  const { isAuth, logout, authData, isSeller, isAdmin } = useAuth();
   const navbar = useRef(null);
   const { pathname } = useLocation();
   const cart = [
@@ -110,6 +110,32 @@ const NavBarComponent = () => {
                 {translate("nav_Contact")}
               </NavLink>
             </li>
+            {
+              isSeller == true && (
+                <li className="nav-item my-3 my-lg-0">
+                  <NavLink
+                    className="navigation-menu-active nav-link fw-bold px-4"
+                    to={PageRoutes.sellerDashboardLayout.path}
+                    style={handleActiveColor(PageRoutes.sellerDashboardLayout.path)}
+                  >
+                    {translate("dashboard")}
+                  </NavLink>
+                </li>
+              )
+            }
+            {
+              isAdmin == true && (
+                <li className="nav-item my-3 my-lg-0">
+                  <NavLink
+                    className="navigation-menu-active nav-link fw-bold px-4"
+                    // to={PageRoutes.sellerDashboardLayout.path}
+                    style={handleActiveColor(PageRoutes.sellerDashboardLayout.path)}
+                  >
+                    {translate("dashboard")}
+                  </NavLink>
+                </li>
+              )
+            }
             {isAuth == false && (
               <>
                 <li className="nav-item d-block d-lg-none my-3">

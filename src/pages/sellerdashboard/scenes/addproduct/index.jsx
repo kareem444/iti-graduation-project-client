@@ -1,4 +1,4 @@
-import { Box, Button, TextField,Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import React, { useState } from "react";
@@ -6,12 +6,29 @@ import { useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import { useFieldArray, useForm } from "react-hook-form";
 import { RepoCreateProduct } from "../../../../repositories/product.repo";
-
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
+import PageRoutes from "../../../../router/page_routes";
+import { useNavigate } from 'react-router-dom';
 const SellerAddproduct = () => {
+  const initialDays = [];
+  const [days, setDays] = useState(initialDays);
+  const footer =
+  days && days.length > 0 ? (
+    <p>You selected {days.length} day(s).</p>
+  ) : (
+    <p>Please pick one or more days.</p>
+  );
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const { mutate, isError: IsMutateError, error: mutateError, isLoading: isMutateLoading } = RepoCreateProduct()
+  const {
+    mutate,
+    isError: IsMutateError,
+    error: mutateError,
+    isLoading: isMutateLoading,
+    isSuccess
+  } = RepoCreateProduct();
   const {
     register,
     handleSubmit,
@@ -124,18 +141,22 @@ const SellerAddproduct = () => {
     remove(i);
   };
   const handleRegistration = (data) => {
-    data['items'].map((item)=>{
-    item['price']=(+item['price'])
-    item['minQuantity']=(+item['minQuantity'])
-    item['maxQuantity']=(+item['maxQuantity'])
-    item['quantity']=(+item['quantity'])
-    }
-    )
-    data.file=data.file[0];
+    data["items"].map((item) => {
+      item["price"] = +item["price"];
+      item["minQuantity"] = +item["minQuantity"];
+      item["maxQuantity"] = +item["maxQuantity"];
+      item["quantity"] = +item["quantity"];
+    });
+    data.file = data.file[0];
     mutate(data);
-    console.log(data)
-  }
+  };
+  const navigate=useNavigate();
+  if (isSuccess) {
+    navigate("../"+PageRoutes.sellerProducts.path);
+  } 
   return (
+    <>
+    {/* <ToastContainer /> */}
     <Box m="0 20px">
       <Header title="CREATE Product" subtitle="Create a New Product Profile" />
       <form onSubmit={handleSubmit(handleRegistration)}>
@@ -157,9 +178,7 @@ const SellerAddproduct = () => {
             {...register("title", registerOptions.title)}
             sx={{ gridColumn: "span 4" }}
           />
-          {errors?.title && (
-            <Typography  >{errors.title.message}</Typography>
-          )}
+          {errors?.title && <Typography>{errors.title.message}</Typography>}
           <TextField
             fullWidth
             variant="filled"
@@ -171,19 +190,42 @@ const SellerAddproduct = () => {
             {...register("location", registerOptions.location)}
           />
           {errors?.location && (
-            <Typography   >{errors.location.message}</Typography>
+            <Typography sx={{ gridColumn: "span 4" }}>{errors.location.message}</Typography>
           )}
-          <TextField
-            variant="filled"
-            type="file"
-            label="Image"
-            name="file"
-            sx={{ gridColumn: "span 4" }}
-            {...register("file", registerOptions.file)}
-          />
-          {errors?.file && (
-            <Typography  >{errors.file.message}</Typography>
-          )}
+            <Box
+              sx={{ gridColumn: 'span 4' }}
+            >
+              <Box   sx={{ gridColumn: 'span 2' }} >
+                <Typography sx={{ gridColumn: "span 4" }}>
+                  Product Image
+                </Typography>
+                <TextField
+                  variant="standard"
+                  type="file"
+                  name="file"
+                  sx={{ gridColumn: "span 4" }}
+                  {...register("file", registerOptions.file)}
+                />
+                {errors?.file && (
+                  <Typography sx={{ gridColumn: "span 4" }}>
+                    {errors.file.message}
+                  </Typography>
+                )}
+              </Box>
+              <Box   sx={{ gridColumn: 'span 2' }} >
+                <Typography sx={{ gridColumn: "span 4" }}>
+                  NotAvailableDates
+                </Typography>
+                <DayPicker
+                  mode="multiple"
+                  min={0}
+                  max={5}
+                  selected={days}
+                  onSelect={setDays}
+                  footer={footer}
+                />
+              </Box>
+            </Box>
           <TextField
             fullWidth
             variant="filled"
@@ -196,7 +238,9 @@ const SellerAddproduct = () => {
             {...register("description", registerOptions.description)}
           />
           {errors?.description && (
-            <Typography   sx={{ gridColumn: "span 4" }} >{errors.description.message}</Typography>
+            <Typography sx={{ gridColumn: "span 4" }}>
+              {errors.description.message}
+            </Typography>
           )}
           {fields.map((val, i) => (
             <Box key={val.id}>
@@ -209,9 +253,7 @@ const SellerAddproduct = () => {
                 sx={{ gridColumn: "span 2" }}
                 {...register(`items.${i}.name`, registerOptions.name)}
               />
-              {errors?.name && (
-                <Typography  >{errors.name.message}</Typography>
-              )}
+              {errors?.name && <Typography>{errors.name.message}</Typography>}
               <TextField
                 fullWidth
                 variant="filled"
@@ -222,7 +264,9 @@ const SellerAddproduct = () => {
                 {...register(`items.${i}.quantity`, registerOptions.quantity)}
               />
               {errors?.quantity && (
-                <Typography                  sx={{ gridColumn: "span 2" }} >{errors.quantity.message}</Typography>
+                <Typography sx={{ gridColumn: "span 2" }}>
+                  {errors.quantity.message}
+                </Typography>
               )}
               <TextField
                 fullWidth
@@ -237,9 +281,7 @@ const SellerAddproduct = () => {
                 )}
               />
               {errors?.maxQuantity && (
-                <Typography  >
-                  {errors.maxQuantity.message}
-                </Typography>
+                <Typography>{errors.maxQuantity.message}</Typography>
               )}
               <TextField
                 fullWidth
@@ -254,9 +296,7 @@ const SellerAddproduct = () => {
                 )}
               />
               {errors?.minQuantity && (
-                <Typography  >
-                  {errors.minQuantity.message}
-                </Typography>
+                <Typography>{errors.minQuantity.message}</Typography>
               )}
               <TextField
                 fullWidth
@@ -267,9 +307,7 @@ const SellerAddproduct = () => {
                 sx={{ gridColumn: "span 2" }}
                 {...register(`items.${i}.price`, registerOptions.price)}
               />
-              <Typography  >
-                {errors?.price && errors.price.message}
-              </Typography>
+              <Typography>{errors?.price && errors.price.message}</Typography>
               <TextField
                 fullWidth
                 variant="filled"
@@ -285,9 +323,7 @@ const SellerAddproduct = () => {
                 )}
               />
               {errors?.descriptionItem && (
-                <Typography  >
-                  {errors.descriptionItem.message}
-                </Typography>
+                <Typography>{errors.descriptionItem.message}</Typography>
               )}
               <Button
                 onClick={() => handleDeleteItem(i)}
@@ -307,7 +343,7 @@ const SellerAddproduct = () => {
               </Button>
             </Box>
           ))}
-                    <Button
+          <Button
             onClick={handleAddItem}
             sx={{
               backgroundColor: colors.blueAccent[500],
@@ -332,6 +368,7 @@ const SellerAddproduct = () => {
         )}
       </form>
     </Box>
+    </>
   );
 };
 

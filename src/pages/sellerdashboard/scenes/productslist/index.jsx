@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Box, Button,Typography } from "@mui/material";
+import {  useState } from "react";
+import { Box, Button, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
@@ -7,6 +7,7 @@ import { useTheme } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
+import { useNavigate } from 'react-router';
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -15,21 +16,34 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { RepoGetAllMyProducts } from "../../../../repositories/product.repo";
 import { RepoDeleteProduct } from "../../../../repositories/product.repo";
-
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import PageRoutes from "../../../../router/page_routes";
 const SellerProducts = () => {
   const [productId, setProductId] = useState("");
+
   const [open, setOpen] = useState(false);
-  const { data: products, isLoading, isError, error } = RepoGetAllMyProducts();
-  console.log(products);
+  const {
+    data: products,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = RepoGetAllMyProducts();
   const handleClickOpen = (id) => {
-    setProductId(id)
+    setProductId(id);
     setOpen(true);
   };
-  const { mutate, isError: IsMutateError, error: mutateError, isLoading: isMutateLoading } = RepoDeleteProduct()
+  const {
+    mutate,
+    isError: IsMutateError,
+    error: mutateError,
+    isLoading: isMutateLoading,
+    isSuccess
+  } = RepoDeleteProduct();
   const handleClose = (e) => {
-    console.log(e.target.name);
-    if(e.target.name=="agree"){
-      mutate(productId)
+    if (e.target.name == "agree") {
+      mutate(productId);
+      refetch();
     }
     setOpen(false);
   };
@@ -40,16 +54,24 @@ const SellerProducts = () => {
       field: "_id",
       headerName: "ID",
       flex: 0.5,
-      renderCell: (index) =>{ return (
-        <Box
-          display="flex"
-        >
-          <Typography color={colors.grey[100]} sx={{ ml: "0px" }}component={Link} to={`../sellerproductdetails/${products[index.api.getRowIndex(index.row["_id"])]["_id"]}`}  >
-          {index.api.getRowIndex(index.row["_id"]) + 1}
-          </Typography>
-        </Box>
-        )
-    }},,
+      renderCell: (index) => {
+        return (
+          <Box display="flex">
+            <Typography
+              color={colors.grey[100]}
+              sx={{ ml: "0px" }}
+              component={Link}
+              to={`../sellerproductdetails/${
+                products[index.api.getRowIndex(index.row["_id"])]["_id"]
+              }`}
+            >
+              {index.api.getRowIndex(index.row["_id"]) + 1}
+            </Typography>
+          </Box>
+        );
+      },
+    },
+    ,
     {
       field: "title",
       headerName: "Title",
@@ -61,7 +83,7 @@ const SellerProducts = () => {
       headerName: "Description",
       headerAlign: "left",
       align: "left",
-      flex: 1
+      flex: 1,
     },
     {
       field: "location",
@@ -74,11 +96,15 @@ const SellerProducts = () => {
       flex: 1,
       renderCell: (index) => {
         return (
-          <Box
-            display="flex"
-            justifyContent="flex-start"
-          >
-            {products && <>{products[index.api.getRowIndex(index.row["_id"])]["items"].length}</>}
+          <Box display="flex" justifyContent="flex-start">
+            {products && (
+              <>
+                {
+                  products[index.api.getRowIndex(index.row["_id"])]["items"]
+                    .length
+                }
+              </>
+            )}
           </Box>
         );
       },
@@ -88,7 +114,6 @@ const SellerProducts = () => {
       headerName: "Edit",
       flex: 1,
       renderCell: (index) => {
-        
         return (
           <Box
             width="60%"
@@ -97,11 +122,38 @@ const SellerProducts = () => {
             justifyContent="flex-start"
             borderRadius="4px"
           >
-            <Box m="0 10px 0 0" onClick={()=>handleClickOpen(products[index.api.getRowIndex(index.row["_id"])]['_id'])}>
+            <Box
+              m="0 10px 0 0"
+              onClick={() =>
+                handleClickOpen(
+                  products[index.api.getRowIndex(index.row["_id"])]["_id"]
+                )
+              }
+            >
               <DeleteForeverIcon sx={{ cursor: "pointer" }} />
             </Box>
-            <Box m="0 0 0 10px" component={Link} to={`../sellereditproduct/${products[index.api.getRowIndex(index.row["_id"])]['_id']}`}>
+            <Box
+              m="0 10px 0 10px"
+              component={Link}
+              to={`../sellereditproduct/${
+                products[index.api.getRowIndex(index.row["_id"])]["_id"]
+              }`}
+            >
               <EditIcon
+                sx={{
+                  cursor: "pointer",
+                  color: colors.grey[100],
+                }}
+              />
+            </Box>
+            <Box
+              m="0 0 0 10px "
+              component={Link}
+              to={`../sellerproductdetails/${
+                products[index.api.getRowIndex(index.row["_id"])]["_id"]
+              }`}
+            >
+              <VisibilityIcon
                 sx={{
                   cursor: "pointer",
                   color: colors.grey[100],
@@ -113,6 +165,9 @@ const SellerProducts = () => {
       },
     },
   ];
+  if (isSuccess) {
+    refetch()
+  } 
   return (
     <>
       <Dialog
@@ -185,7 +240,7 @@ const SellerProducts = () => {
         </Box>
         <Box
           m="0px 0 0 0"
-          height="50vh"
+          height="70vh"
           sx={{
             "& .MuiDataGrid-root": {
               border: "none",
@@ -212,7 +267,8 @@ const SellerProducts = () => {
             },
             "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
               color: `${colors.grey[100]} !important`,
-            },
+            }
+
           }}
         >
           {products && (

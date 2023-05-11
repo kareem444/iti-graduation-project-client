@@ -12,7 +12,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import 'flag-icon-css/css/flag-icon.min.css'
 import i18nextHandler from './utils/core/i18next.handler';
 import SplashScreenComponent from './components/splash_screen_component/splash_screen.component';
-import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
+// import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
 import "@fortawesome/fontawesome-svg-core"
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { CookiesProvider } from 'react-cookie';

@@ -30,7 +30,7 @@ const NewProfilePage = () => {
 
     return (
         <div
-            className="customer content d-block my-3"
+            className="customer h-100 d-block my-3"
             style={{
                 paddingRight: "3rem",
                 paddingLeft: "3rem",

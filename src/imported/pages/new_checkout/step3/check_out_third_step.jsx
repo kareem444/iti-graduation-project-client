@@ -54,7 +54,7 @@ const Payment = ({ subtotal }) => {
   };
 
   return (
-    <div className="content">
+    <div className="h-100">
       <div className="checkout">
         <StepTracker current={3} />
         <div className="checkout-step-3">

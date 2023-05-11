@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import useAuth from './../../../../custom_hooks/use_auth';
+import userImage from '../../../../imported/images/user.png'
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -36,10 +36,10 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
-  const {authData,fetchAuth}=useAuth();
+  const {authData,fetchAuth,isAuth,isSeller}=useAuth();
     useEffect(() => {
       fetchAuth()
-  }, [authData]);
+  }, [authData,isAuth,isSeller]);
   return (
     <Box
       sx={{
@@ -96,7 +96,7 @@ const Sidebar = () => {
                   alt="profile-user"
                   width="100px"
                   height="100px"
-                  src={`../../assets/user.png`}
+                  src={authData?.avatar ?? userImage}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
@@ -160,13 +160,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {/* <Item
               title="Calendar"
               to="sellercalendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
   
           </Box>
         </Menu>
