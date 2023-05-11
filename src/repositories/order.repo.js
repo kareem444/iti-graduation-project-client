@@ -122,6 +122,21 @@ export const RepoUpdateOrder = () => {
   )
 }
 
+export const RepoUpdateMyOrder = () => {
+  const dispatch = useDispatch();
+
+  return useMutation((order) =>
+    AxiosApiHelper.patch(ENDPOINT_ORDERS + "/" + order["_id"], order), {
+    onSuccess: () => {
+      dispatch(showSuccessAlert("Order updated successfully"));
+    },
+    onError: (error) => {
+      dispatch(showErrorAlert(error));
+    },
+  }
+  );
+}
+
 export const RepoDeleteOrder = () => {
   const dispatch = useDispatch();
   return useMutation((id) => AxiosApiHelper.delete(ENDPOINT_ORDERS + "/" + id),

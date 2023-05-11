@@ -29,7 +29,7 @@ const SellerOrderDetails = () => {
     error,
     isSuccess,
   } = RepGetOneOrder(id);
-  console.log(myOrder)
+  // console.log(myOrder)
   useEffect(()=>
   {
     if(myOrder){

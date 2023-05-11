@@ -29,7 +29,7 @@ const CheckoutPage = () => {
   } = RepoGetOrders();
   const { data: payments, Loading } = RepoGetAllPayments();
 
-  console.log(payments);
+  // console.log(payments);
   const { mutate } = RepoCreatePayment();
   const onSubmit = () => {
     orders.map((order) => {
@@ -41,7 +41,7 @@ const CheckoutPage = () => {
       }
     });
   };
-  console.log(payments);
+  // console.log(payments);
   return (
     <>
       <section

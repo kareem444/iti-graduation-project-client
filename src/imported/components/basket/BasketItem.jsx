@@ -9,9 +9,7 @@ const BasketItem = ({ product, index, order }) => {
   const dispatch = useDispatch();
 
   const { mutate } = RepoDeleteOrder()
-console.log('====================================')
-console.log(order)
-console.log('====================================')
+
   return (
     <div className="d-flex align-items-center border my-4 rounded-3" >
       <div className="basket-item-img-wrapper">

@@ -6,7 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { RepoGetMyOrders, RepoUpdateOrder } from '../../../../repositories/order.repo';
+import { RepoGetMyOrders, RepoUpdateMyOrder } from '../../../../repositories/order.repo';
 import { RepoCreatePayment } from '../../../../repositories/payment.repo';
 import { useDispatch } from 'react-redux';
 import { clearAcceptedOrders } from '../../../../redux/order/order.reducer';
@@ -18,7 +18,7 @@ const StripePayment = ({ totalPrice }) => {
     const navigate = useNavigate();
     const elements = useElements();
     const { mutate: createPayment } = RepoCreatePayment()
-    const { mutate: updateOrder } = RepoUpdateOrder()
+    const { mutate: updateOrder } = RepoUpdateMyOrder()
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
 
