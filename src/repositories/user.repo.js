@@ -37,7 +37,7 @@ export const RepoCreateUser = () => {
 export const RepoGetAllUsers = () => {
     const dispatch = useDispatch();
 
-    return useQuery(KEY_REPO_GET_ALL_USERS, () =>
+    return useQuery([KEY_REPO_GET_ALL_USERS], () =>
         AxiosApiHelper.get(ENDPOINT_USERS), {
         onError: error => {
             dispatch(showErrorAlert(error))
