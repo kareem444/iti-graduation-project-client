@@ -26,7 +26,7 @@ const Topbar = () => {
   }
   return (
     <Box display="flex" justifyContent="flex-end" p={2}>
-      {/* ICONS */}
+      {/* ICONS  */}
       <Box display="flex">
         <IconButton onClick={() => navigate(PageRoutes.homeRoute.path)}>
           <HomeIcon />
