@@ -23,8 +23,8 @@ const LayoutPage = () => {
         <>
             <NavBarComponent />
             <ProgressLineComponent />
-            <ErrorAlertComponent />
-            <SuccessAlertComponent />
+            {/* <ErrorAlertComponent /> */}
+            {/* <SuccessAlertComponent /> */}
             <Basket />
             {/* The ExampleComponent component is for testing only you have to comment it in publish */}
             <Outlet />

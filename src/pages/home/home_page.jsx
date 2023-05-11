@@ -8,17 +8,18 @@ import {
   faCamera,
   faChair,
   faNewspaper,
-  faChampagneGlasses
+  faChampagneGlasses,
+  faLocation
 } from '@fortawesome/free-solid-svg-icons'
 import CelebrationIcon from '@mui/icons-material/Celebration'
 import '../../Styling/home_page.css'
 import { useLang } from '../../custom_hooks/use_get_current_language'
 import PageRoutes from '../../router/page_routes'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const HomePage = () => {
 
-  const {translate} = useLang()
+  const { translate } = useLang()
 
 
   return (
@@ -127,7 +128,7 @@ const HomePage = () => {
             </h2>
 
             <div className='col-md-4 px-5 my-5 text-center '>
-              <i className='bi bi-geo-alt-fill' ></i>
+              <FontAwesomeIcon icon={faLocation} />
               <h2 className='RobotoFont px-4  mt-3 fs-1'> {translate("services_ThirdTitle")} </h2>
               <p className='RobotoFont px-4  p__Color fs-4'>
                 {translate("services_Thirdbody")}
