@@ -9,25 +9,28 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import useAuth from "../../../../custom_hooks/use_auth";
 import { useNavigate } from "react-router";
 import PageRoutes from "../../../../router/page_routes";
-
+import HomeIcon from '@mui/icons-material/Home';
 
 const Topbar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
   const navigate = useNavigate();
-  const {authData,fetchAuth,isAuth,isSeller,logout}=useAuth();
-    useEffect(() => {
-      fetchAuth()
-  }, [authData,isAuth,isSeller]);
-  function handleLogOut(){
-      logout();
-      navigate(PageRoutes.signINRoute.path)
+  const { authData, fetchAuth, isAuth, isSeller, logout } = useAuth();
+  useEffect(() => {
+    fetchAuth()
+  }, [authData, isAuth, isSeller]);
+  function handleLogOut() {
+    logout();
+    navigate(PageRoutes.signINRoute.path)
   }
   return (
     <Box display="flex" justifyContent="flex-end" p={2}>
       {/* ICONS */}
       <Box display="flex">
+        <IconButton onClick={() => navigate(PageRoutes.homeRoute.path)}>
+          <HomeIcon />
+        </IconButton>
         <IconButton onClick={colorMode.toggleColorMode}>
           {theme.palette.mode === "dark" ? (
             <DarkModeOutlinedIcon />
@@ -39,10 +42,7 @@ const Topbar = () => {
           <NotificationsOutlinedIcon />
         </IconButton> */}
         <IconButton onClick={handleLogOut}>
-        <LogoutIcon />
-        </IconButton>
-        <IconButton>
-          <PersonOutlinedIcon />
+          <LogoutIcon />
         </IconButton>
       </Box>
     </Box>

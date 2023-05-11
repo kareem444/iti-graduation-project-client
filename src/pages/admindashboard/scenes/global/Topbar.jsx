@@ -9,17 +9,17 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import useAuth from "../../../../custom_hooks/use_auth";
 import { useNavigate } from "react-router";
 import PageRoutes from "../../../../router/page_routes";
-
+import HomeIcon from '@mui/icons-material/Home';
 
 const AdminTopbar = () => {
   const navigate = useNavigate();
-  const {authData,fetchAuth,isAuth,isAdmin,logout}=useAuth();
+  const { authData, fetchAuth, isAuth, isAdmin, logout } = useAuth();
   useEffect(() => {
     fetchAuth()
-}, [authData,isAuth,isAdmin]);
-  function handleLogOut(){
-      logout();
-      navigate(PageRoutes.signINRoute.path)
+  }, [authData, isAuth, isAdmin]);
+  function handleLogOut() {
+    logout();
+    navigate(PageRoutes.signINRoute.path)
   }
 
   const theme = useTheme();
@@ -30,6 +30,9 @@ const AdminTopbar = () => {
     <Box display="flex" justifyContent="flex-end" p={2}>
       {/* ICONS */}
       <Box display="flex">
+        <IconButton onClick={()=> navigate(PageRoutes.homeRoute.path)}>
+          <HomeIcon />
+        </IconButton>
         <IconButton onClick={colorMode.toggleColorMode}>
           {theme.palette.mode === "dark" ? (
             <DarkModeOutlinedIcon />
@@ -39,9 +42,6 @@ const AdminTopbar = () => {
         </IconButton>
         <IconButton onClick={handleLogOut}>
           <LogoutIcon />
-        </IconButton>
-        <IconButton>
-          <PersonOutlinedIcon />
         </IconButton>
       </Box>
     </Box>
