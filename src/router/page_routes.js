@@ -27,6 +27,21 @@ import ShippingDetails from "../imported/pages/new_checkout/step_2/check_out_sec
 import NewProfilePage from "../imported/pages/new_profile/new_profile.page";
 import MainAccountComponent from "../imported/pages/new_profile/components/account/main_account_component";
 import MainMyOrdersComponent from "../imported/pages/new_profile/components/my_orders/main_my_orders_component";
+import AdminDashboard from "../pages/admindashboard/scenes/dashboard";
+import AdminDashboardLayout from "../pages/admindashboard/App";
+import AdminProducts from './../pages/admindashboard/scenes/productslist/index';
+import AdminAddproduct from './../pages/admindashboard/scenes/addproduct/index';
+import AdminEditproduct from './../pages/admindashboard/scenes/editproduct/index';
+import AdminProductDetails from './../pages/admindashboard/scenes/productDetails/index';
+import AdminOrders from './../pages/admindashboard/scenes/orderslist/index';
+import AdminOrderDetails from './../pages/admindashboard/scenes/orderdetails/index';
+import AdminCalendar from './../pages/admindashboard/scenes/calendar/calendar';
+import AdminUsers from './../pages/admindashboard/scenes/userslist/index';
+import AdminAddUser from './../pages/admindashboard/scenes/adduser/index';
+import AdminEditUser from './../pages/admindashboard/scenes/edituser/index';
+import AdminUserDetails from './../pages/admindashboard/scenes/userDetails/index';
+import AdminContactDetails from "../pages/admindashboard/scenes/contactDetails";
+import AdminContacts from "../pages/admindashboard/scenes/contactslist";
 
 export default class PageRoutes {
   static layoutRoute = {
@@ -159,7 +174,66 @@ export default class PageRoutes {
     path: "sellerproductdetails/:id",
     component: <SellerProductDetails />,
   }
-  
+
+  // admin dashboard
+  static adminDashboard = {
+    path: "admindashboard",
+    component: <AdminDashboard />,
+  }
+  static adminDashboardLayout = {
+    path: "/admindashboardlayout",
+    component: <AdminDashboardLayout />,
+  }
+
+  static adminUsers = {
+    path: "users",
+    component: <AdminUsers />,
+  }
+  static adminAddUser = {
+    path: "adminadduser",
+    component: <AdminAddUser />,
+  }
+  static adminEditUsers = {
+    path: "adminedituser/:id",
+    component: <AdminEditUser />,
+  }
+  static adminUserDetails = {
+    path: "adminuserDetails/:id",
+    component: <AdminUserDetails />,
+  }
+  static adminContacts = {
+    path: "adminContacts",
+    component: <AdminContacts />,
+  }
+  static adminContactDetails = {
+    path: "admincontactdetails/:id",
+    component: <AdminContactDetails />,
+  }
+  static adminProducts = {
+    path: "adminproducts",
+    component: <AdminProducts />,
+  }
+  static adminAddProduct = {
+    path: "adminaddproduct",
+    component: <AdminAddproduct />,
+  }
+  static adminEditProducts = {
+    path: "admineditproduct/:id",
+    component: <AdminEditproduct />,
+  }
+  static adminProductDetails = {
+    path: "adminproductDetails/:id",
+    component: <AdminProductDetails />,
+  }
+  static adminOrders = {
+    path: "adminorders",
+    component: <AdminOrders />,
+  }
+  static adminOrderDetails = {
+    path: "adminorderdetails/:id",
+    component: <AdminOrderDetails />,
+  }
+
   static NoPageRoute = {
     path: "*",
     component: <NoPage />,

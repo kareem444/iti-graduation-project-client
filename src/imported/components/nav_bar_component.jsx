@@ -128,8 +128,8 @@ const NavBarComponent = () => {
                 <li className="nav-item my-3 my-lg-0">
                   <NavLink
                     className="navigation-menu-active nav-link fw-bold px-4"
-                    // to={PageRoutes.sellerDashboardLayout.path}
-                    style={handleActiveColor(PageRoutes.sellerDashboardLayout.path)}
+                    to={PageRoutes.adminDashboardLayout.path}
+                    style={handleActiveColor(PageRoutes.adminDashboardLayout.path)}
                   >
                     {translate("dashboard")}
                   </NavLink>
