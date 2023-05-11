@@ -25,7 +25,7 @@ const FooterComponent = () => {
   ];
 
   return !visibleOnlyPath.includes(pathname) ? null : (
-    <footer className="container-fluid  pt-5" style={{backgroundColor:"#222"}}>
+    <footer className="container-fluid d-none d-md-block  pt-5" style={{backgroundColor:"#222"}}>
         <div className="row mt-5 mb-4 justify-content-around text-white">
           <div className=" col-3  mb-4">
             <h4 className=" fw-bold mb-4 text-white ft__titleSize">
