@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import {
+    ENDPOINT_AUTH_REGISTER,
     ENDPOINT_CONTACTS,
     ENDPOINT_USERS,
     ENDPOINT_USER_PROFILE
@@ -13,6 +14,25 @@ import AxiosApiHelper from '../helper/axios_api.helper'
 import useAuth from '../custom_hooks/use_auth'
 import { useDispatch } from 'react-redux'
 import { showErrorAlert, showSuccessAlert } from '../redux/global/global.reducer'
+
+export const RepoCreateUser = () => {
+    const dispatch = useDispatch();
+
+    return useMutation(
+        async (data) =>
+            await AxiosApiHelper.post(
+                ENDPOINT_AUTH_REGISTER,
+                data
+            ), {
+        onSuccess: () => {
+            dispatch(showSuccessAlert("User created successfully"));
+        },
+        onError: (error) => {
+            dispatch(showErrorAlert(error));
+        },
+    }
+    );
+};
 
 export const RepoGetAllUsers = () => {
     const dispatch = useDispatch();
@@ -90,6 +110,25 @@ export const RepoUpdateMyProfile = () => {
                 dispatch(showErrorAlert(error))
             }
         }
+    )
+}
+
+export const RepoUpdateUser = () => {
+    const dispatch = useDispatch();
+
+    return useMutation(
+        data => {
+            return AxiosApiHelper.patch(ENDPOINT_USERS, data, {
+                'Content-Type': 'multipart/form-data'
+            })
+        }, {
+        onSuccess: () => {
+            dispatch(showSuccessAlert("User Updated successfully"));
+        },
+        onError: (error) => {
+            dispatch(showErrorAlert(error));
+        },
+    }
     )
 }
 

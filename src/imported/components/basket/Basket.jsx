@@ -13,6 +13,8 @@ import {
 import {
   addItemToAcceptedOrders,
   addItemToCart,
+  clearAcceptedOrders,
+  clearCart,
 } from "../../../redux/order/order.reducer";
 import PageRoutes from "../../../router/page_routes";
 
@@ -63,6 +65,8 @@ const Basket = () => {
 
   useEffect(() => {
     if (myOrders) {
+      dispatch(clearCart())
+      dispatch(clearAcceptedOrders())
       myOrders.forEach((el) => {
         if (el.status == "PENDING") {
           dispatch(addItemToCart(el));

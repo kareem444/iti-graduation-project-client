@@ -11,6 +11,7 @@ import {
   KEY_REPO_ORDERS,
   KEY_REPO_GET_ALL_MY_ORDERS,
   KEY_REPO_GET_MY_ORDERS,
+  KEY_REPO_GET_ALL_ORDERS,
 } from "../utils/constants/queries_keys.constants";
 import AxiosApiHelper from "../helper/axios_api.helper";
 import { useDispatch } from "react-redux";
@@ -19,6 +20,18 @@ import { useNavigate } from "react-router-dom";
 import PageRoutes from "../router/page_routes";
 import useAuth from "../custom_hooks/use_auth";
 import { addItemToCart } from "../redux/order/order.reducer";
+
+export const RepoGetAllOrders = () => {
+  const dispatch = useDispatch();
+
+  return useQuery([KEY_REPO_GET_ALL_ORDERS], () =>
+    AxiosApiHelper.get(ENDPOINT_ORDERS),{
+      onError: (error) => {
+          dispatch(showErrorAlert(error));
+      },
+  }
+  );
+};
 
 export const RepoGetOrders = () => {
   return useQuery([KEY_REPO_ORDERS], () =>

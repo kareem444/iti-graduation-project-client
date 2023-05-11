@@ -116,6 +116,64 @@ function MainRouter() {
           element={RoutsPath.sellerProductDetails.component}
         />
       </Route>
+      <Route
+        path={RoutsPath.adminDashboardLayout.path}
+        element={RoutsPath.adminDashboardLayout.component}
+      >
+        <Route index element={RoutsPath.adminDashboard.component} />
+        <Route
+          path={RoutsPath.adminUsers.path}
+          element={RoutsPath.adminUsers.component}
+        />
+        <Route
+          path={RoutsPath.adminAddUser.path}
+          element={RoutsPath.adminAddUser.component}
+        />
+        <Route
+          path={RoutsPath.adminEditUsers.path}
+          element={RoutsPath.adminEditUsers.component}
+        />
+        <Route
+          path={RoutsPath.adminUserDetails.path}
+          element={RoutsPath.adminUserDetails.component}
+        />
+        <Route
+          path={RoutsPath.adminProducts.path}
+          element={RoutsPath.adminProducts.component}
+        />
+        <Route
+          path={RoutsPath.adminAddProduct.path}
+          element={RoutsPath.adminAddProduct.component}
+        />
+        <Route
+          path={RoutsPath.adminEditProducts.path}
+          element={RoutsPath.adminEditProducts.component}
+        />
+        <Route
+          path={RoutsPath.adminProductDetails.path}
+          element={RoutsPath.adminProductDetails.component}
+        />
+        <Route
+          path={RoutsPath.adminOrders.path}
+          element={RoutsPath.adminOrders.component}
+        />
+        <Route
+          path={RoutsPath.adminOrderDetails.path}
+          element={RoutsPath.adminOrderDetails.component}
+        />
+        <Route
+          path={RoutsPath.adminContactDetails.path}
+          element={RoutsPath.adminContactDetails.component}
+        />
+        <Route
+          path={RoutsPath.adminContacts.path}
+          element={RoutsPath.adminContacts.component}
+        />
+        {/* <Route
+          path={RoutsPath.adminCalender.path}
+          element={RoutsPath.adminCalender.component}
+        /> */}
+      </Route>
     </Routes>
 
   );
