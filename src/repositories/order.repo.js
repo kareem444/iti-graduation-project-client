@@ -21,14 +21,15 @@ import PageRoutes from "../router/page_routes";
 import useAuth from "../custom_hooks/use_auth";
 import { addItemToCart } from "../redux/order/order.reducer";
 
+
 export const RepoGetAllOrders = () => {
   const dispatch = useDispatch();
 
   return useQuery([KEY_REPO_GET_ALL_ORDERS], () =>
-    AxiosApiHelper.get(ENDPOINT_ORDERS),{
-      onError: (error) => {
-          dispatch(showErrorAlert(error));
-      },
+    AxiosApiHelper.get(ENDPOINT_ORDERS), {
+    onError: (error) => {
+      dispatch(showErrorAlert(error));
+    },
   }
   );
 };
@@ -54,9 +55,21 @@ export const RepoGetMyOrders = () => {
   );
 };
 
+// export const RepoGetAllMyOrders = () => {
+//   return useQuery([KEY_REPO_GET_ALL_MY_ORDERS], () =>
+//     AxiosApiHelper.get(ENDPOINT_ORDERS_SELLER)
+//   );
+// };
+
 export const RepoGetAllMyOrders = () => {
+  const dispatch = useDispatch();
+
   return useQuery([KEY_REPO_GET_ALL_MY_ORDERS], () =>
-    AxiosApiHelper.get(ENDPOINT_ORDERS_SELLER)
+    AxiosApiHelper.get(ENDPOINT_ORDERS_SELLER), {
+    onError: (error) => {
+      dispatch(showErrorAlert(error));
+    },
+  }
   );
 };
 
@@ -81,16 +94,33 @@ export const RepoCreateOrder = () => {
   });
 };
 
+// export const RepoUpdateOrder = () => {
+//   const dispatch = useDispatch();
+//   return useMutation((order) =>
+//     AxiosApiHelper.patch(ENDPOINT_ORDERS + "/" + order["_id"], order), {
+//     onSuccess: () => {
+//       dispatch(showSuccessAlert("Order updated successfully"));
+//     }
+//   }
+//   );
+// };
+
 export const RepoUpdateOrder = () => {
   const dispatch = useDispatch();
-  return useMutation((order) =>
-    AxiosApiHelper.patch(ENDPOINT_ORDERS + "/" + order["_id"], order), {
+
+  return useMutation(
+    data => {
+      return AxiosApiHelper.patch(`${ENDPOINT_ORDERS}/${data["id"]}`, data["data"])
+    }, {
     onSuccess: () => {
-      dispatch(showSuccessAlert("Order updated successfully"));
-    }
+      dispatch(showSuccessAlert("Order Updated successfully"));
+    },
+    onError: (error) => {
+      dispatch(showErrorAlert(error));
+    },
   }
-  );
-};
+  )
+}
 
 export const RepoDeleteOrder = () => {
   const dispatch = useDispatch();
@@ -98,7 +128,10 @@ export const RepoDeleteOrder = () => {
     {
       onSuccess: () => {
         dispatch(showSuccessAlert("Order deleted successfully"));
-      }
+      },
+      onError: (error) => {
+        dispatch(showErrorAlert(error));
+      },
     }
   );
 };

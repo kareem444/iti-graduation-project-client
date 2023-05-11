@@ -132,8 +132,21 @@ export const RepoUpdateUser = () => {
     )
 }
 
+// export const RepoDeleteUser = () => {
+//     return useMutation(id => AxiosApiHelper.delete(ENDPOINT_CONTACTS + '/' + id))
+// }
+
 export const RepoDeleteUser = () => {
-    return useMutation(id => AxiosApiHelper.delete(ENDPOINT_CONTACTS + '/' + id))
+    const dispatch = useDispatch();
+
+    return useMutation(id => AxiosApiHelper.delete(ENDPOINT_USERS + '/' + id),{
+        onSuccess: () => {
+            dispatch(showSuccessAlert("User Deleted successfully"));
+        },
+        onError: (error) => {
+            dispatch(showErrorAlert(error));
+        },
+    })
 }
 
 // export const RepoCreateUser = () => {
